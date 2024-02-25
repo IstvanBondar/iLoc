@@ -1,0 +1,935 @@
+mysql> show tables;
++-----------------------------------+
+| Tables_in_seiscomp3               |
++-----------------------------------+
+| Access                            |
+| Amplitude                         |
+| AmplitudeReference                |
+| ArclinkRequest                    |
+| ArclinkRequestLine                |
+| ArclinkStatusLine                 |
+| ArclinkUser                       |
+| Arrival                           |
+| AuxDevice                         |
+| AuxSource                         |
+| AuxStream                         |
+| Comment                           |
+| CompositeTime                     |
+| ConfigModule                      |
+| ConfigStation                     |
+| DataUsed                          |
+| Datalogger                        |
+| DataloggerCalibration             |
+| Decimation                        |
+| Event                             |
+| EventDescription                  |
+| FocalMechanism                    |
+| FocalMechanismReference           |
+| JournalEntry                      |
+| Magnitude                         |
+| Meta                              |
+| MomentTensor                      |
+| MomentTensorComponentContribution |
+| MomentTensorPhaseSetting          |
+| MomentTensorStationContribution   |
+| Network                           |
+| Object                            |
+| Origin                            |
+| OriginReference                   |
+| Outage                            |
+| Parameter                         |
+| ParameterSet                      |
+| Pick                              |
+| PickReference                     |
+| PublicObject                      |
+| QCLog                             |
+| Reading                           |
+| ResponseFIR                       |
+| ResponsePAZ                       |
+| ResponsePolynomial                |
+| Route                             |
+| RouteArclink                      |
+| RouteSeedlink                     |
+| Sensor                            |
+| SensorCalibration                 |
+| SensorLocation                    |
+| Setup                             |
+| Station                           |
+| StationGroup                      |
+| StationMagnitude                  |
+| StationMagnitudeContribution      |
+| StationReference                  |
+| Stream                            |
+| WaveformQuality                   |
++-----------------------------------+
+59 rows in set (0.00 sec)
+
+
+mysql> show columns from Access;
++----------------+-------------+------+-----+-------------------+-----------------------------+
+| Field          | Type        | Null | Key | Default           | Extra                       |
++----------------+-------------+------+-----+-------------------+-----------------------------+
+| _oid           | int(11)     | NO   | PRI | NULL              |                             |
+| _parent_oid    | int(11)     | NO   | MUL | NULL              |                             |
+| _last_modified | timestamp   | NO   |     | CURRENT_TIMESTAMP | on update CURRENT_TIMESTAMP |
+| networkCode    | char(2)     | NO   |     | NULL              |                             |
+| stationCode    | char(5)     | NO   |     | NULL              |                             |
+| locationCode   | char(2)     | NO   |     | NULL              |                             |
+| streamCode     | char(3)     | NO   |     | NULL              |                             |
+| user           | varchar(50) | NO   |     | NULL              |                             |
+| start          | datetime    | NO   |     | NULL              |                             |
+| end            | datetime    | YES  |     | NULL              |                             |
++----------------+-------------+------+-----+-------------------+-----------------------------+
+10 rows in set (0.00 sec)
+
+mysql> show columns from Amplitude;
++----------------------------------+-----------------+------+-----+-------------------+-----------------------------+
+| Field                            | Type            | Null | Key | Default           | Extra                       |
++----------------------------------+-----------------+------+-----+-------------------+-----------------------------+
+| _oid                             | int(11)         | NO   | PRI | NULL              |                             |
+| _parent_oid                      | int(11)         | NO   | MUL | NULL              |                             |
+| _last_modified                   | timestamp       | NO   |     | CURRENT_TIMESTAMP | on update CURRENT_TIMESTAMP |
+| type                             | char(16)        | NO   |     | NULL              |                             |
+| amplitude_value                  | double          | YES  |     | NULL              |                             |
+| amplitude_uncertainty            | double unsigned | YES  |     | NULL              |                             |
+| amplitude_lowerUncertainty       | double unsigned | YES  |     | NULL              |                             |
+| amplitude_upperUncertainty       | double unsigned | YES  |     | NULL              |                             |
+| amplitude_confidenceLevel        | double unsigned | YES  |     | NULL              |                             |
+| amplitude_used                   | tinyint(1)      | NO   |     | 0                 |                             |
+| timeWindow_reference             | datetime        | YES  |     | NULL              |                             |
+| timeWindow_reference_ms          | int(11)         | YES  |     | NULL              |                             |
+| timeWindow_begin                 | double          | YES  |     | NULL              |                             |
+| timeWindow_end                   | double          | YES  |     | NULL              |                             |
+| timeWindow_used                  | tinyint(1)      | NO   |     | 0                 |                             |
+| period_value                     | double          | YES  |     | NULL              |                             |
+| period_uncertainty               | double unsigned | YES  |     | NULL              |                             |
+| period_lowerUncertainty          | double unsigned | YES  |     | NULL              |                             |
+| period_upperUncertainty          | double unsigned | YES  |     | NULL              |                             |
+| period_confidenceLevel           | double unsigned | YES  |     | NULL              |                             |
+| period_used                      | tinyint(1)      | NO   |     | 0                 |                             |
+| snr                              | double          | YES  |     | NULL              |                             |
+| pickID                           | varchar(255)    | NO   | MUL | NULL              |                             |
+| waveformID_networkCode           | char(8)         | YES  |     | NULL              |                             |
+| waveformID_stationCode           | char(8)         | YES  |     | NULL              |                             |
+| waveformID_locationCode          | char(8)         | YES  |     | NULL              |                             |
+| waveformID_channelCode           | char(8)         | YES  |     | NULL              |                             |
+| waveformID_resourceURI           | varchar(255)    | YES  |     | NULL              |                             |
+| waveformID_used                  | tinyint(1)      | NO   |     | 0                 |                             |
+| filterID                         | varchar(255)    | NO   |     | NULL              |                             |
+| methodID                         | varchar(255)    | NO   |     | NULL              |                             |
+| scalingTime_value                | datetime        | YES  |     | NULL              |                             |
+| scalingTime_value_ms             | int(11)         | YES  |     | NULL              |                             |
+| scalingTime_uncertainty          | double unsigned | YES  |     | NULL              |                             |
+| scalingTime_lowerUncertainty     | double unsigned | YES  |     | NULL              |                             |
+| scalingTime_upperUncertainty     | double unsigned | YES  |     | NULL              |                             |
+| scalingTime_confidenceLevel      | double unsigned | YES  |     | NULL              |                             |
+| scalingTime_used                 | tinyint(1)      | NO   |     | 0                 |                             |
+| magnitudeHint                    | char(16)        | NO   |     | NULL              |                             |
+| evaluationMode                   | varchar(64)     | YES  |     | NULL              |                             |
+| creationInfo_agencyID            | varchar(64)     | YES  |     | NULL              |                             |
+| creationInfo_agencyURI           | varchar(255)    | YES  |     | NULL              |                             |
+| creationInfo_author              | varchar(128)    | YES  |     | NULL              |                             |
+| creationInfo_authorURI           | varchar(255)    | YES  |     | NULL              |                             |
+| creationInfo_creationTime        | datetime        | YES  |     | NULL              |                             |
+| creationInfo_creationTime_ms     | int(11)         | YES  |     | NULL              |                             |
+| creationInfo_modificationTime    | datetime        | YES  |     | NULL              |                             |
+| creationInfo_modificationTime_ms | int(11)         | YES  |     | NULL              |                             |
+| creationInfo_version             | varchar(64)     | YES  |     | NULL              |                             |
+| creationInfo_used                | tinyint(1)      | NO   |     | 0                 |                             |
++----------------------------------+-----------------+------+-----+-------------------+-----------------------------+
+50 rows in set (0.00 sec)
+
+mysql> show columns from AmplitudeReference;
++----------------+--------------+------+-----+-------------------+-----------------------------+
+| Field          | Type         | Null | Key | Default           | Extra                       |
++----------------+--------------+------+-----+-------------------+-----------------------------+
+| _oid           | int(11)      | NO   | PRI | NULL              |                             |
+| _parent_oid    | int(11)      | NO   | MUL | NULL              |                             |
+| _last_modified | timestamp    | NO   |     | CURRENT_TIMESTAMP | on update CURRENT_TIMESTAMP |
+| amplitudeID    | varchar(255) | NO   | MUL | NULL              |                             |
++----------------+--------------+------+-----+-------------------+-----------------------------+
+4 rows in set (0.00 sec)
+
+mysql> show columns from Arrival;
++----------------------------------+-----------------+------+-----+-------------------+-----------------------------+
+| Field                            | Type            | Null | Key | Default           | Extra                       |
++----------------------------------+-----------------+------+-----+-------------------+-----------------------------+
+| _oid                             | int(11)         | NO   | PRI | NULL              |                             |
+| _parent_oid                      | int(11)         | NO   | MUL | NULL              |                             |
+| _last_modified                   | timestamp       | NO   |     | CURRENT_TIMESTAMP | on update CURRENT_TIMESTAMP |
+| pickID                           | varchar(255)    | NO   | MUL | NULL              |                             |
+| phase_code                       | char(32)        | NO   |     | NULL              |                             |
+| timeCorrection                   | double          | YES  |     | NULL              |                             |
+| azimuth                          | double          | YES  |     | NULL              |                             |
+| distance                         | double unsigned | YES  |     | NULL              |                             |
+| takeOffAngle                     | double          | YES  |     | NULL              |                             |
+| timeResidual                     | double          | YES  |     | NULL              |                             |
+| horizontalSlownessResidual       | double          | YES  |     | NULL              |                             |
+| backazimuthResidual              | double          | YES  |     | NULL              |                             |
+| timeUsed                         | tinyint(1)      | YES  |     | NULL              |                             |
+| horizontalSlownessUsed           | tinyint(1)      | YES  |     | NULL              |                             |
+| backazimuthUsed                  | tinyint(1)      | YES  |     | NULL              |                             |
+| weight                           | double unsigned | YES  |     | NULL              |                             |
+| earthModelID                     | varchar(255)    | NO   |     | NULL              |                             |
+| preliminary                      | tinyint(1)      | YES  |     | NULL              |                             |
+| creationInfo_agencyID            | varchar(64)     | YES  |     | NULL              |                             |
+| creationInfo_agencyURI           | varchar(255)    | YES  |     | NULL              |                             |
+| creationInfo_author              | varchar(128)    | YES  |     | NULL              |                             |
+| creationInfo_authorURI           | varchar(255)    | YES  |     | NULL              |                             |
+| creationInfo_creationTime        | datetime        | YES  |     | NULL              |                             |
+| creationInfo_creationTime_ms     | int(11)         | YES  |     | NULL              |                             |
+| creationInfo_modificationTime    | datetime        | YES  |     | NULL              |                             |
+| creationInfo_modificationTime_ms | int(11)         | YES  |     | NULL              |                             |
+| creationInfo_version             | varchar(64)     | YES  |     | NULL              |                             |
+| creationInfo_used                | tinyint(1)      | NO   |     | 0                 |                             |
++----------------------------------+-----------------+------+-----+-------------------+-----------------------------+
+28 rows in set (0.00 sec)
+
+mysql> show columns from Comment;
++----------------------------------+--------------+------+-----+-------------------+-----------------------------+
+| Field                            | Type         | Null | Key | Default           | Extra                       |
++----------------------------------+--------------+------+-----+-------------------+-----------------------------+
+| _oid                             | int(11)      | NO   | PRI | NULL              |                             |
+| _parent_oid                      | int(11)      | NO   | MUL | NULL              |                             |
+| _last_modified                   | timestamp    | NO   |     | CURRENT_TIMESTAMP | on update CURRENT_TIMESTAMP |
+| text                             | blob         | NO   |     | NULL              |                             |
+| id                               | varchar(255) | NO   |     | NULL              |                             |
+| creationInfo_agencyID            | varchar(64)  | YES  |     | NULL              |                             |
+| creationInfo_agencyURI           | varchar(255) | YES  |     | NULL              |                             |
+| creationInfo_author              | varchar(128) | YES  |     | NULL              |                             |
+| creationInfo_authorURI           | varchar(255) | YES  |     | NULL              |                             |
+| creationInfo_creationTime        | datetime     | YES  |     | NULL              |                             |
+| creationInfo_creationTime_ms     | int(11)      | YES  |     | NULL              |                             |
+| creationInfo_modificationTime    | datetime     | YES  |     | NULL              |                             |
+| creationInfo_modificationTime_ms | int(11)      | YES  |     | NULL              |                             |
+| creationInfo_version             | varchar(64)  | YES  |     | NULL              |                             |
+| creationInfo_used                | tinyint(1)   | NO   |     | 0                 |                             |
++----------------------------------+--------------+------+-----+-------------------+-----------------------------+
+15 rows in set (0.00 sec)
+
+mysql> show columns from ConfigModule;
++----------------+-------------+------+-----+-------------------+-----------------------------+
+| Field          | Type        | Null | Key | Default           | Extra                       |
++----------------+-------------+------+-----+-------------------+-----------------------------+
+| _oid           | int(11)     | NO   | PRI | NULL              |                             |
+| _parent_oid    | int(11)     | NO   | MUL | NULL              |                             |
+| _last_modified | timestamp   | NO   |     | CURRENT_TIMESTAMP | on update CURRENT_TIMESTAMP |
+| name           | varchar(20) | NO   |     | NULL              |                             |
+| parameterSetID | varchar(80) | NO   |     | NULL              |                             |
+| enabled        | tinyint(1)  | NO   |     | NULL              |                             |
++----------------+-------------+------+-----+-------------------+-----------------------------+
+6 rows in set (0.00 sec)
+
+mysql> show columns from ConfigStation;
++----------------+------------+------+-----+-------------------+-----------------------------+
+| Field          | Type       | Null | Key | Default           | Extra                       |
++----------------+------------+------+-----+-------------------+-----------------------------+
+| _oid           | int(11)    | NO   | PRI | NULL              |                             |
+| _parent_oid    | int(11)    | NO   | MUL | NULL              |                             |
+| _last_modified | timestamp  | NO   |     | CURRENT_TIMESTAMP | on update CURRENT_TIMESTAMP |
+| networkCode    | char(2)    | NO   |     | NULL              |                             |
+| stationCode    | char(5)    | NO   |     | NULL              |                             |
+| enabled        | tinyint(1) | NO   |     | NULL              |                             |
++----------------+------------+------+-----+-------------------+-----------------------------+
+6 rows in set (0.00 sec)
+
+mysql> show columns from Event;
++----------------------------------+--------------+------+-----+-------------------+-----------------------------+
+| Field                            | Type         | Null | Key | Default           | Extra                       |
++----------------------------------+--------------+------+-----+-------------------+-----------------------------+
+| _oid                             | int(11)      | NO   | PRI | NULL              |                             |
+| _parent_oid                      | int(11)      | NO   | MUL | NULL              |                             |
+| _last_modified                   | timestamp    | NO   |     | CURRENT_TIMESTAMP | on update CURRENT_TIMESTAMP |
+| preferredOriginID                | varchar(255) | NO   | MUL | NULL              |                             |
+| preferredMagnitudeID             | varchar(255) | NO   | MUL | NULL              |                             |
+| preferredFocalMechanismID        | varchar(255) | NO   | MUL | NULL              |                             |
+| type                             | varchar(64)  | YES  |     | NULL              |                             |
+| typeCertainty                    | varchar(64)  | YES  |     | NULL              |                             |
+| creationInfo_agencyID            | varchar(64)  | YES  |     | NULL              |                             |
+| creationInfo_agencyURI           | varchar(255) | YES  |     | NULL              |                             |
+| creationInfo_author              | varchar(128) | YES  |     | NULL              |                             |
+| creationInfo_authorURI           | varchar(255) | YES  |     | NULL              |                             |
+| creationInfo_creationTime        | datetime     | YES  |     | NULL              |                             |
+| creationInfo_creationTime_ms     | int(11)      | YES  |     | NULL              |                             |
+| creationInfo_modificationTime    | datetime     | YES  |     | NULL              |                             |
+| creationInfo_modificationTime_ms | int(11)      | YES  |     | NULL              |                             |
+| creationInfo_version             | varchar(64)  | YES  |     | NULL              |                             |
+| creationInfo_used                | tinyint(1)   | NO   |     | 0                 |                             |
++----------------------------------+--------------+------+-----+-------------------+-----------------------------+
+18 rows in set (0.00 sec)
+
+mysql> show columns from EventDescription;
++----------------+--------------+------+-----+-------------------+-----------------------------+
+| Field          | Type         | Null | Key | Default           | Extra                       |
++----------------+--------------+------+-----+-------------------+-----------------------------+
+| _oid           | int(11)      | NO   | PRI | NULL              |                             |
+| _parent_oid    | int(11)      | NO   | MUL | NULL              |                             |
+| _last_modified | timestamp    | NO   |     | CURRENT_TIMESTAMP | on update CURRENT_TIMESTAMP |
+| text           | varchar(128) | NO   |     | NULL              |                             |
+| type           | varchar(64)  | NO   |     | NULL              |                             |
++----------------+--------------+------+-----+-------------------+-----------------------------+
+5 rows in set (0.00 sec)
+
+mysql> show columns from FocalMechanism;
++-------------------------------------------------+------------------+------+-----+-------------------+-----------------------------+
+| Field                                           | Type             | Null | Key | Default           | Extra                       |
++-------------------------------------------------+------------------+------+-----+-------------------+-----------------------------+
+| _oid                                            | int(11)          | NO   | PRI | NULL              |                             |
+| _parent_oid                                     | int(11)          | NO   | MUL | NULL              |                             |
+| _last_modified                                  | timestamp        | NO   |     | CURRENT_TIMESTAMP | on update CURRENT_TIMESTAMP |
+| triggeringOriginID                              | varchar(255)     | NO   | MUL | NULL              |                             |
+| nodalPlanes_nodalPlane1_strike_value            | double           | YES  |     | NULL              |                             |
+| nodalPlanes_nodalPlane1_strike_uncertainty      | double unsigned  | YES  |     | NULL              |                             |
+| nodalPlanes_nodalPlane1_strike_lowerUncertainty | double unsigned  | YES  |     | NULL              |                             |
+| nodalPlanes_nodalPlane1_strike_upperUncertainty | double unsigned  | YES  |     | NULL              |                             |
+| nodalPlanes_nodalPlane1_strike_confidenceLevel  | double unsigned  | YES  |     | NULL              |                             |
+| nodalPlanes_nodalPlane1_dip_value               | double           | YES  |     | NULL              |                             |
+| nodalPlanes_nodalPlane1_dip_uncertainty         | double unsigned  | YES  |     | NULL              |                             |
+| nodalPlanes_nodalPlane1_dip_lowerUncertainty    | double unsigned  | YES  |     | NULL              |                             |
+| nodalPlanes_nodalPlane1_dip_upperUncertainty    | double unsigned  | YES  |     | NULL              |                             |
+| nodalPlanes_nodalPlane1_dip_confidenceLevel     | double unsigned  | YES  |     | NULL              |                             |
+| nodalPlanes_nodalPlane1_rake_value              | double           | YES  |     | NULL              |                             |
+| nodalPlanes_nodalPlane1_rake_uncertainty        | double unsigned  | YES  |     | NULL              |                             |
+| nodalPlanes_nodalPlane1_rake_lowerUncertainty   | double unsigned  | YES  |     | NULL              |                             |
+| nodalPlanes_nodalPlane1_rake_upperUncertainty   | double unsigned  | YES  |     | NULL              |                             |
+| nodalPlanes_nodalPlane1_rake_confidenceLevel    | double unsigned  | YES  |     | NULL              |                             |
+| nodalPlanes_nodalPlane1_used                    | tinyint(1)       | NO   |     | 0                 |                             |
+| nodalPlanes_nodalPlane2_strike_value            | double           | YES  |     | NULL              |                             |
+| nodalPlanes_nodalPlane2_strike_uncertainty      | double unsigned  | YES  |     | NULL              |                             |
+| nodalPlanes_nodalPlane2_strike_lowerUncertainty | double unsigned  | YES  |     | NULL              |                             |
+| nodalPlanes_nodalPlane2_strike_upperUncertainty | double unsigned  | YES  |     | NULL              |                             |
+| nodalPlanes_nodalPlane2_strike_confidenceLevel  | double unsigned  | YES  |     | NULL              |                             |
+| nodalPlanes_nodalPlane2_dip_value               | double           | YES  |     | NULL              |                             |
+| nodalPlanes_nodalPlane2_dip_uncertainty         | double unsigned  | YES  |     | NULL              |                             |
+| nodalPlanes_nodalPlane2_dip_lowerUncertainty    | double unsigned  | YES  |     | NULL              |                             |
+| nodalPlanes_nodalPlane2_dip_upperUncertainty    | double unsigned  | YES  |     | NULL              |                             |
+| nodalPlanes_nodalPlane2_dip_confidenceLevel     | double unsigned  | YES  |     | NULL              |                             |
+| nodalPlanes_nodalPlane2_rake_value              | double           | YES  |     | NULL              |                             |
+| nodalPlanes_nodalPlane2_rake_uncertainty        | double unsigned  | YES  |     | NULL              |                             |
+| nodalPlanes_nodalPlane2_rake_lowerUncertainty   | double unsigned  | YES  |     | NULL              |                             |
+| nodalPlanes_nodalPlane2_rake_upperUncertainty   | double unsigned  | YES  |     | NULL              |                             |
+| nodalPlanes_nodalPlane2_rake_confidenceLevel    | double unsigned  | YES  |     | NULL              |                             |
+| nodalPlanes_nodalPlane2_used                    | tinyint(1)       | NO   |     | 0                 |                             |
+| nodalPlanes_preferredPlane                      | int(11)          | YES  |     | NULL              |                             |
+| nodalPlanes_used                                | tinyint(1)       | NO   |     | 0                 |                             |
+| principalAxes_tAxis_azimuth_value               | double           | YES  |     | NULL              |                             |
+| principalAxes_tAxis_azimuth_uncertainty         | double unsigned  | YES  |     | NULL              |                             |
+| principalAxes_tAxis_azimuth_lowerUncertainty    | double unsigned  | YES  |     | NULL              |                             |
+| principalAxes_tAxis_azimuth_upperUncertainty    | double unsigned  | YES  |     | NULL              |                             |
+| principalAxes_tAxis_azimuth_confidenceLevel     | double unsigned  | YES  |     | NULL              |                             |
+| principalAxes_tAxis_plunge_value                | double           | YES  |     | NULL              |                             |
+| principalAxes_tAxis_plunge_uncertainty          | double unsigned  | YES  |     | NULL              |                             |
+| principalAxes_tAxis_plunge_lowerUncertainty     | double unsigned  | YES  |     | NULL              |                             |
+| principalAxes_tAxis_plunge_upperUncertainty     | double unsigned  | YES  |     | NULL              |                             |
+| principalAxes_tAxis_plunge_confidenceLevel      | double unsigned  | YES  |     | NULL              |                             |
+| principalAxes_tAxis_length_value                | double           | YES  |     | NULL              |                             |
+| principalAxes_tAxis_length_uncertainty          | double unsigned  | YES  |     | NULL              |                             |
+| principalAxes_tAxis_length_lowerUncertainty     | double unsigned  | YES  |     | NULL              |                             |
+| principalAxes_tAxis_length_upperUncertainty     | double unsigned  | YES  |     | NULL              |                             |
+| principalAxes_tAxis_length_confidenceLevel      | double unsigned  | YES  |     | NULL              |                             |
+| principalAxes_pAxis_azimuth_value               | double           | YES  |     | NULL              |                             |
+| principalAxes_pAxis_azimuth_uncertainty         | double unsigned  | YES  |     | NULL              |                             |
+| principalAxes_pAxis_azimuth_lowerUncertainty    | double unsigned  | YES  |     | NULL              |                             |
+| principalAxes_pAxis_azimuth_upperUncertainty    | double unsigned  | YES  |     | NULL              |                             |
+| principalAxes_pAxis_azimuth_confidenceLevel     | double unsigned  | YES  |     | NULL              |                             |
+| principalAxes_pAxis_plunge_value                | double           | YES  |     | NULL              |                             |
+| principalAxes_pAxis_plunge_uncertainty          | double unsigned  | YES  |     | NULL              |                             |
+| principalAxes_pAxis_plunge_lowerUncertainty     | double unsigned  | YES  |     | NULL              |                             |
+| principalAxes_pAxis_plunge_upperUncertainty     | double unsigned  | YES  |     | NULL              |                             |
+| principalAxes_pAxis_plunge_confidenceLevel      | double unsigned  | YES  |     | NULL              |                             |
+| principalAxes_pAxis_length_value                | double           | YES  |     | NULL              |                             |
+| principalAxes_pAxis_length_uncertainty          | double unsigned  | YES  |     | NULL              |                             |
+| principalAxes_pAxis_length_lowerUncertainty     | double unsigned  | YES  |     | NULL              |                             |
+| principalAxes_pAxis_length_upperUncertainty     | double unsigned  | YES  |     | NULL              |                             |
+| principalAxes_pAxis_length_confidenceLevel      | double unsigned  | YES  |     | NULL              |                             |
+| principalAxes_nAxis_azimuth_value               | double           | YES  |     | NULL              |                             |
+| principalAxes_nAxis_azimuth_uncertainty         | double unsigned  | YES  |     | NULL              |                             |
+| principalAxes_nAxis_azimuth_lowerUncertainty    | double unsigned  | YES  |     | NULL              |                             |
+| principalAxes_nAxis_azimuth_upperUncertainty    | double unsigned  | YES  |     | NULL              |                             |
+| principalAxes_nAxis_azimuth_confidenceLevel     | double unsigned  | YES  |     | NULL              |                             |
+| principalAxes_nAxis_plunge_value                | double           | YES  |     | NULL              |                             |
+| principalAxes_nAxis_plunge_uncertainty          | double unsigned  | YES  |     | NULL              |                             |
+| principalAxes_nAxis_plunge_lowerUncertainty     | double unsigned  | YES  |     | NULL              |                             |
+| principalAxes_nAxis_plunge_upperUncertainty     | double unsigned  | YES  |     | NULL              |                             |
+| principalAxes_nAxis_plunge_confidenceLevel      | double unsigned  | YES  |     | NULL              |                             |
+| principalAxes_nAxis_length_value                | double           | YES  |     | NULL              |                             |
+| principalAxes_nAxis_length_uncertainty          | double unsigned  | YES  |     | NULL              |                             |
+| principalAxes_nAxis_length_lowerUncertainty     | double unsigned  | YES  |     | NULL              |                             |
+| principalAxes_nAxis_length_upperUncertainty     | double unsigned  | YES  |     | NULL              |                             |
+| principalAxes_nAxis_length_confidenceLevel      | double unsigned  | YES  |     | NULL              |                             |
+| principalAxes_nAxis_used                        | tinyint(1)       | NO   |     | 0                 |                             |
+| principalAxes_used                              | tinyint(1)       | NO   |     | 0                 |                             |
+| azimuthalGap                                    | double unsigned  | YES  |     | NULL              |                             |
+| stationPolarityCount                            | int(10) unsigned | YES  |     | NULL              |                             |
+| misfit                                          | double unsigned  | YES  |     | NULL              |                             |
+| stationDistributionRatio                        | double unsigned  | YES  |     | NULL              |                             |
+| methodID                                        | varchar(255)     | NO   |     | NULL              |                             |
+| evaluationMode                                  | varchar(64)      | YES  |     | NULL              |                             |
+| evaluationStatus                                | varchar(64)      | YES  |     | NULL              |                             |
+| creationInfo_agencyID                           | varchar(64)      | YES  |     | NULL              |                             |
+| creationInfo_agencyURI                          | varchar(255)     | YES  |     | NULL              |                             |
+| creationInfo_author                             | varchar(128)     | YES  |     | NULL              |                             |
+| creationInfo_authorURI                          | varchar(255)     | YES  |     | NULL              |                             |
+| creationInfo_creationTime                       | datetime         | YES  |     | NULL              |                             |
+| creationInfo_creationTime_ms                    | int(11)          | YES  |     | NULL              |                             |
+| creationInfo_modificationTime                   | datetime         | YES  |     | NULL              |                             |
+| creationInfo_modificationTime_ms                | int(11)          | YES  |     | NULL              |                             |
+| creationInfo_version                            | varchar(64)      | YES  |     | NULL              |                             |
+| creationInfo_used                               | tinyint(1)       | NO   |     | 0                 |                             |
++-------------------------------------------------+------------------+------+-----+-------------------+-----------------------------+
+102 rows in set (0.00 sec)
+
+mysql> show columns from JournalEntry;
++----------------+--------------+------+-----+-------------------+-----------------------------+
+| Field          | Type         | Null | Key | Default           | Extra                       |
++----------------+--------------+------+-----+-------------------+-----------------------------+
+| _oid           | int(11)      | NO   | PRI | NULL              |                             |
+| _parent_oid    | int(11)      | NO   | MUL | NULL              |                             |
+| _last_modified | timestamp    | NO   |     | CURRENT_TIMESTAMP | on update CURRENT_TIMESTAMP |
+| created        | datetime     | YES  |     | NULL              |                             |
+| created_ms     | int(11)      | YES  |     | NULL              |                             |
+| objectID       | varchar(80)  | NO   | MUL | NULL              |                             |
+| sender         | varchar(80)  | NO   |     | NULL              |                             |
+| action         | varchar(160) | NO   |     | NULL              |                             |
+| parameters     | varchar(160) | NO   |     | NULL              |                             |
++----------------+--------------+------+-----+-------------------+-----------------------------+
+9 rows in set (0.00 sec)
+
+mysql> show columns from Magnitude;
++----------------------------------+------------------+------+-----+-------------------+-----------------------------+
+| Field                            | Type             | Null | Key | Default           | Extra                       |
++----------------------------------+------------------+------+-----+-------------------+-----------------------------+
+| _oid                             | int(11)          | NO   | PRI | NULL              |                             |
+| _parent_oid                      | int(11)          | NO   | MUL | NULL              |                             |
+| _last_modified                   | timestamp        | NO   |     | CURRENT_TIMESTAMP | on update CURRENT_TIMESTAMP |
+| magnitude_value                  | double           | NO   |     | NULL              |                             |
+| magnitude_uncertainty            | double unsigned  | YES  |     | NULL              |                             |
+| magnitude_lowerUncertainty       | double unsigned  | YES  |     | NULL              |                             |
+| magnitude_upperUncertainty       | double unsigned  | YES  |     | NULL              |                             |
+| magnitude_confidenceLevel        | double unsigned  | YES  |     | NULL              |                             |
+| type                             | char(16)         | NO   |     | NULL              |                             |
+| originID                         | varchar(255)     | NO   |     | NULL              |                             |
+| methodID                         | varchar(255)     | NO   |     | NULL              |                             |
+| stationCount                     | int(10) unsigned | YES  |     | NULL              |                             |
+| azimuthalGap                     | double unsigned  | YES  |     | NULL              |                             |
+| evaluationStatus                 | varchar(64)      | YES  |     | NULL              |                             |
+| creationInfo_agencyID            | varchar(64)      | YES  |     | NULL              |                             |
+| creationInfo_agencyURI           | varchar(255)     | YES  |     | NULL              |                             |
+| creationInfo_author              | varchar(128)     | YES  |     | NULL              |                             |
+| creationInfo_authorURI           | varchar(255)     | YES  |     | NULL              |                             |
+| creationInfo_creationTime        | datetime         | YES  |     | NULL              |                             |
+| creationInfo_creationTime_ms     | int(11)          | YES  |     | NULL              |                             |
+| creationInfo_modificationTime    | datetime         | YES  |     | NULL              |                             |
+| creationInfo_modificationTime_ms | int(11)          | YES  |     | NULL              |                             |
+| creationInfo_version             | varchar(64)      | YES  |     | NULL              |                             |
+| creationInfo_used                | tinyint(1)       | NO   |     | 0                 |                             |
++----------------------------------+------------------+------+-----+-------------------+-----------------------------+
+24 rows in set (0.00 sec)
+
+mysql> show columns from Meta;
++-------+----------+------+-----+---------+-------+
+| Field | Type     | Null | Key | Default | Extra |
++-------+----------+------+-----+---------+-------+
+| name  | char(80) | NO   | PRI | NULL    |       |
+| value | blob     | NO   |     | NULL    |       |
++-------+----------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> show columns from MomentTensor;
++----------------------------------+-----------------+------+-----+-------------------+-----------------------------+
+| Field                            | Type            | Null | Key | Default           | Extra                       |
++----------------------------------+-----------------+------+-----+-------------------+-----------------------------+
+| _oid                             | int(11)         | NO   | PRI | NULL              |                             |
+| _parent_oid                      | int(11)         | NO   | MUL | NULL              |                             |
+| _last_modified                   | timestamp       | NO   |     | CURRENT_TIMESTAMP | on update CURRENT_TIMESTAMP |
+| derivedOriginID                  | varchar(255)    | NO   | MUL | NULL              |                             |
+| momentMagnitudeID                | varchar(255)    | NO   |     | NULL              |                             |
+| scalarMoment_value               | double          | YES  |     | NULL              |                             |
+| scalarMoment_uncertainty         | double unsigned | YES  |     | NULL              |                             |
+| scalarMoment_lowerUncertainty    | double unsigned | YES  |     | NULL              |                             |
+| scalarMoment_upperUncertainty    | double unsigned | YES  |     | NULL              |                             |
+| scalarMoment_confidenceLevel     | double unsigned | YES  |     | NULL              |                             |
+| scalarMoment_used                | tinyint(1)      | NO   |     | 0                 |                             |
+| tensor_Mrr_value                 | double          | YES  |     | NULL              |                             |
+| tensor_Mrr_uncertainty           | double unsigned | YES  |     | NULL              |                             |
+| tensor_Mrr_lowerUncertainty      | double unsigned | YES  |     | NULL              |                             |
+| tensor_Mrr_upperUncertainty      | double unsigned | YES  |     | NULL              |                             |
+| tensor_Mrr_confidenceLevel       | double unsigned | YES  |     | NULL              |                             |
+| tensor_Mtt_value                 | double          | YES  |     | NULL              |                             |
+| tensor_Mtt_uncertainty           | double unsigned | YES  |     | NULL              |                             |
+| tensor_Mtt_lowerUncertainty      | double unsigned | YES  |     | NULL              |                             |
+| tensor_Mtt_upperUncertainty      | double unsigned | YES  |     | NULL              |                             |
+| tensor_Mtt_confidenceLevel       | double unsigned | YES  |     | NULL              |                             |
+| tensor_Mpp_value                 | double          | YES  |     | NULL              |                             |
+| tensor_Mpp_uncertainty           | double unsigned | YES  |     | NULL              |                             |
+| tensor_Mpp_lowerUncertainty      | double unsigned | YES  |     | NULL              |                             |
+| tensor_Mpp_upperUncertainty      | double unsigned | YES  |     | NULL              |                             |
+| tensor_Mpp_confidenceLevel       | double unsigned | YES  |     | NULL              |                             |
+| tensor_Mrt_value                 | double          | YES  |     | NULL              |                             |
+| tensor_Mrt_uncertainty           | double unsigned | YES  |     | NULL              |                             |
+| tensor_Mrt_lowerUncertainty      | double unsigned | YES  |     | NULL              |                             |
+| tensor_Mrt_upperUncertainty      | double unsigned | YES  |     | NULL              |                             |
+| tensor_Mrt_confidenceLevel       | double unsigned | YES  |     | NULL              |                             |
+| tensor_Mrp_value                 | double          | YES  |     | NULL              |                             |
+| tensor_Mrp_uncertainty           | double unsigned | YES  |     | NULL              |                             |
+| tensor_Mrp_lowerUncertainty      | double unsigned | YES  |     | NULL              |                             |
+| tensor_Mrp_upperUncertainty      | double unsigned | YES  |     | NULL              |                             |
+| tensor_Mrp_confidenceLevel       | double unsigned | YES  |     | NULL              |                             |
+| tensor_Mtp_value                 | double          | YES  |     | NULL              |                             |
+| tensor_Mtp_uncertainty           | double unsigned | YES  |     | NULL              |                             |
+| tensor_Mtp_lowerUncertainty      | double unsigned | YES  |     | NULL              |                             |
+| tensor_Mtp_upperUncertainty      | double unsigned | YES  |     | NULL              |                             |
+| tensor_Mtp_confidenceLevel       | double unsigned | YES  |     | NULL              |                             |
+| tensor_used                      | tinyint(1)      | NO   |     | 0                 |                             |
+| variance                         | double          | YES  |     | NULL              |                             |
+| varianceReduction                | double          | YES  |     | NULL              |                             |
+| doubleCouple                     | double          | YES  |     | NULL              |                             |
+| clvd                             | double          | YES  |     | NULL              |                             |
+| iso                              | double          | YES  |     | NULL              |                             |
+| greensFunctionID                 | varchar(255)    | NO   |     | NULL              |                             |
+| filterID                         | varchar(255)    | NO   |     | NULL              |                             |
+| sourceTimeFunction_type          | varchar(64)     | YES  |     | NULL              |                             |
+| sourceTimeFunction_duration      | double          | YES  |     | NULL              |                             |
+| sourceTimeFunction_riseTime      | double          | YES  |     | NULL              |                             |
+| sourceTimeFunction_decayTime     | double          | YES  |     | NULL              |                             |
+| sourceTimeFunction_used          | tinyint(1)      | NO   |     | 0                 |                             |
+| methodID                         | varchar(255)    | NO   |     | NULL              |                             |
+| method                           | varchar(64)     | YES  |     | NULL              |                             |
+| status                           | varchar(64)     | YES  |     | NULL              |                             |
+| cmtName                          | varchar(80)     | NO   |     | NULL              |                             |
+| cmtVersion                       | varchar(64)     | NO   |     | NULL              |                             |
+| creationInfo_agencyID            | varchar(64)     | YES  |     | NULL              |                             |
+| creationInfo_agencyURI           | varchar(255)    | YES  |     | NULL              |                             |
+| creationInfo_author              | varchar(128)    | YES  |     | NULL              |                             |
+| creationInfo_authorURI           | varchar(255)    | YES  |     | NULL              |                             |
+| creationInfo_creationTime        | datetime        | YES  |     | NULL              |                             |
+| creationInfo_creationTime_ms     | int(11)         | YES  |     | NULL              |                             |
+| creationInfo_modificationTime    | datetime        | YES  |     | NULL              |                             |
+| creationInfo_modificationTime_ms | int(11)         | YES  |     | NULL              |                             |
+| creationInfo_version             | varchar(64)     | YES  |     | NULL              |                             |
+| creationInfo_used                | tinyint(1)      | NO   |     | 0                 |                             |
++----------------------------------+-----------------+------+-----+-------------------+-----------------------------+
+69 rows in set (0.00 sec)
+
+mysql> show columns from MomentTensorComponentContribution;
++----------------+------------+------+-----+-------------------+-----------------------------+
+| Field          | Type       | Null | Key | Default           | Extra                       |
++----------------+------------+------+-----+-------------------+-----------------------------+
+| _oid           | int(11)    | NO   | PRI | NULL              |                             |
+| _parent_oid    | int(11)    | NO   | MUL | NULL              |                             |
+| _last_modified | timestamp  | NO   |     | CURRENT_TIMESTAMP | on update CURRENT_TIMESTAMP |
+| phaseCode      | char(4)    | NO   |     | NULL              |                             |
+| component      | int(11)    | NO   |     | NULL              |                             |
+| active         | tinyint(1) | NO   |     | NULL              |                             |
+| weight         | double     | NO   |     | NULL              |                             |
+| timeShift      | double     | NO   |     | NULL              |                             |
+| dataTimeWindow | blob       | NO   |     | NULL              |                             |
+| misfit         | double     | YES  |     | NULL              |                             |
+| snr            | double     | YES  |     | NULL              |                             |
++----------------+------------+------+-----+-------------------+-----------------------------+
+11 rows in set (0.00 sec)
+
+mysql> show columns from MomentTensorPhaseSetting;
++------------------+-----------+------+-----+-------------------+-----------------------------+
+| Field            | Type      | Null | Key | Default           | Extra                       |
++------------------+-----------+------+-----+-------------------+-----------------------------+
+| _oid             | int(11)   | NO   | PRI | NULL              |                             |
+| _parent_oid      | int(11)   | NO   | MUL | NULL              |                             |
+| _last_modified   | timestamp | NO   |     | CURRENT_TIMESTAMP | on update CURRENT_TIMESTAMP |
+| code             | char(4)   | NO   |     | NULL              |                             |
+| lowerPeriod      | double    | NO   |     | NULL              |                             |
+| upperPeriod      | double    | NO   |     | NULL              |                             |
+| minimumSNR       | double    | YES  |     | NULL              |                             |
+| maximumTimeShift | double    | YES  |     | NULL              |                             |
++------------------+-----------+------+-----+-------------------+-----------------------------+
+8 rows in set (0.00 sec)
+
+mysql> show columns from MomentTensorStationContribution;
++-------------------------+--------------+------+-----+-------------------+-----------------------------+
+| Field                   | Type         | Null | Key | Default           | Extra                       |
++-------------------------+--------------+------+-----+-------------------+-----------------------------+
+| _oid                    | int(11)      | NO   | PRI | NULL              |                             |
+| _parent_oid             | int(11)      | NO   | MUL | NULL              |                             |
+| _last_modified          | timestamp    | NO   |     | CURRENT_TIMESTAMP | on update CURRENT_TIMESTAMP |
+| active                  | tinyint(1)   | NO   |     | NULL              |                             |
+| waveformID_networkCode  | char(8)      | YES  |     | NULL              |                             |
+| waveformID_stationCode  | char(8)      | YES  |     | NULL              |                             |
+| waveformID_locationCode | char(8)      | YES  |     | NULL              |                             |
+| waveformID_channelCode  | char(8)      | YES  |     | NULL              |                             |
+| waveformID_resourceURI  | varchar(255) | YES  |     | NULL              |                             |
+| waveformID_used         | tinyint(1)   | NO   |     | 0                 |                             |
+| weight                  | double       | YES  |     | NULL              |                             |
+| timeShift               | double       | YES  |     | NULL              |                             |
++-------------------------+--------------+------+-----+-------------------+-----------------------------+
+12 rows in set (0.00 sec)
+
+mysql> show columns from Network;
++----------------+--------------+------+-----+-------------------+-----------------------------+
+| Field          | Type         | Null | Key | Default           | Extra                       |
++----------------+--------------+------+-----+-------------------+-----------------------------+
+| _oid           | int(11)      | NO   | PRI | NULL              |                             |
+| _parent_oid    | int(11)      | NO   | MUL | NULL              |                             |
+| _last_modified | timestamp    | NO   |     | CURRENT_TIMESTAMP | on update CURRENT_TIMESTAMP |
+| code           | char(2)      | NO   |     | NULL              |                             |
+| start          | datetime     | NO   |     | NULL              |                             |
+| end            | datetime     | YES  |     | NULL              |                             |
+| description    | varchar(80)  | NO   |     | NULL              |                             |
+| institutions   | varchar(100) | NO   |     | NULL              |                             |
+| region         | varchar(100) | NO   |     | NULL              |                             |
+| type           | varchar(50)  | NO   |     | NULL              |                             |
+| netClass       | char(1)      | NO   |     | NULL              |                             |
+| archive        | varchar(20)  | NO   |     | NULL              |                             |
+| restricted     | tinyint(1)   | YES  |     | NULL              |                             |
+| shared         | tinyint(1)   | YES  |     | NULL              |                             |
+| remark_content | blob         | YES  |     | NULL              |                             |
+| remark_used    | tinyint(1)   | NO   |     | 0                 |                             |
++----------------+--------------+------+-----+-------------------+-----------------------------+
+16 rows in set (0.00 sec)
+
+mysql> show columns from Object;
++------------+-----------+------+-----+-------------------+----------------+
+| Field      | Type      | Null | Key | Default           | Extra          |
++------------+-----------+------+-----+-------------------+----------------+
+| _oid       | int(11)   | NO   | PRI | NULL              | auto_increment |
+| _timestamp | timestamp | NO   |     | CURRENT_TIMESTAMP |                |
++------------+-----------+------+-----+-------------------+----------------+
+2 rows in set (0.00 sec)
+
+mysql> show columns from Origin;
++------------------------------------------------------------+------------------+------+-----+-------------------+-----------------------------+
+| Field                                                      | Type             | Null | Key | Default           | Extra                       |
++------------------------------------------------------------+------------------+------+-----+-------------------+-----------------------------+
+| _oid                                                       | int(11)          | NO   | PRI | NULL              |                             |
+| _parent_oid                                                | int(11)          | NO   | MUL | NULL              |                             |
+| _last_modified                                             | timestamp        | NO   |     | CURRENT_TIMESTAMP | on update CURRENT_TIMESTAMP |
+| time_value                                                 | datetime         | NO   |     | NULL              |                             |
+| time_value_ms                                              | int(11)          | NO   |     | NULL              |                             |
+| time_uncertainty                                           | double unsigned  | YES  |     | NULL              |                             |
+| time_lowerUncertainty                                      | double unsigned  | YES  |     | NULL              |                             |
+| time_upperUncertainty                                      | double unsigned  | YES  |     | NULL              |                             |
+| time_confidenceLevel                                       | double unsigned  | YES  |     | NULL              |                             |
+| latitude_value                                             | double           | NO   |     | NULL              |                             |
+| latitude_uncertainty                                       | double unsigned  | YES  |     | NULL              |                             |
+| latitude_lowerUncertainty                                  | double unsigned  | YES  |     | NULL              |                             |
+| latitude_upperUncertainty                                  | double unsigned  | YES  |     | NULL              |                             |
+| latitude_confidenceLevel                                   | double unsigned  | YES  |     | NULL              |                             |
+| longitude_value                                            | double           | NO   |     | NULL              |                             |
+| longitude_uncertainty                                      | double unsigned  | YES  |     | NULL              |                             |
+| longitude_lowerUncertainty                                 | double unsigned  | YES  |     | NULL              |                             |
+| longitude_upperUncertainty                                 | double unsigned  | YES  |     | NULL              |                             |
+| longitude_confidenceLevel                                  | double unsigned  | YES  |     | NULL              |                             |
+| depth_value                                                | double           | YES  |     | NULL              |                             |
+| depth_uncertainty                                          | double unsigned  | YES  |     | NULL              |                             |
+| depth_lowerUncertainty                                     | double unsigned  | YES  |     | NULL              |                             |
+| depth_upperUncertainty                                     | double unsigned  | YES  |     | NULL              |                             |
+| depth_confidenceLevel                                      | double unsigned  | YES  |     | NULL              |                             |
+| depth_used                                                 | tinyint(1)       | NO   |     | 0                 |                             |
+| depthType                                                  | varchar(64)      | YES  |     | NULL              |                             |
+| timeFixed                                                  | tinyint(1)       | YES  |     | NULL              |                             |
+| epicenterFixed                                             | tinyint(1)       | YES  |     | NULL              |                             |
+| referenceSystemID                                          | varchar(255)     | NO   |     | NULL              |                             |
+| methodID                                                   | varchar(255)     | NO   |     | NULL              |                             |
+| earthModelID                                               | varchar(255)     | NO   |     | NULL              |                             |
+| quality_associatedPhaseCount                               | int(10) unsigned | YES  |     | NULL              |                             |
+| quality_usedPhaseCount                                     | int(10) unsigned | YES  |     | NULL              |                             |
+| quality_associatedStationCount                             | int(10) unsigned | YES  |     | NULL              |                             |
+| quality_usedStationCount                                   | int(10) unsigned | YES  |     | NULL              |                             |
+| quality_depthPhaseCount                                    | int(10) unsigned | YES  |     | NULL              |                             |
+| quality_standardError                                      | double unsigned  | YES  |     | NULL              |                             |
+| quality_azimuthalGap                                       | double unsigned  | YES  |     | NULL              |                             |
+| quality_secondaryAzimuthalGap                              | double unsigned  | YES  |     | NULL              |                             |
+| quality_groundTruthLevel                                   | varchar(16)      | YES  |     | NULL              |                             |
+| quality_maximumDistance                                    | double unsigned  | YES  |     | NULL              |                             |
+| quality_minimumDistance                                    | double unsigned  | YES  |     | NULL              |                             |
+| quality_medianDistance                                     | double unsigned  | YES  |     | NULL              |                             |
+| quality_used                                               | tinyint(1)       | NO   |     | 0                 |                             |
+| uncertainty_horizontalUncertainty                          | double unsigned  | YES  |     | NULL              |                             |
+| uncertainty_minHorizontalUncertainty                       | double unsigned  | YES  |     | NULL              |                             |
+| uncertainty_maxHorizontalUncertainty                       | double unsigned  | YES  |     | NULL              |                             |
+| uncertainty_azimuthMaxHorizontalUncertainty                | double unsigned  | YES  |     | NULL              |                             |
+| uncertainty_confidenceEllipsoid_semiMajorAxisLength        | double           | YES  |     | NULL              |                             |
+| uncertainty_confidenceEllipsoid_semiMinorAxisLength        | double           | YES  |     | NULL              |                             |
+| uncertainty_confidenceEllipsoid_semiIntermediateAxisLength | double           | YES  |     | NULL              |                             |
+| uncertainty_confidenceEllipsoid_majorAxisPlunge            | double           | YES  |     | NULL              |                             |
+| uncertainty_confidenceEllipsoid_majorAxisAzimuth           | double           | YES  |     | NULL              |                             |
+| uncertainty_confidenceEllipsoid_majorAxisRotation          | double           | YES  |     | NULL              |                             |
+| uncertainty_confidenceEllipsoid_used                       | tinyint(1)       | NO   |     | 0                 |                             |
+| uncertainty_preferredDescription                           | varchar(64)      | YES  |     | NULL              |                             |
+| uncertainty_used                                           | tinyint(1)       | NO   |     | 0                 |                             |
+| type                                                       | varchar(64)      | YES  |     | NULL              |                             |
+| evaluationMode                                             | varchar(64)      | YES  |     | NULL              |                             |
+| evaluationStatus                                           | varchar(64)      | YES  |     | NULL              |                             |
+| creationInfo_agencyID                                      | varchar(64)      | YES  |     | NULL              |                             |
+| creationInfo_agencyURI                                     | varchar(255)     | YES  |     | NULL              |                             |
+| creationInfo_author                                        | varchar(128)     | YES  |     | NULL              |                             |
+| creationInfo_authorURI                                     | varchar(255)     | YES  |     | NULL              |                             |
+| creationInfo_creationTime                                  | datetime         | YES  |     | NULL              |                             |
+| creationInfo_creationTime_ms                               | int(11)          | YES  |     | NULL              |                             |
+| creationInfo_modificationTime                              | datetime         | YES  |     | NULL              |                             |
+| creationInfo_modificationTime_ms                           | int(11)          | YES  |     | NULL              |                             |
+| creationInfo_version                                       | varchar(64)      | YES  |     | NULL              |                             |
+| creationInfo_used                                          | tinyint(1)       | NO   |     | 0                 |                             |
++------------------------------------------------------------+------------------+------+-----+-------------------+-----------------------------+
+70 rows in set (0.00 sec)
+
+mysql> show columns from OriginReference;
++----------------+--------------+------+-----+-------------------+-----------------------------+
+| Field          | Type         | Null | Key | Default           | Extra                       |
++----------------+--------------+------+-----+-------------------+-----------------------------+
+| _oid           | int(11)      | NO   | PRI | NULL              |                             |
+| _parent_oid    | int(11)      | NO   | MUL | NULL              |                             |
+| _last_modified | timestamp    | NO   |     | CURRENT_TIMESTAMP | on update CURRENT_TIMESTAMP |
+| originID       | varchar(255) | NO   | MUL | NULL              |                             |
++----------------+--------------+------+-----+-------------------+-----------------------------+
+4 rows in set (0.00 sec)
+
+mysql> show columns from Parameter;
++----------------+-------------+------+-----+-------------------+-----------------------------+
+| Field          | Type        | Null | Key | Default           | Extra                       |
++----------------+-------------+------+-----+-------------------+-----------------------------+
+| _oid           | int(11)     | NO   | PRI | NULL              |                             |
+| _parent_oid    | int(11)     | NO   | MUL | NULL              |                             |
+| _last_modified | timestamp   | NO   |     | CURRENT_TIMESTAMP | on update CURRENT_TIMESTAMP |
+| name           | varchar(20) | NO   |     | NULL              |                             |
+| value          | blob        | NO   |     | NULL              |                             |
++----------------+-------------+------+-----+-------------------+-----------------------------+
+5 rows in set (0.00 sec)
+
+mysql> show columns from ParameterSet;
++----------------+-------------+------+-----+-------------------+-----------------------------+
+| Field          | Type        | Null | Key | Default           | Extra                       |
++----------------+-------------+------+-----+-------------------+-----------------------------+
+| _oid           | int(11)     | NO   | PRI | NULL              |                             |
+| _parent_oid    | int(11)     | NO   | MUL | NULL              |                             |
+| _last_modified | timestamp   | NO   |     | CURRENT_TIMESTAMP | on update CURRENT_TIMESTAMP |
+| baseID         | varchar(80) | NO   |     | NULL              |                             |
+| moduleID       | varchar(80) | NO   |     | NULL              |                             |
+| created        | datetime    | YES  |     | NULL              |                             |
+| created_ms     | int(11)     | YES  |     | NULL              |                             |
++----------------+-------------+------+-----+-------------------+-----------------------------+
+7 rows in set (0.00 sec)
+
+mysql> show columns from Pick;
++-------------------------------------+-----------------+------+-----+-------------------+-----------------------------+
+| Field                               | Type            | Null | Key | Default           | Extra                       |
++-------------------------------------+-----------------+------+-----+-------------------+-----------------------------+
+| _oid                                | int(11)         | NO   | PRI | NULL              |                             |
+| _parent_oid                         | int(11)         | NO   | MUL | NULL              |                             |
+| _last_modified                      | timestamp       | NO   |     | CURRENT_TIMESTAMP | on update CURRENT_TIMESTAMP |
+| time_value                          | datetime        | NO   |     | NULL              |                             |
+| time_value_ms                       | int(11)         | NO   |     | NULL              |                             |
+| time_uncertainty                    | double unsigned | YES  |     | NULL              |                             |
+| time_lowerUncertainty               | double unsigned | YES  |     | NULL              |                             |
+| time_upperUncertainty               | double unsigned | YES  |     | NULL              |                             |
+| time_confidenceLevel                | double unsigned | YES  |     | NULL              |                             |
+| waveformID_networkCode              | char(8)         | NO   |     | NULL              |                             |
+| waveformID_stationCode              | char(8)         | NO   |     | NULL              |                             |
+| waveformID_locationCode             | char(8)         | NO   |     | NULL              |                             |
+| waveformID_channelCode              | char(8)         | NO   |     | NULL              |                             |
+| waveformID_resourceURI              | varchar(255)    | NO   |     | NULL              |                             |
+| filterID                            | varchar(255)    | NO   |     | NULL              |                             |
+| methodID                            | varchar(255)    | NO   |     | NULL              |                             |
+| horizontalSlowness_value            | double          | YES  |     | NULL              |                             |
+| horizontalSlowness_uncertainty      | double unsigned | YES  |     | NULL              |                             |
+| horizontalSlowness_lowerUncertainty | double unsigned | YES  |     | NULL              |                             |
+| horizontalSlowness_upperUncertainty | double unsigned | YES  |     | NULL              |                             |
+| horizontalSlowness_confidenceLevel  | double unsigned | YES  |     | NULL              |                             |
+| horizontalSlowness_used             | tinyint(1)      | NO   |     | 0                 |                             |
+| backazimuth_value                   | double          | YES  |     | NULL              |                             |
+| backazimuth_uncertainty             | double unsigned | YES  |     | NULL              |                             |
+| backazimuth_lowerUncertainty        | double unsigned | YES  |     | NULL              |                             |
+| backazimuth_upperUncertainty        | double unsigned | YES  |     | NULL              |                             |
+| backazimuth_confidenceLevel         | double unsigned | YES  |     | NULL              |                             |
+| backazimuth_used                    | tinyint(1)      | NO   |     | 0                 |                             |
+| slownessMethodID                    | varchar(255)    | NO   |     | NULL              |                             |
+| onset                               | varchar(64)     | YES  |     | NULL              |                             |
+| phaseHint_code                      | char(32)        | YES  |     | NULL              |                             |
+| phaseHint_used                      | tinyint(1)      | NO   |     | 0                 |                             |
+| polarity                            | varchar(64)     | YES  |     | NULL              |                             |
+| evaluationMode                      | varchar(64)     | YES  |     | NULL              |                             |
+| evaluationStatus                    | varchar(64)     | YES  |     | NULL              |                             |
+| creationInfo_agencyID               | varchar(64)     | YES  |     | NULL              |                             |
+| creationInfo_agencyURI              | varchar(255)    | YES  |     | NULL              |                             |
+| creationInfo_author                 | varchar(128)    | YES  |     | NULL              |                             |
+| creationInfo_authorURI              | varchar(255)    | YES  |     | NULL              |                             |
+| creationInfo_creationTime           | datetime        | YES  |     | NULL              |                             |
+| creationInfo_creationTime_ms        | int(11)         | YES  |     | NULL              |                             |
+| creationInfo_modificationTime       | datetime        | YES  |     | NULL              |                             |
+| creationInfo_modificationTime_ms    | int(11)         | YES  |     | NULL              |                             |
+| creationInfo_version                | varchar(64)     | YES  |     | NULL              |                             |
+| creationInfo_used                   | tinyint(1)      | NO   |     | 0                 |                             |
++-------------------------------------+-----------------+------+-----+-------------------+-----------------------------+
+45 rows in set (0.00 sec)
+
+mysql> show columns from PickReference;
++----------------+--------------+------+-----+-------------------+-----------------------------+
+| Field          | Type         | Null | Key | Default           | Extra                       |
++----------------+--------------+------+-----+-------------------+-----------------------------+
+| _oid           | int(11)      | NO   | PRI | NULL              |                             |
+| _parent_oid    | int(11)      | NO   | MUL | NULL              |                             |
+| _last_modified | timestamp    | NO   |     | CURRENT_TIMESTAMP | on update CURRENT_TIMESTAMP |
+| pickID         | varchar(255) | NO   | MUL | NULL              |                             |
++----------------+--------------+------+-----+-------------------+-----------------------------+
+4 rows in set (0.00 sec)
+
+mysql> show columns from PublicObject;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| _oid     | int(11)     | NO   | PRI | NULL    |       |
+| publicID | varchar(80) | NO   | UNI | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> show columns from QCLog;
++-------------------------+--------------+------+-----+-------------------+-----------------------------+
+| Field                   | Type         | Null | Key | Default           | Extra                       |
++-------------------------+--------------+------+-----+-------------------+-----------------------------+
+| _oid                    | int(11)      | NO   | PRI | NULL              |                             |
+| _parent_oid             | int(11)      | NO   | MUL | NULL              |                             |
+| _last_modified          | timestamp    | NO   |     | CURRENT_TIMESTAMP | on update CURRENT_TIMESTAMP |
+| waveformID_networkCode  | char(8)      | NO   |     | NULL              |                             |
+| waveformID_stationCode  | char(8)      | NO   |     | NULL              |                             |
+| waveformID_locationCode | char(8)      | NO   |     | NULL              |                             |
+| waveformID_channelCode  | char(8)      | NO   |     | NULL              |                             |
+| waveformID_resourceURI  | varchar(255) | NO   |     | NULL              |                             |
+| creatorID               | varchar(80)  | NO   |     | NULL              |                             |
+| created                 | datetime     | NO   |     | NULL              |                             |
+| created_ms              | int(11)      | NO   |     | NULL              |                             |
+| start                   | datetime     | NO   |     | NULL              |                             |
+| start_ms                | int(11)      | NO   |     | NULL              |                             |
+| end                     | datetime     | NO   |     | NULL              |                             |
+| end_ms                  | int(11)      | NO   |     | NULL              |                             |
+| message                 | blob         | NO   |     | NULL              |                             |
++-------------------------+--------------+------+-----+-------------------+-----------------------------+
+16 rows in set (0.00 sec)
+
+mysql> show columns from Reading;
++-------------+---------+------+-----+---------+-------+
+| Field       | Type    | Null | Key | Default | Extra |
++-------------+---------+------+-----+---------+-------+
+| _oid        | int(11) | NO   | PRI | NULL    |       |
+| _parent_oid | int(11) | NO   | MUL | NULL    |       |
++-------------+---------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> show columns from SensorLocation;
++----------------+-----------+------+-----+-------------------+-----------------------------+
+| Field          | Type      | Null | Key | Default           | Extra                       |
++----------------+-----------+------+-----+-------------------+-----------------------------+
+| _oid           | int(11)   | NO   | PRI | NULL              |                             |
+| _parent_oid    | int(11)   | NO   | MUL | NULL              |                             |
+| _last_modified | timestamp | NO   |     | CURRENT_TIMESTAMP | on update CURRENT_TIMESTAMP |
+| code           | char(8)   | NO   |     | NULL              |                             |
+| start          | datetime  | NO   |     | NULL              |                             |
+| end            | datetime  | YES  |     | NULL              |                             |
+| latitude       | double    | YES  |     | NULL              |                             |
+| longitude      | double    | YES  |     | NULL              |                             |
+| elevation      | double    | YES  |     | NULL              |                             |
++----------------+-----------+------+-----+-------------------+-----------------------------+
+9 rows in set (0.00 sec)
+
+mysql> show columns from Station;
++--------------------+-------------+------+-----+-------------------+-----------------------------+
+| Field              | Type        | Null | Key | Default           | Extra                       |
++--------------------+-------------+------+-----+-------------------+-----------------------------+
+| _oid               | int(11)     | NO   | PRI | NULL              |                             |
+| _parent_oid        | int(11)     | NO   | MUL | NULL              |                             |
+| _last_modified     | timestamp   | NO   |     | CURRENT_TIMESTAMP | on update CURRENT_TIMESTAMP |
+| code               | char(5)     | NO   |     | NULL              |                             |
+| start              | datetime    | NO   |     | NULL              |                             |
+| end                | datetime    | YES  |     | NULL              |                             |
+| description        | varchar(80) | NO   |     | NULL              |                             |
+| latitude           | double      | YES  |     | NULL              |                             |
+| longitude          | double      | YES  |     | NULL              |                             |
+| elevation          | double      | YES  |     | NULL              |                             |
+| place              | varchar(80) | NO   |     | NULL              |                             |
+| country            | varchar(50) | NO   |     | NULL              |                             |
+| affiliation        | varchar(50) | NO   |     | NULL              |                             |
+| type               | varchar(50) | NO   |     | NULL              |                             |
+| archive            | varchar(20) | NO   |     | NULL              |                             |
+| archiveNetworkCode | char(2)     | NO   |     | NULL              |                             |
+| restricted         | tinyint(1)  | YES  |     | NULL              |                             |
+| shared             | tinyint(1)  | YES  |     | NULL              |                             |
+| remark_content     | blob        | YES  |     | NULL              |                             |
+| remark_used        | tinyint(1)  | NO   |     | 0                 |                             |
++--------------------+-------------+------+-----+-------------------+-----------------------------+
+20 rows in set (0.00 sec)
+
+mysql> show columns from StationGroup;
++----------------+-------------+------+-----+-------------------+-----------------------------+
+| Field          | Type        | Null | Key | Default           | Extra                       |
++----------------+-------------+------+-----+-------------------+-----------------------------+
+| _oid           | int(11)     | NO   | PRI | NULL              |                             |
+| _parent_oid    | int(11)     | NO   | MUL | NULL              |                             |
+| _last_modified | timestamp   | NO   |     | CURRENT_TIMESTAMP | on update CURRENT_TIMESTAMP |
+| type           | varchar(64) | YES  |     | NULL              |                             |
+| code           | char(10)    | NO   |     | NULL              |                             |
+| start          | datetime    | YES  |     | NULL              |                             |
+| end            | datetime    | YES  |     | NULL              |                             |
+| description    | varchar(80) | NO   |     | NULL              |                             |
+| latitude       | double      | YES  |     | NULL              |                             |
+| longitude      | double      | YES  |     | NULL              |                             |
+| elevation      | double      | YES  |     | NULL              |                             |
++----------------+-------------+------+-----+-------------------+-----------------------------+
+11 rows in set (0.00 sec)
+
+mysql> show columns from StationMagnitude;
++----------------------------------+-----------------+------+-----+-------------------+-----------------------------+
+| Field                            | Type            | Null | Key | Default           | Extra                       |
++----------------------------------+-----------------+------+-----+-------------------+-----------------------------+
+| _oid                             | int(11)         | NO   | PRI | NULL              |                             |
+| _parent_oid                      | int(11)         | NO   | MUL | NULL              |                             |
+| _last_modified                   | timestamp       | NO   |     | CURRENT_TIMESTAMP | on update CURRENT_TIMESTAMP |
+| originID                         | varchar(255)    | NO   |     | NULL              |                             |
+| magnitude_value                  | double          | NO   |     | NULL              |                             |
+| magnitude_uncertainty            | double unsigned | YES  |     | NULL              |                             |
+| magnitude_lowerUncertainty       | double unsigned | YES  |     | NULL              |                             |
+| magnitude_upperUncertainty       | double unsigned | YES  |     | NULL              |                             |
+| magnitude_confidenceLevel        | double unsigned | YES  |     | NULL              |                             |
+| type                             | char(16)        | NO   |     | NULL              |                             |
+| amplitudeID                      | varchar(255)    | NO   | MUL | NULL              |                             |
+| methodID                         | varchar(255)    | NO   |     | NULL              |                             |
+| waveformID_networkCode           | char(8)         | YES  |     | NULL              |                             |
+| waveformID_stationCode           | char(8)         | YES  |     | NULL              |                             |
+| waveformID_locationCode          | char(8)         | YES  |     | NULL              |                             |
+| waveformID_channelCode           | char(8)         | YES  |     | NULL              |                             |
+| waveformID_resourceURI           | varchar(255)    | YES  |     | NULL              |                             |
+| waveformID_used                  | tinyint(1)      | NO   |     | 0                 |                             |
+| creationInfo_agencyID            | varchar(64)     | YES  |     | NULL              |                             |
+| creationInfo_agencyURI           | varchar(255)    | YES  |     | NULL              |                             |
+| creationInfo_author              | varchar(128)    | YES  |     | NULL              |                             |
+| creationInfo_authorURI           | varchar(255)    | YES  |     | NULL              |                             |
+| creationInfo_creationTime        | datetime        | YES  |     | NULL              |                             |
+| creationInfo_creationTime_ms     | int(11)         | YES  |     | NULL              |                             |
+| creationInfo_modificationTime    | datetime        | YES  |     | NULL              |                             |
+| creationInfo_modificationTime_ms | int(11)         | YES  |     | NULL              |                             |
+| creationInfo_version             | varchar(64)     | YES  |     | NULL              |                             |
+| creationInfo_used                | tinyint(1)      | NO   |     | 0                 |                             |
++----------------------------------+-----------------+------+-----+-------------------+-----------------------------+
+28 rows in set (0.00 sec)
+
+mysql> show columns from StationMagnitudeContribution;
++--------------------+-----------------+------+-----+-------------------+-----------------------------+
+| Field              | Type            | Null | Key | Default           | Extra                       |
++--------------------+-----------------+------+-----+-------------------+-----------------------------+
+| _oid               | int(11)         | NO   | PRI | NULL              |                             |
+| _parent_oid        | int(11)         | NO   | MUL | NULL              |                             |
+| _last_modified     | timestamp       | NO   |     | CURRENT_TIMESTAMP | on update CURRENT_TIMESTAMP |
+| stationMagnitudeID | varchar(255)    | NO   | MUL | NULL              |                             |
+| residual           | double          | YES  |     | NULL              |                             |
+| weight             | double unsigned | YES  |     | NULL              |                             |
++--------------------+-----------------+------+-----+-------------------+-----------------------------+
+6 rows in set (0.00 sec)
+
+mysql> show columns from StationReference;
++----------------+--------------+------+-----+-------------------+-----------------------------+
+| Field          | Type         | Null | Key | Default           | Extra                       |
++----------------+--------------+------+-----+-------------------+-----------------------------+
+| _oid           | int(11)      | NO   | PRI | NULL              |                             |
+| _parent_oid    | int(11)      | NO   | MUL | NULL              |                             |
+| _last_modified | timestamp    | NO   |     | CURRENT_TIMESTAMP | on update CURRENT_TIMESTAMP |
+| stationID      | varchar(255) | NO   | MUL | NULL              |                             |
++----------------+--------------+------+-----+-------------------+-----------------------------+
+4 rows in set (0.00 sec)
+

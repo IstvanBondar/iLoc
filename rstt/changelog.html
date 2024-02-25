@@ -1,0 +1,1498 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Changelog</title>
+  <style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+
+ul.task-list[class]{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+font-size: inherit;
+width: 0.8em;
+margin: 0 0.8em 0.2em -1.6em;
+vertical-align: middle;
+}
+.display.math{display: block; text-align: center; margin: 0.5rem auto;}
+</style>
+  <style type="text/css">
+
+
+html {
+font-family: sans-serif; 
+line-height: 1.15; 
+-ms-text-size-adjust: 100%; 
+-webkit-text-size-adjust: 100%; 
+}
+
+
+body {
+margin: 0;
+}
+
+article,
+aside,
+footer,
+header,
+nav,
+section {
+display: block;
+}
+
+h1 {
+font-size: 2em;
+margin: 0.67em 0;
+}
+
+
+figcaption,
+figure,
+main { 
+display: block;
+}
+
+figure {
+margin: 1em 40px;
+}
+
+hr {
+box-sizing: content-box; 
+height: 0; 
+overflow: visible; 
+}
+
+pre {
+font-family: monospace, monospace; 
+font-size: 1em; 
+}
+
+
+a {
+background-color: transparent; 
+-webkit-text-decoration-skip: objects; 
+}
+
+a:active,
+a:hover {
+outline-width: 0;
+}
+
+abbr[title] {
+border-bottom: none; 
+text-decoration: underline; 
+text-decoration: underline dotted; 
+}
+
+b,
+strong {
+font-weight: inherit;
+}
+
+b,
+strong {
+font-weight: bolder;
+}
+
+code,
+kbd,
+samp {
+font-family: monospace, monospace; 
+font-size: 1em; 
+}
+
+dfn {
+font-style: italic;
+}
+
+mark {
+background-color: #ff0;
+color: #000;
+}
+
+small {
+font-size: 80%;
+}
+
+sub,
+sup {
+font-size: 75%;
+line-height: 0;
+position: relative;
+vertical-align: baseline;
+}
+sub {
+bottom: -0.25em;
+}
+sup {
+top: -0.5em;
+}
+
+
+audio,
+video {
+display: inline-block;
+}
+
+audio:not([controls]) {
+display: none;
+height: 0;
+}
+
+img {
+border-style: none;
+}
+
+svg:not(:root) {
+overflow: hidden;
+}
+
+
+button,
+input,
+optgroup,
+select,
+textarea {
+font-family: sans-serif; 
+font-size: 100%; 
+line-height: 1.15; 
+margin: 0; 
+}
+
+button,
+input { 
+overflow: visible;
+}
+
+button,
+select { 
+text-transform: none;
+}
+
+button,
+html [type="button"], 
+[type="reset"],
+[type="submit"] {
+-webkit-appearance: button; 
+}
+
+button::-moz-focus-inner,
+[type="button"]::-moz-focus-inner,
+[type="reset"]::-moz-focus-inner,
+[type="submit"]::-moz-focus-inner {
+border-style: none;
+padding: 0;
+}
+
+button:-moz-focusring,
+[type="button"]:-moz-focusring,
+[type="reset"]:-moz-focusring,
+[type="submit"]:-moz-focusring {
+outline: 1px dotted ButtonText;
+}
+
+fieldset {
+border: 1px solid #c0c0c0;
+margin: 0 2px;
+padding: 0.35em 0.625em 0.75em;
+}
+
+legend {
+box-sizing: border-box; 
+color: inherit; 
+display: table; 
+max-width: 100%; 
+padding: 0; 
+white-space: normal; 
+}
+
+progress {
+display: inline-block; 
+vertical-align: baseline; 
+}
+
+textarea {
+overflow: auto;
+}
+
+[type="checkbox"],
+[type="radio"] {
+box-sizing: border-box; 
+padding: 0; 
+}
+
+[type="number"]::-webkit-inner-spin-button,
+[type="number"]::-webkit-outer-spin-button {
+height: auto;
+}
+
+[type="search"] {
+-webkit-appearance: textfield; 
+outline-offset: -2px; 
+}
+
+[type="search"]::-webkit-search-cancel-button,
+[type="search"]::-webkit-search-decoration {
+-webkit-appearance: none;
+}
+
+::-webkit-file-upload-button {
+-webkit-appearance: button; 
+font: inherit; 
+}
+
+
+details, 
+menu {
+display: block;
+}
+
+summary {
+display: list-item;
+}
+
+
+canvas {
+display: inline-block;
+}
+
+template {
+display: none;
+}
+
+
+[hidden] {
+display: none;
+}
+</style>
+  <style type="text/css">
+
+html {
+font-size: 62.5%;
+font-family: serif; }
+body {
+font-size: 1.8rem;
+line-height: 1.618;
+max-width: 38em;
+margin: auto;
+color: #4a4a4a;
+background-color: #f9f9f9;
+padding: 13px; }
+@media (max-width: 684px) {
+body {
+font-size: 1.53rem; } }
+@media (max-width: 382px) {
+body {
+font-size: 1.35rem; } }
+h1, h2, h3, h4, h5, h6 {
+line-height: 1.1;
+font-family: Verdana, Geneva, sans-serif;
+font-weight: 700;
+overflow-wrap: break-word;
+word-wrap: break-word;
+-ms-word-break: break-all;
+word-break: break-word;
+-ms-hyphens: auto;
+-moz-hyphens: auto;
+-webkit-hyphens: auto;
+hyphens: auto; }
+h1 {
+font-size: 2.35em; }
+h2 {
+font-size: 2.00em; }
+h3 {
+font-size: 1.75em; }
+h4 {
+font-size: 1.5em; }
+h5 {
+font-size: 1.25em; }
+h6 {
+font-size: 1em; }
+small, sub, sup {
+font-size: 75%; }
+hr {
+border-color: #2c8898; }
+a {
+text-decoration: none;
+color: #2c8898; }
+a:hover {
+color: #982c61;
+border-bottom: 2px solid #4a4a4a; }
+ul {
+padding-left: 1.4em; }
+li {
+margin-bottom: 0.4em; }
+blockquote {
+font-style: italic;
+margin-left: 1.5em;
+padding-left: 1em;
+border-left: 3px solid #2c8898; }
+img {
+height: auto;
+max-width: 100%; }
+
+pre {
+background-color: #f1f1f1;
+display: block;
+padding: 1em;
+overflow-x: auto; }
+code {
+font-size: 0.9em;
+padding: 0 0.5em;
+background-color: #f1f1f1;
+white-space: pre-wrap; }
+pre > code {
+padding: 0;
+background-color: transparent;
+white-space: pre; }
+
+table {
+text-align: justify;
+width: 100%;
+border-collapse: collapse; }
+td, th {
+padding: 0.5em;
+border-bottom: 1px solid #f1f1f1; }
+
+input, textarea {
+border: 1px solid #4a4a4a; }
+input:focus, textarea:focus {
+border: 1px solid #2c8898; }
+textarea {
+width: 100%; }
+.button, button, input[type="submit"], input[type="reset"], input[type="button"] {
+display: inline-block;
+padding: 5px 10px;
+text-align: center;
+text-decoration: none;
+white-space: nowrap;
+background-color: #2c8898;
+color: #f9f9f9;
+border-radius: 1px;
+border: 1px solid #2c8898;
+cursor: pointer;
+box-sizing: border-box; }
+.button[disabled], button[disabled], input[type="submit"][disabled], input[type="reset"][disabled], input[type="button"][disabled] {
+cursor: default;
+opacity: .5; }
+.button:focus, .button:hover, button:focus, button:hover, input[type="submit"]:focus, input[type="submit"]:hover, input[type="reset"]:focus, input[type="reset"]:hover, input[type="button"]:focus, input[type="button"]:hover {
+background-color: #982c61;
+border-color: #982c61;
+color: #f9f9f9;
+outline: 0; }
+textarea, select, input[type] {
+color: #4a4a4a;
+padding: 6px 10px;
+
+margin-bottom: 10px;
+background-color: #f1f1f1;
+border: 1px solid #f1f1f1;
+border-radius: 4px;
+box-shadow: none;
+box-sizing: border-box; }
+textarea:focus, select:focus, input[type]:focus {
+border: 1px solid #2c8898;
+outline: 0; }
+input[type="checkbox"]:focus {
+outline: 1px dotted #2c8898; }
+label, legend, fieldset {
+display: block;
+margin-bottom: .5rem;
+font-weight: 600; }
+</style>
+  <style type="text/css">
+nav#TOC {
+border-top: 1px solid #aaa;
+border-bottom: 1px solid #aaa;
+margin: .5em 0;
+}
+nav#TOC::before {
+content: "Table of Contents:";
+font-size: 1.5em;
+}
+nav#TOC ul {
+margin-top: .3em;
+}
+h1.title {
+display: none;
+}
+code.sourceCode.bash span.fu,
+code.sourceCode.bash span.ex {
+color: #bb6688;
+}
+code.sourceCode {
+cursor: text;
+}
+html {
+font-size: 100%;
+overflow-y: scroll;
+-webkit-text-size-adjust: 100%;
+-ms-text-size-adjust: 100%;
+}
+body {
+color: #444;
+font-family: Georgia, Palatino, 'Palatino Linotype', Times, 'Times New Roman', serif;
+font-size: 12px;
+line-height: 1.7;
+padding: 1em;
+margin: auto;
+max-width: 914px;
+background: #fefefe;
+}
+a {
+color: #0645ad;
+text-decoration: none;
+}
+a:visited {
+color: #0b0080;
+}
+a:hover {
+color: #06e;
+border-bottom: 1px solid #06e;
+}
+a:active {
+color: #faa700;
+}
+a:focus {
+outline: thin dotted;
+}
+*::-moz-selection {
+background: rgba(255, 255, 0, 0.3);
+color: #000;
+}
+*::selection {
+background: rgba(255, 255, 0, 0.3);
+color: #000;
+}
+a::-moz-selection {
+background: rgba(255, 255, 0, 0.3);
+color: #0645ad;
+}
+a::selection {
+background: rgba(255, 255, 0, 0.3);
+color: #0645ad;
+}
+p {
+margin: 1em 0;
+}
+img {
+max-width: 100%;
+}
+h1, h2, h3, h4, h5, h6 {
+color: #111;
+line-height: 125%;
+margin-top: 2em;
+font-weight: normal;
+}
+h4, h5, h6 {
+font-weight: bold;
+}
+h1 {
+font-size: 2.5em;
+}
+h2 {
+font-size: 2em;
+}
+h3 {
+font-size: 1.5em;
+}
+h4 {
+font-size: 1.2em;
+}
+h5 {
+font-size: 1em;
+}
+h6 {
+font-size: 0.9em;
+}
+blockquote {
+color: #666666;
+margin: 0;
+padding-left: 3em;
+border-left: 0.5em #EEE solid;
+}
+hr {
+display: block;
+height: 2px;
+border: 0;
+border-top: 1px solid #aaa;
+border-bottom: 1px solid #eee;
+margin: 1em 0;
+padding: 0;
+}
+pre, code, kbd, samp {
+color: #000;
+font-family: monospace, monospace;
+_font-family: 'courier new', monospace;
+font-size: 0.98em;
+}
+pre {
+white-space: pre;
+white-space: pre-wrap;
+
+}
+b, strong {
+font-weight: bold;
+}
+dfn {
+font-style: italic;
+}
+ins {
+background: #ff9;
+color: #000;
+text-decoration: none;
+}
+mark {
+background: #ff0;
+color: #000;
+font-style: italic;
+font-weight: bold;
+}
+sub, sup {
+font-size: 75%;
+line-height: 0;
+position: relative;
+vertical-align: baseline;
+}
+sup {
+top: -0.5em;
+}
+sub {
+bottom: -0.25em;
+}
+ul, ol {
+margin: 1em 0;
+padding: 0 0 0 2em;
+}
+li p:last-child {
+margin-bottom: 0;
+}
+ul ul, ol ol {
+margin: .3em 0;
+}
+dl {
+margin-bottom: 1em;
+}
+dt {
+font-weight: bold;
+margin-bottom: .8em;
+}
+dd {
+margin: 0 0 .8em 2em;
+}
+dd:last-child {
+margin-bottom: 0;
+}
+img {
+border: 0;
+-ms-interpolation-mode: bicubic;
+vertical-align: middle;
+}
+figure {
+display: block;
+text-align: center;
+margin: 1em 0;
+}
+figure img {
+border: none;
+margin: 0 auto;
+}
+figcaption {
+font-size: 0.8em;
+font-style: italic;
+margin: 0 0 .8em;
+}
+table {
+margin-bottom: 2em;
+border-bottom: 1px solid #ddd;
+border-right: 1px solid #ddd;
+border-spacing: 0;
+border-collapse: collapse;
+}
+table th {
+padding: .2em 1em;
+background-color: #eee;
+border-top: 1px solid #ddd;
+border-left: 1px solid #ddd;
+}
+table td {
+padding: .2em 1em;
+border-top: 1px solid #ddd;
+border-left: 1px solid #ddd;
+vertical-align: top;
+}
+.author {
+font-size: 1.2em;
+text-align: center;
+}
+@media only screen and (min-width: 480px) {
+body {
+font-size: 14px;
+}
+}
+@media only screen and (min-width: 768px) {
+body {
+font-size: 16px;
+}
+}
+@media print {
+* {
+background: transparent !important;
+color: black !important;
+filter: none !important;
+-ms-filter: none !important;
+}
+body {
+font-size: 12pt;
+max-width: 100%;
+}
+a, a:visited {
+text-decoration: underline;
+}
+hr {
+height: 1px;
+border: 0;
+border-bottom: 1px solid black;
+}
+a[href]:after {
+content: " (" attr(href) ")";
+}
+abbr[title]:after {
+content: " (" attr(title) ")";
+}
+.ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
+content: "";
+}
+pre, blockquote {
+border: 1px solid #999;
+padding-right: 1em;
+page-break-inside: avoid;
+}
+tr, img {
+page-break-inside: avoid;
+}
+img {
+max-width: 100% !important;
+}
+@page :left {
+margin: 15mm 20mm 15mm 10mm;
+}
+@page :right {
+margin: 15mm 10mm 15mm 20mm;
+}
+p, h2, h3 {
+orphans: 3;
+widows: 3;
+}
+h2, h3 {
+page-break-after: avoid;
+}
+nav#TOC {
+display: none;
+}
+}
+</style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Changelog</h1>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#changelog" id="toc-changelog">Changelog</a>
+<ul>
+<li><a href="#v3.2.1-06-sep-2023" id="toc-v3.2.1-06-sep-2023">v3.2.1 (06
+Sep 2023)</a></li>
+<li><a href="#v3.2.0-10-feb-2021" id="toc-v3.2.0-10-feb-2021">v3.2.0 (10
+Feb 2021)</a></li>
+<li><a href="#v3.1.0-06-may-2020" id="toc-v3.1.0-06-may-2020">v3.1.0 (06
+May 2020)</a></li>
+<li><a href="#v3.0.5-22-jul-2016" id="toc-v3.0.5-22-jul-2016">v3.0.5 (22
+Jul 2016)</a></li>
+<li><a href="#v3.0.4-15-oct-2014" id="toc-v3.0.4-15-oct-2014">v3.0.4 (15
+Oct 2014)</a></li>
+<li><a href="#v3.0.2-17-oct-2013" id="toc-v3.0.2-17-oct-2013">v3.0.2 (17
+Oct 2013)</a></li>
+<li><a href="#v3.0.0-06-may-2013" id="toc-v3.0.0-06-may-2013">v3.0.0 (06
+May 2013)</a></li>
+<li><a href="#v2.8.4-21-feb-2012" id="toc-v2.8.4-21-feb-2012">v2.8.4 (21
+Feb 2012)</a></li>
+<li><a href="#v2.8.3-25-jan-2012" id="toc-v2.8.3-25-jan-2012">v2.8.3 (25
+Jan 2012)</a></li>
+<li><a href="#v2.8.2-13-jan-2012" id="toc-v2.8.2-13-jan-2012">v2.8.2 (13
+Jan 2012)</a></li>
+<li><a href="#v2.8.1-19-dec-2011" id="toc-v2.8.1-19-dec-2011">v2.8.1 (19
+Dec 2011)</a></li>
+<li><a href="#v2.8.0-29-nov-2011" id="toc-v2.8.0-29-nov-2011">v2.8.0 (29
+Nov 2011)</a></li>
+<li><a href="#v2.7.1-10-sep-2011" id="toc-v2.7.1-10-sep-2011">v2.7.1 (10
+Sep 2011)</a></li>
+<li><a href="#v2.7.0-23-aug-2011" id="toc-v2.7.0-23-aug-2011">v2.7.0 (23
+Aug 2011)</a></li>
+<li><a href="#v2.6.2-03-oct-2010" id="toc-v2.6.2-03-oct-2010">v2.6.2 (03
+Oct 2010)</a></li>
+<li><a href="#v2.6.0-02-feb-2010" id="toc-v2.6.0-02-feb-2010">v2.6.0 (02
+Feb 2010)</a></li>
+<li><a href="#v2.5.5-07-oct-2009" id="toc-v2.5.5-07-oct-2009">v2.5.5 (07
+Oct 2009)</a></li>
+<li><a href="#v2.5.1-11-mar-2009" id="toc-v2.5.1-11-mar-2009">v2.5.1 (11
+Mar 2009)</a></li>
+<li><a href="#v2.5.0-14-jan-2009" id="toc-v2.5.0-14-jan-2009">v2.5.0 (14
+Jan 2009)</a></li>
+<li><a href="#v2.4.5-09-jun-2008" id="toc-v2.4.5-09-jun-2008">v2.4.5 (09
+Jun 2008)</a></li>
+<li><a href="#v2.4.4-01-may-2008" id="toc-v2.4.4-01-may-2008">v2.4.4 (01
+May 2008)</a></li>
+<li><a href="#v2.4.3-11-mar-2008" id="toc-v2.4.3-11-mar-2008">v2.4.3 (11
+Mar 2008)</a></li>
+<li><a href="#v2.4.2-04-mar-2008" id="toc-v2.4.2-04-mar-2008">v2.4.2 (04
+Mar 2008)</a></li>
+<li><a href="#mar-2008-1057-am" id="toc-mar-2008-1057-am">04 Mar 2008,
+10:57 am</a></li>
+<li><a href="#feb-2008-725-am" id="toc-feb-2008-725-am">13 Feb 2008,
+7:25 am</a></li>
+<li><a href="#v2.4.1-13-feb-2008" id="toc-v2.4.1-13-feb-2008">v2.4.1 (13
+Feb 2008)</a></li>
+<li><a href="#v2.4.0-05-feb-2008" id="toc-v2.4.0-05-feb-2008">v2.4.0 (05
+Feb 2008)</a></li>
+<li><a href="#jan-2008-759-am" id="toc-jan-2008-759-am">25 Jan 2008,
+7:59 am</a></li>
+<li><a href="#v2.3.0-beta-29-oct-2007" id="toc-v2.3.0-beta-29-oct-2007">v2.3.0 Beta (29 Oct 2007)</a></li>
+<li><a href="#oct-2007-102-am" id="toc-oct-2007-102-am">09 Oct 2007,
+1:02 am</a></li>
+<li><a href="#oct-2007-815-am" id="toc-oct-2007-815-am">02 Oct 2007,
+8:15 am</a></li>
+<li><a href="#v2.2.0-beta-14-aug-2007" id="toc-v2.2.0-beta-14-aug-2007">v2.2.0 Beta (14 Aug 2007)</a></li>
+<li><a href="#v2.1.0-beta-25-jul-2007" id="toc-v2.1.0-beta-25-jul-2007">v2.1.0 Beta (25 Jul 2007)</a></li>
+<li><a href="#v2.0.0-beta-25-jun-2007" id="toc-v2.0.0-beta-25-jun-2007">v2.0.0 Beta (25 Jun 2007)</a></li>
+<li><a href="#jun-2007" id="toc-jun-2007">05 Jun 2007</a></li>
+<li><a href="#may-2007" id="toc-may-2007">23 May 2007</a></li>
+<li><a href="#apr-2007" id="toc-apr-2007">18 Apr 2007</a></li>
+<li><a href="#apr-2007-1" id="toc-apr-2007-1">16 Apr 2007</a></li>
+<li><a href="#feb-2007" id="toc-feb-2007">14 Feb 2007</a></li>
+</ul></li>
+</ul>
+</nav>
+<h1 id="changelog">Changelog</h1>
+<h2 id="v3.2.1-06-sep-2023">v3.2.1 (06 Sep 2023)</h2>
+<p>This is mainly a bug fix release. Several buffer overflows have been
+fixed, as well as a bug that resulted in a segfault when attempting to
+save an old-type model file in a new-type format.</p>
+<p>A lot of backend work has also been done towards the goal of making a
+parallelizable <code>getTravelTime()</code> method. This includes
+getters for a variety of class members, and a large amount of new copy
+constructors.</p>
+<h2 id="v3.2.0-10-feb-2021">v3.2.0 (10 Feb 2021)</h2>
+<p>The major new feature in this update is a Python interface!
+<strong>Note that there is a minimum requirement of Python
+3.6.</strong></p>
+<p>The Python interface can be installed using <code>pip</code> (see
+instructions in the <a href="readme.html">README</a>), and as it
+contains the required C++ GeoTess and RSTT libraries inside of the
+module package, itself, if you install it via <code>pip</code>, you will
+not need to set any path variables—it should “just work”.</p>
+<p>Alternatively, an extracted version of the module is stored in the
+<code>$RSTT_ROOT/lib</code> directory, so if you do not want to
+<code>pip install</code> the RSTT module, just set the
+<code>$SRTT_ROOT</code> environment variable, and use the Python code at
+the top of <code>usage_examples/python_example.py</code> in your own
+programs to load the module. The example Python code has been written to
+recognize <code>$RSTT_ROOT</code>, <code>$RSTT_HOME</code>,
+<code>$SLBM_ROOT</code>, and <code>$SLBM_HOME</code> as potential search
+paths.</p>
+<p>This update also makes a considerable number of other changes
+under-the-hood, mostly in the path-dependent uncertainty RSTT model file
+format. The new model format is compatible with the new version of <a href="https://www.sandia.gov/geotess">GeoTess</a> (v2.6.1) and will be
+the permanent new binary format going forward. The format introduced in
+v3.1.0 with the <code>pdu2020012Du</code> model is no longer supported,
+and that model has been converted to the new format and renamed to
+<code>pdu202009Du</code>. The new versions of <em>GeoTess</em>,
+<em>GeoTess Builder</em>, and <em>GeoTess Explorer</em>, contain robust
+new methods to interact with these new model files, including resampling
+the grid and extracting and replacing the PDU data. The old models
+(e.g., <code>rstt201404um</code>) are still supported for backwards
+compatibility.</p>
+<p>Other miscellaneous changes and fixes:</p>
+<ul>
+<li><p>Henceforth, path-dependent uncertainty will be referred to as
+“<strong>PDU</strong>”, and the old 1D distance-dependent uncertainties
+(i.e., path-independent uncertainty) will be called
+“<strong>PIU</strong>”. This naming convention is concise and
+convenient.</p></li>
+<li><p>Improved the path situation. The Java and Python usage examples
+contain well-commented code demonstrating how to load the proper files
+provided one of these environmental variables is set:
+<code>$RSTT_ROOT</code>, <code>$RSTT_HOME</code>,
+<code>$SLBM_ROOT</code>, and <code>$SLBM_HOME</code>.</p></li>
+<li><p>Added a <code>getModelObject</code> method to the C++
+<code>SlbmInterface</code> object. Previously it was difficult to get
+access to the <code>GeoTessModelSLBM</code> that contained all the model
+information; instead, you had to go through the <code>Grid</code>
+class.</p></li>
+<li><p>Added getters for the great circle information in C++
+<code>SlbmInterface</code>.</p></li>
+<li><p>Overloaded literally every C++ method, where possible, that
+passed or returned arrays with new merthods that take vectors, instead.
+These new methods no longer require you to pre-allocate arrays or pass
+in the existing or anticipated size of arrays. Instead, vectors will be
+expanded as needed, and the length of the vectors you pass in is easily
+determined by code.</p></li>
+<li><p>Added an <code>isEqual</code> method in the C++ and Python
+<code>SlbmInterface</code> to compare the velocity model and/or great
+circle loaded into an <code>SlbmInterface</code> object.</p></li>
+<li><p>Overloaded the <code>==</code> operator in C++ and Python to call
+<code>isEqual</code>, so two <code>SlbmInterface</code> objects can be
+easily compared.</p></li>
+<li><p>Added a <code>modelsEqual</code> static method to every
+interface, which takes two model pathnames as strings for input and
+tests whether they are equal. This function works on both
+<code>*.geotess</code> files as well as directories containing a
+<code>geotessmodel</code> file following the old v3 model
+format.</p></li>
+<li><p>Implemented read/write functionality for the new PDU models into
+SLBM model format v3, callable via
+<code>saveVelocityModel</code>.</p></li>
+<li><p>Removed <code>SLBMVersion.h</code>. This file was never
+used.</p></li>
+<li><p>Updated internal version of GeoTess to v2.6.1.</p></li>
+<li><p>Many small improvements to the files in
+<code>usage_examples</code>. These are intended to help new and old
+users, alike, to base their own programs on.</p></li>
+<li><p>Resampled the new <code>pdu202009Du</code> model (don’t forget
+that it’s just <code>pdu2020012Du</code> reformatted into the new file
+format) down to a resolution of 30° and named it
+<code>unittest.geotess</code>. This is a <em>very</em> small model file
+(a few hundred kilobytes) that is useful for testing.</p></li>
+<li><p>Replaced all of the tests for all of the interfaces to use the
+new <code>unittest.geotess</code> file. The old tests were hard-coded to
+use <code>rstt201404um</code>, which is both old and a fairly large file
+to keep around just for testing. The new tests are called “unit tests”,
+but they don’t rely on any unit testing frameworks. They’re just short,
+simple programs that ensure that the travel time and uncertainty
+computed for a single great circle matches what it is supposed to
+be.</p></li>
+<li><p>Since v3.1.0, there have been tens of thousands of changes to the
+C++ codebase. These changes include numerous small bugfixes, dozens of
+convenient new overloaded functions in the C++
+<code>SlbmInterface</code>, and substantially rewritten architecture for
+the new model type.</p></li>
+</ul>
+<h2 id="v3.1.0-06-may-2020">v3.1.0 (06 May 2020)</h2>
+<p>This is the first new release since 2016, and there have been a
+thousands of lines of code changes under the hood to make this a bump-up
+to a major release (v3.0.5 –&gt; v3.1.0).</p>
+<p>The most significant change has been the addition of support for
+path-dependent travel-time uncertainties when used with an appropriate
+model. This version of RSTT is being distributed with a new model,
+<code>pdu2020012Du.geotess</code>, which is prefixed with “<em>pdu</em>”
+to signify that it’s a “<em>path-dependent uncertainty</em>”-type RSTT
+model. The old model, <code>rstt201404um</code>, has not yet been
+removed because it is still used for running tests during the build
+process.</p>
+<p>PDU-type models are automatically detected by RSTT, and calls to get
+travel-time uncertainty are automatically sent to the new algorithm
+which computes path-dependent travel-time uncertainty. If an old-style
+model is used, calls fall back to the old 1D travel-time uncertainty
+computation. If the user wishes to perform the old 1D travel-time
+uncertainty computation while using a new PDU-type model, new function
+calls have been provided with a “1D” suffix (e.g.,
+<code>getTravelTimeUncertainty()</code>
+vs. <code>getTravelTimeUncertainty1D()</code>).</p>
+<p>While the number of individual code changes is too large to put in a
+changelog, a summary of some of the more notable changes are lited
+below.</p>
+<ul>
+<li><p>Support for PDU-type (path-dependent uncertainty) models</p></li>
+<li><p>Inclusion of a new PDU-type model
+(<code>pdu2020012Du.geotess</code>)</p></li>
+<li><p>Simple usage examples in each language (<em>C++</em>, <em>C</em>,
+<em>Java</em>, <em>Fortran</em>)</p></li>
+<li><p>A revamped README, viewable in HTML or Markdown</p></li>
+<li><p>Completely rewritten Makefiles and build process, eliminating the
+need for setting environment variables such as
+<code>LD_LIBRARY_PATH</code></p></li>
+<li><p>Completely updated <em>Doxygen</em> and <em>Javadoc</em>
+documentation</p></li>
+<li><p>Updated included version of GeoTess <em>C++</em> from 2.2.2 to
+2.2.3</p></li>
+<li><p>Elimination of all previous compiler warnings</p></li>
+<li><p>Slight change to crustal leg slowness computation for Pg/Lg
+phases to prevent travel times returning as zero</p></li>
+<li><p>Many bugfixes and improvements</p></li>
+</ul>
+<h2 id="v3.0.5-22-jul-2016">v3.0.5 (22 Jul 2016)</h2>
+<p>Changes to allow SLBM to be compiled on the latest version of MAC
+OSX. Also made model <code>rstt201404um</code> the default model
+delivered with the software.</p>
+<h2 id="v3.0.4-15-oct-2014">v3.0.4 (15 Oct 2014)</h2>
+<p>Improved the computational performance of the natural neighbor
+interpolation algorithm in geotess, which speeds up SLBM as well.</p>
+<h2 id="v3.0.2-17-oct-2013">v3.0.2 (17 Oct 2013)</h2>
+<p>Fixed a bug that prevented SLBM from writing models to disk using
+file format 3 when the appropriate tessellation directory was not
+present.</p>
+<h2 id="v3.0.0-06-may-2013">v3.0.0 (06 May 2013)</h2>
+<p>Replaced the grid used in SLBM Version 2 with GeoTess, a
+general-purpose Earth model parameterization for 2D and 3D Earth models.
+For more information about GeoTess, visit the website at
+http://www.sandia.gov/geotess.</p>
+<p>The change to GeoTess introduced a couple of new model storage
+formats which are described in <code>SLBM_Design.pdf</code></p>
+<h2 id="v2.8.4-21-feb-2012">v2.8.4 (21 Feb 2012)</h2>
+<p>Made modifications to the makefile and minor mods to code in order to
+get code to compile on Windows (Brian Kraus). Can now build and run the
+<em>C++</em>, <em>C</em> and Fortran interfaces on Windows using Visual
+Studio compiler. <em>Java</em> interface does not currently work on
+windows</p>
+<h2 id="v2.8.3-25-jan-2012">v2.8.3 (25 Jan 2012)</h2>
+<p>No code changes. Added new model while in Vienna delivering to the
+IDC.</p>
+<h2 id="v2.8.2-13-jan-2012">v2.8.2 (13 Jan 2012)</h2>
+<p>Changed compiler flags for Mac builds so that now SLBM can be built
+on Macs with the <em>gcc 4.2.1</em> compiler, which is the version
+delivered with Mac Xcode. All four SLBM interfaces (<em>C++</em>,
+<em>C</em>, <em>Fortran</em> and <em>Java</em>) now run on Mac, Linux,
+and Sun.</p>
+<p>Changes to the main make file to facilitate building on Sun using
+gmake. To build on SunOS computers, users must use gmake, not make.</p>
+<p>Renamed the <code>SLBM_User_Guide</code> to
+<code>SLBM_Installation_Guide</code>.</p>
+<p>This release involved no changes to the SLBM code or to the RSTT
+model.</p>
+<h2 id="v2.8.1-19-dec-2011">v2.8.1 (19 Dec 2011)</h2>
+<p>Overhauled the makefiles to make them easier to use and more
+consistent with each other.</p>
+<p>Rewrote the <code>User_Manual</code> to bring it up to date. Copied
+the content of the <code>User_Manual</code>, which is in the doc
+directory, to a readme.txt file in the main <code>SLBM_Root</code>
+directory. <code>Readme.txt</code> is a simple ascii text file that is
+very easy to access from the command line.</p>
+<h2 id="v2.8.0-29-nov-2011">v2.8.0 (29 Nov 2011)</h2>
+<p>Removed parameter ‘delta’ from createGreatCircle() in all interfaces,
+which will break existing code (sorry). This parameter proved to be very
+confusing to new users.</p>
+<p>Added methods getPathIncrement() and setPathIncrement() which allow
+applications to get/set the step size of nodes along the headwave
+interface used to integrate travel time. This replaces the ‘delta’
+parameter described above.</p>
+<p>Changed the default value of <code>MAX_DISTANCE</code> from
+<code>180</code> to <code>15</code> degrees and the default value of
+<code>MAX_DEPTH</code> from <code>9999</code> to <code>200</code> km.
+SlbmInterface has getters and setters for these parameters if users wish
+to change the default values.</p>
+<p>In the <em>C</em> and <em>Fortran</em> interfaces, but not
+<em>C++</em> or <em>Java</em>, there were some inconsistencies in the
+method calls for getTravelTimeUncertainty() and
+getSlownessUncertainty(). These have been resolved but may cause issues
+for C and <em>fortran</em> applications. If old code does not work, see
+the html documentation for the affected method calls.</p>
+<p>Fixed an extremely minor memory leak that occurred only as the
+program was terminating execution.</p>
+<p>Other minor changes to get the code to compile on Mac computers.</p>
+<p>The test applications for <em>C++</em>, <em>C</em> and <em>Java</em>,
+but not <em>Fortran</em>, were expanded with additional functionality.
+Formerly, these test applications performed only one test, a regression
+test. They now have an option to accept a model, phase, source position
+and receiver position and will print out basic information about the
+travel time, slowness, derivatives, etc. For more information, execute
+SLBM_Root/bin/slbmtestcc with no parameters.</p>
+<h2 id="v2.7.1-10-sep-2011">v2.7.1 (10 Sep 2011)</h2>
+<p>Fixed some inaccuracies in the documentation.</p>
+<p>Made minor code changes to address compiler warnings observed when
+the compiling the Linux version of the code.</p>
+<h2 id="v2.7.0-23-aug-2011">v2.7.0 (23 Aug 2011)</h2>
+<p>Responded to review by the NEIC. Changed manner in which derivatives
+of tt with respect to lat, lon are computed.</p>
+<p>Removed all derivatives of slowness from all interfaces.</p>
+<p>Fixed bug related to computing derivative of tt with respect to depth
+that happened when depth step spanned the moho.</p>
+<p>Changed default step size used to compute horizontal derivatives from
+<code>.01</code> to <code>.001</code> radians. Changed default step size
+used to compute depth derivatives from <code>0.01</code> km to
+<code>0.1</code> km. Added getters and setters for
+<code>del_distance</code> and <code>del_depth</code>, which are the step
+sizes for calculating horizontal and depth derivatives.</p>
+<p>Added methods:</p>
+<ul>
+<li><code>getDistAz()</code> - distance and azimuth from A to B</li>
+<li><code>movePoint()</code> - from A, move distance azimuth to B</li>
+<li><code>getPiercePointSource()</code></li>
+<li><code>getPiercePointReceiver()</code></li>
+<li><code>getGreatCircleLocations()</code> - get points along headwave
+interface</li>
+<li><code>getGreatCirclePoints()</code> - get nPoints between A and
+B</li>
+<li><code>getGreatCirclePointsOnCenters()</code> - get nPoints between A
+and B</li>
+</ul>
+<p>In the <em>c</em> and <em>fortran</em> interfaces, error codes
+returned by all the methods have been changed. The methods used to
+return <code>0</code> indicating no error, or <code>1</code> indicating
+an error occurred. The methods still return <code>0</code> when no
+error, but now return positive, non-zero error codes for error
+conditions.</p>
+<p>Replaced all the test programs with new ones that perform a simple
+regression test. These new test programs are better examples of how to
+use slbm.</p>
+<h2 id="v2.6.2-03-oct-2010">v2.6.2 (03 Oct 2010)</h2>
+<p>Fixed a bug in <em>java</em> interface that caused a very slow memory
+leak. Only the <em>java</em> interface is affected.</p>
+<h2 id="v2.6.0-02-feb-2010">v2.6.0 (02 Feb 2010)</h2>
+<p>Added methods to return derivatives of slowness with respect to lat,
+lon and depth.</p>
+<p>Modified <code>SlbmInterface</code> methods
+<code>setGridData()</code> and <code>setActiveNodeData()</code> so that
+they now include depth as an argument. This means that it is now
+possible to change the depths of the tops of the interfaces in a
+model.</p>
+<p>In the <em>fortran</em> interface, all methods used to be mixed case
+but have all been changed to lower case. This was required for the port
+to Linux.</p>
+<p>Modified method <code>GreatCircle_Xn::mnbrak()</code> to hopefully
+prevent infinite loop condition.</p>
+<h2 id="v2.5.5-07-oct-2009">v2.5.5 (07 Oct 2009)</h2>
+<p>Ported all interfaces to Windows and to Linux.</p>
+<p>Code changes to remove the discontinuitites from the derivatives of
+tt with respect to source position and spikes from second derivatives of
+tt with respect to source position. All derivatives are now smooth.</p>
+<p>Sandia now holds the copyright to the code and it has been approved
+by Sandia for public release under the BSD open source license. There
+are now copyright notices, license agreements and disclaimers at the top
+of every source code file.</p>
+<h2 id="v2.5.1-11-mar-2009">v2.5.1 (11 Mar 2009)</h2>
+<p>Made a change to Zhao equations, replacing <code>1.58e-4</code> with
+<code>1/r</code>. This dramatically improved the accuracy of the code
+for mantle events.</p>
+<p>Also fixed a bug that generated segmentation faults when source depth
+was exactly equal to moho depth (to double precision).</p>
+<p>Added a software disclaimer at the top of every source code file</p>
+<h2 id="v2.5.0-14-jan-2009">v2.5.0 (14 Jan 2009)</h2>
+<p>Added methods to compute derivatives of travel time with respect to
+source location. New methods are:</p>
+<ul>
+<li><code>get_dtt_dlat(double&amp; dtt_dlat)</code></li>
+<li><code>get_dtt_dlon(double&amp; dtt_dlon)</code></li>
+<li><code>get_dtt_ddepth(double&amp; dtt_ddepth)</code></li>
+<li><code>getSlowness(double&amp; slowness)</code></li>
+<li><code>getSlownessUncertainty(double&amp; slownessUncertainty)</code></li>
+</ul>
+<p>Renamed method <code>getUncertainty()</code> to
+<code>getTravelTimeUncertainty()</code>.</p>
+<p>I also added methods to compute derivatives of slowness with respect
+to lat, lon and depth:</p>
+<ul>
+<li><code>get_dsh_dlat(double&amp; dsh_dlat)</code></li>
+<li><code>get_dsh_dlon(double&amp; dsh_dlon)</code></li>
+<li><code>get_dsh_ddepth(double&amp; dsh_ddepth)</code></li>
+</ul>
+<p>but then commented them out because they produce slowness derivatives
+that are invalid. See file
+<code>SLBM_Root\doc\slbm_derivatives.pdf</code> (the same directory as
+this file). I will fix these derivatives in a future version and make
+these methods available at that time.</p>
+<p>All the files specifying travel time uncertainty as a function of
+distance were renamed. In previous versions, these files were named
+<code>Uncertainty_[Pn|Sn|Pg|Lg].txt</code>. They have been renamed
+<code>Uncertainty_[Pn|Sn|Pg|Lg]_TT.txt</code> in this release. Files
+containing slowness uncertainty were added to the same directories with
+names <code>Uncertainty_[Pn|Sn|Pg|Lg]_Sh.txt</code>. These files were
+populated with slowness uncertainty values suggested by Steve Myers in
+an email to me (SB) on 1-22-2009.</p>
+<h2 id="v2.4.5-09-jun-2008">v2.4.5 (09 Jun 2008)</h2>
+<p>Corrected equation for computing earth radius as a function of
+latitude. This makes only an insignificantly small difference ( &gt;
+<code>0.1</code> msec).</p>
+<h2 id="v2.4.4-01-may-2008">v2.4.4 (01 May 2008)</h2>
+<p>Fixed bug that caused slbm to occasionally segmentation fault for
+Pg/Lg calculations when using <code>TaupLoc</code>. What was happening
+was that a velocity stack was defined at the receiver with the bottom at
+the radius of the Moho at the receiver. The Taup model was constructed
+with only the velocity stack at the receiver. Then a source comes along
+where the Moho at the source position is deeper than the Moho at the
+receiver (and hence the bottom of the model). In addition, the source
+depth is deeper than the bottom of the taup model, causing taup to fail.
+This was fixed by modifying the way the taup model is built. Now we
+append a taup layer (in the taup model) that extends from the radius of
+the Moho at the receiver down to the center of the earth. Thatlayer is
+assigned the velocity of the lower crust at the receiver.</p>
+<p>Note: It has been discovered that the compiler option to turn off
+name mangling required for use of <em>C++</em> libraries within
+<em>C</em> and <em>FORTRAN</em> code prevents the compiler from
+correctly finding the rand() function in <em>FORTRAN</em>. At this
+point, this is the only function we have discovered to work this way
+-but others may be found in the future. At present, the work-around is
+to manually “decorate” the function call within the <em>FORTRAN</em>
+code. For example: <code>rand()</code> function calls would change to
+<code>rand_()</code> and <code>rand(seed)</code> function calls would
+change to <code>rand_(seed)</code>.</p>
+<h2 id="v2.4.3-11-mar-2008">v2.4.3 (11 Mar 2008)</h2>
+<p>Added new target (STR) to the makefile to allow rebuilding a 32-bit
+stand- alone version of the <code>SLBM_Root</code> from a
+<code>SNL_Tool_Root</code> delivery.</p>
+<p>Note: <code>SNL_Tool_Root</code> only uses the core SLBM units (not
+any other language interfaces) and builds only the
+<code>libslbm.so</code> library in 64-Bit mode.</p>
+<h2 id="v2.4.2-04-mar-2008">v2.4.2 (04 Mar 2008)</h2>
+<p>This version contains bug fix to handle cases when the activenode
+range spans the dateline correctly. Also, includes Jim Hipp’s changes to
+the uncertainty units for compatibility
+w/<code>PGL</code>/<code>UtilLib</code>.</p>
+<h2 id="mar-2008-1057-am">04 Mar 2008, 10:57 am</h2>
+<p>Made <code>ch_max</code> (in <code>SLBMInterface</code>) a static
+variable and renamed it to <code>CH_MAX</code> defaulting to .2.</p>
+<p>Made the function calls</p>
+<ul>
+<li><code>void setCHMax(double chMax)</code></li>
+<li><code>void getCHMax(double&amp; chMax)</code></li>
+<li><code>void setMaxDistance(double maxDistance)</code></li>
+<li><code>void getMaxDistance(double&amp; maxDistance)</code></li>
+<li><code>void setMaxDepth(double maxDepth)</code></li>
+<li><code>void getMaxDepth(double&amp; maxDepth)</code></li>
+</ul>
+<p>all static functions. This was done to allow the locator
+(<code>LoCOO</code>) to be able to set the control parameters
+remotely.</p>
+<h2 id="feb-2008-725-am">13 Feb 2008, 7:25 am</h2>
+<p>Added defaulted depth dependence (defaults to <code>0.0</code> km)
+for the functions</p>
+<p><code>double getUncertainty(double distance, double depth = 0.0)</code></p>
+<p><code>double getVariance(double distance, double depth = 0.0)</code></p>
+<p>Added new privated functions to evaluate uncertainty and variance
+given a depth index, distance index and distance weight.</p>
+<p><code>double getUncertainty(double wdist, int idist, int idepth)</code></p>
+<p><code>double getVariance(double wdist, int idist, int idepth)</code></p>
+<p>Modified the <code>getIndex(...)</code> function to return both the
+index and the weight given the input independent parameter position, x,
+and the vector containing the independent parameter positions. The input
+vector can by distance or depth.</p>
+<p><code>void getIndex(double x, const vector&amp; v, int&amp; index, double&amp; w)</code></p>
+<p>Added the parameter vector errDepths to contain the depth positions.
+This parameter does not require a defintion if the input data is
+strictly distance dependent.</p>
+<p>Modified the parameter vector errVal to a two dimensional vector
+defined by <code>&lt;vector&gt; errval</code>. This is so a distance
+vector can be assigned for each depth defined in
+<code>errDepths</code>.</p>
+<p>Modified the function
+<code>readFile(const string&amp; filename)</code> to look on the first
+line for both the distance count and the new depth count. If the new
+depth count is not present it defaults to <code>1</code>. Modified the
+remainder of the function to handle depths if found.</p>
+<p>Modified <code>getBufferSize()</code>, <code>serialize(...)</code>,
+and <code>deserialize(...)</code> functions to output / input the new
+depth information.</p>
+<h2 id="v2.4.1-13-feb-2008">v2.4.1 (13 Feb 2008)</h2>
+<p>This version contains bug fixes for segmentation faults for events in
+which the source and receiver coincide with each other, and for Pg
+events where source-receiver distance is greater than <code>~13</code>
+degrees. The slbmtestc and slbmtestcc test scripts were enhanced to
+include a stress test of the Pg calculations.</p>
+<h2 id="v2.4.0-05-feb-2008">v2.4.0 (05 Feb 2008)</h2>
+<p>The major change in this release is that the travel time calculations
+for Pg/Lg phases have been modified to implement the algorithm described
+by Steve Myers in a memo which is also available on the secure server in
+<code>Documents/SLBM_PgLgFix_Doc.pdf</code>.</p>
+<h2 id="jan-2008-759-am">25 Jan 2008, 7:59 am</h2>
+<p>Added new functions to Grid including</p>
+<ul>
+<li><code>const int getBufferSize()</code></li>
+<li><code>void loadVelocityModelBinary(util::DataBuffer&amp; buffer)</code></li>
+<li><code>void saveVelocityModelBinary(util::DataBuffer&amp; buffer)</code></li>
+</ul>
+<p>The first function retrieves the approximate size required of a
+<code>DataBuffer</code> object to store the contents of the
+<code>Grid</code> object. The next two functions read a
+<code>Grid</code> object from an input <code>DataBuffer</code> and save
+the contents of the <code>Grid</code> into an input
+<code>DataBuffer</code> object. These functions are required by
+<code>PGL</code> to be able to store the SLBM model into an FDB.</p>
+<p>Since <code>PGL</code> really saves the an <code>SLBMInterface</code>
+object these same functions were provided in <code>SlbmInterface</code>
+to pass-through the request to the Grid object. In
+<code>SlbmInterface</code> they are called by the same name. A new
+function to retreive the model path variable</p>
+<p><code>const string&amp; getModelPath()</code></p>
+<p>was also added to the <code>SlbmInterface</code> object.</p>
+<p>I modified the <code>Grid</code> object file base read function to
+extract the <code>DataBuffer</code> read/write information into separate
+functions. This avoided duplicating the functionality in the new calls
+above. The calls separate out the input of geo stacks, layer
+connectivity and grid connectivity as well as initialization
+functionality. They are divided into the 4 functions below:</p>
+<ul>
+<li><code>void readGeoStacks(util::DataBuffer&amp; buffer)</code></li>
+<li><code>void readConnectivity(util::DataBuffer&amp; buffer, int&amp; nNodes, vector&amp; elev, vector&amp; waterThick, vector&amp; stackId)</code></li>
+<li><code>void readTessellationData(util::DataBuffer&amp; buffer, int nNodes, const vector&amp; elev, const vector&amp; waterThick, const vector&amp; stackId, vector&lt; vector &gt;&amp; triset)</code></li>
+<li><code>void defineTessAdjacency(int nNodes, const vector&lt; vector &gt;&amp; triset)</code></li>
+</ul>
+<p>Finally, the Uncertainty class was modified so that it could be read
+from and written to by a <code>DataBuffer</code> object. This included
+adding a constructor to serialize from a <code>DataBuffer</code>, a
+function to retrieve the necessary buffer size, a function to serialize,
+and a function to deserialize. These functions are defined by</p>
+<ul>
+<li><code>Uncertainty(util::DataBuffer&amp; buffer)</code></li>
+<li><code>const int getBufferSize()</code></li>
+<li><code>void serialize(util::DataBuffer&amp; buffer)</code></li>
+<li><code>void deserialize(util::DataBuffer&amp; buffer)</code></li>
+</ul>
+<p>Also, I fixed a bug in the Uncertainty file read class where a pth
+“/” descriptor was missing. And I replaced the getUncertainty(…)
+functionality with a new implementation that uses a fast binary search
+to find the bracket values from then input distance.</p>
+<h2 id="v2.3.0-beta-29-oct-2007">v2.3.0 Beta (29 Oct 2007)</h2>
+<p>Modified the way travel time for Pg/Lg phases is calculated.
+Previously, Pg/Lg travel times were computed with the Headwave method.
+Starting with this release, Pg/Lg travel times are computed with both
+the Headwave and TauP methods and the reported travel time is the lesser
+of the travel times calculated with the two methods. See
+<code>SLBM_design.pdf</code> for more details. The
+<code>SlbmInterface</code> method</p>
+<p><code>getPgLgComponents(double* tTotal, double* tTaup, double* tHeadwave, double* rBottom)</code></p>
+<p>has been added to all interfaces to facilitate evaluation of this new
+capability.</p>
+<p>Added following methods to the interface(s):</p>
+<ul>
+<li><code>getFractionActive ( double* fractionActive )</code></li>
+<li><code>setMaxDistance ( const double* maxDistance )</code></li>
+<li><code>getMaxDistance ( double* maxDistance )</code></li>
+<li><code>setMaxDepth ( const double* maxDepth )</code></li>
+<li><code>getMaxDepth ( double* maxDepth )</code></li>
+<li><code>getPgLgComponents(double* tTotal, double* tTaup, double* tHeadwave, double* rBottom)</code></li>
+</ul>
+<p>Added a section labeld “<code>test_2_3_0_BETA_Changes()</code>” in
+each testscript (programming language) to exercise each new method.</p>
+<p>Due to function name length limitations in some <em>FORTRAN</em>
+compilers, renamed all functions calls from
+“<code>slbm_shell_xxx()</code>” to “<code>slbm_xxx()</code>” in the
+<em>FORTRAN</em> interface. Additionally, further renamed functions:</p>
+<p><code>slbm_getActiveNodeWeightsReceiver()</code> -&gt;
+<code>slbm_getActiveNodeWeightsRcvr()</code>
+<code>slbm_getActiveNodeWeightsSource()</code> -&gt;
+<code>slbm_getActiveNodeWgtsSrc()</code></p>
+<p>Modified the way <code>CrustalProfile</code> objects are stored.
+Previously, all <code>CrustalProfile</code> objects were stored in
+memory so that if they were called for again they would not have to be
+recomputed. This was a problem since the number of objects could grow
+until all available memory was consumed. Starting with this release, the
+number of source <code>CrustalProfile</code> objects saved is limited to
+10 and the number of receiver <code>CrustalProfile</code> objects saved
+is limited to <code>1000</code>. When these limits are reached, the
+least-recently used objects are deleted from memory. These limits are
+hard-coded in the software but can be modified in the <code>Grid</code>
+constructor in <code>Grid.cc</code>.</p>
+<h2 id="oct-2007-102-am">09 Oct 2007, 1:02 am</h2>
+<p>Fixed the constructor in <code>GreatCircle_Xg.cc</code> during the
+<code>TauPSite</code> initialization to set the <code>TauPSite</code>
+planet radius before setting the receiver depth.</p>
+<h2 id="oct-2007-815-am">02 Oct 2007, 8:15 am</h2>
+<p>Modified PGL TauP and SLBM code to utilize identical object
+definitions. This included: a) modifications to SLBM to wrap all of its
+objects into the single namespace <code>slbm</code>; b) modifications to
+PGL/SLBM to wrap all TauP objects into a new namespace
+<code>taup</code>; c) modifications to PGL/SLBM to wrap all utility
+objects used by both applications into a new namespace
+<code>util</code>; d) renaming of the SLBM <code>BaseObject.h</code>
+include file in SLBM to <code>BaseGlobals.h</code>; e) splitting of the
+<code>BaseGlobals.h</code> class into a non-namespaced basic definition
+which keeps the <code>BaseGlobals</code> name and a new
+<code>SLBMGlobals.h</code> file containing the specific definitions
+required by SLBM; f) the renaming of the PGL
+<code>StandardDefines.h</code> file to <code>PGLGlobals.h</code>; g) the
+removal of base definitions from <code>PGLGlobals.h</code> and the
+inclusion of <code>BaseGlobals.h</code> in PGL; h) a new
+<code>TauPGlobals.h</code> file used by the <code>taup</code> namespace;
+i) and a new UtilGlobals.h used by the <code>util</code> namespace.</p>
+<p>Each specific <code>XXGlobal.h</code> file contains a windows
+definition for the DLL import/export tag along with any specific
+defintions (beyond <code>BaseGlobals.h</code>) required by the
+namespace.</p>
+<p>The <code>taup</code> namespace now includes the objects
+<code>TPVelocityModels</code>, <code>TauPSiteFunctionals</code>,
+<code>TauPSite</code>, and <code>TauPModel</code> (used by PGL only).
+The <code>util</code> namespace now includes <code>MD50</code>,
+<code>Brents</code>, and <code>IntegrateFunction</code> objects. Once
+the <code>DataBuffer</code> object in PGL is split into a new
+<code>DataBufferDB</code> object and the base functionality included in
+the SLBM <code>DataBuffer</code> object, then the low level
+<code>DataBuffer</code> object will also become part of the
+<code>util</code> namespace.</p>
+<h2 id="v2.2.0-beta-14-aug-2007">v2.2.0 Beta (14 Aug 2007)</h2>
+<p>Converted the model files from ascii to binary format. The binary
+format is the one specified by AFTAC/QTSI. This change has resulted in a
+dramatic reduction in the time required to load the velocity models into
+memory.</p>
+<p>The ascii format is still supported but support for ascii will be
+removed in the next release.</p>
+<p>Added setters and getters for <code>CHMax</code> and average mantle
+velocities. Added <code>getTessId()</code> to retrieve tesselation ID of
+the model in memory. Refer to HTML documentation for further
+details.</p>
+<p>Sandy Ballard, SNL</p>
+<h2 id="v2.1.0-beta-25-jul-2007">v2.1.0 Beta (25 Jul 2007)</h2>
+<p>Added several methods to all the slbm interfaces to facilitate
+interaction with active nodes. Active nodes are nodes that fall within a
+user-specified latitud, longitude range. This functionality is really
+only useful to the tomographers.</p>
+<h2 id="v2.0.0-beta-25-jun-2007">v2.0.0 Beta (25 Jun 2007)</h2>
+<p>Changed the grid from the deformed grid to the global tessellated
+grid.</p>
+<p>Added method <code>getVersion()</code> to all the interfaces.</p>
+<p>Added the following methods to <code>SlbmInterface</code> to support
+regularization for tomography applications. See html documentation for
+more information.</p>
+<ul>
+<li><code>void getNodeNeighbors(const int&amp; nid, int neighbors[], int&amp; nNeighbors)</code></li>
+<li><code>void getNodeNeighbors(const int&amp; nid, vector&amp; neighbors)</code></li>
+<li><code>void getNodeNeighborInfo(const int&amp; nid, int neighbors[], double distance[], double azimuth[], int&amp; nNeighbors)</code></li>
+<li><code>void getNodeSeparation(const int&amp; node1, const int&amp; node2, double&amp; distance)</code></li>
+<li><code>void getNodeAzimuth(const int&amp; node1, const int&amp; node2, double&amp; azimuth)</code></li>
+<li><code>void initializeActiveNodes(const double&amp; latmin, const double&amp; lonmin, const double&amp; latmax, const double&amp; lonmax)</code></li>
+<li><code>void nextActiveNode(int&amp; nodeId)</code></li>
+<li><code>void getNodeHitCount(const int&amp; nodeId, int&amp; hitCount)</code></li>
+</ul>
+<h2 id="jun-2007">05 Jun 2007</h2>
+<p>Fixed a bug in the part of the code that computes Pn/Sn travel times
+for mantle events. The bug caused the code to hang for events just below
+the Moho and close to the receiver. The test events seemed to return
+very similar travel times for very small differences in ray parameter.
+The bug was fixed by simply adding a counter that caused the loop to
+quit after a specified number of iterations.</p>
+<p>Removed a spurious debug print statement that was inadvertently left
+in the <em>fortran</em> shell interface.</p>
+<p>Added tests for ellipticity corrections and elevation corrections.
+The results of these tests had been distributed previously, but are now
+part of the official release.</p>
+<h2 id="may-2007">23 May 2007</h2>
+<p>Modified the method where Pn/Sn travel times are computed for mantle
+events. Basically made the convergence behavior more robust and imposed
+a criterion that <code>C * H &lt; 0.2</code> where <code>C</code> is the
+Zhao <code>C</code> parameter and <code>H</code> is the depth of the ray
+turning point below the Moho.</p>
+<p>Removed criterion that mantle gradients had to be
+<code>&gt;= 0</code> and replaced it with criterion that <code>C</code>
+and <code>Cm</code> have to be greater than <code>1e-6</code>.</p>
+<p>Added 5 accessor methods to <code>SlbmInterface</code> (in all 4
+languages):</p>
+<ul>
+<li><code>getZhaoParameter()</code> returns several parameters computed
+during calculation of Pn/Sn travel times, including <code>C</code>,
+<code>Cm</code>, <code>Vm</code>, <code>H</code> and <code>udSign</code>
+(see documentation for definitions of these parameters).</li>
+<li><code>getGridLatMin()</code>, <code>getGridLatMax()</code>,
+<code>getGridLonMin()</code> and <code>getGridLonMax()</code> return the
+valid range of the Earth model loaded with the
+<code>loadVelocityModel()</code> call.</li>
+</ul>
+<p>Fixed a very subtle bug in <code>QueryProfile</code>. It used to be
+that interpolation was done on the basis of depth of surrounding grid
+nodes. Changed so that interpolation is done on the basis of radius,
+which makes a small difference when the GRS80 ellipsoid is used and
+Earth radius depends on latitude.</p>
+<h2 id="apr-2007">18 Apr 2007</h2>
+<ol type="1">
+<li><p>Fixed some bugs having to do with the valid range of the Pn
+travel time for mantle events.</p></li>
+<li><p>Changed the algorithm for computing Pg/Lg travel times. Code now
+returns Pg/Lg travel times for events at any depth in the crust, even
+events below the top of the middle crust. The algorithm implemented is
+exactly as described in the requirement document.</p></li>
+<li><p>Added new <code>SLBMInterface</code> constructors that take an
+earth radius in km. When the constructors with no parameters are called,
+the radius of the earth is assumed to vary as a function of latitude, as
+described by a GRS80 ellipsoid. When the earth radius is specified in
+the <code>SLBMInterface</code> constructor, then earth radius is assumed
+constant at the specified value. Geographic latitudes are still
+converted to geocentric latitudes, using GRS80 ellipsoid.</p></li>
+<li><p>Modified the <code>IASPI91_slbm.txt</code> model file to have
+<code>9</code> layers instead of <code>8</code>.</p></li>
+</ol>
+<h2 id="apr-2007-1">16 Apr 2007</h2>
+<ol type="1">
+<li>Changed the model input file (<code>unified_slbm.txt</code>) in two
+ways: (a) the constraint that gradients cannot be negative has been
+removed from the model input file and is now being imposed in the code.
+There can now be substantial negative gradients in the input file. (b)
+There are now 9 layers in the model where there were previously only
+<code>8</code>. The <code>9</code> layers are:</li>
+</ol>
+<ol type="1">
+<li><code>WATER</code></li>
+<li><code>SEDIMENT1</code></li>
+<li><code>SEDIMENT2</code></li>
+<li><code>SEDIMENT3</code></li>
+<li><code>UPPER_CRUST</code></li>
+<li><code>MIDDLE_CRUST_N</code></li>
+<li><code>MIDDLE_CRUST_G</code></li>
+<li><code>LOWER_CRUST</code></li>
+<li><code>MANTLE</code></li>
+</ol>
+<p>The change is that there are now two versions of the
+<code>MIDDLE_CRUST</code>. <code>MIDDLE_CRUST_N</code> is the same as
+the previous <code>MIDDLE_CRUST</code>. <code>MIDDLE_CRUST_G</code> is a
+new layer that has the same depth as <code>MIDDLE_CRUST_N</code> but
+with P wave velocity <code>6.2</code> km/sec and S wave velocity of
+<code>3.5</code> km/sec. There are if statements in the code that select
+<code>MIDDLE_CRUST_N</code> for phases Pn and Sn and select
+<code>MIDDLE_CRUST_G</code> for Pg and Lg.</p>
+<ol start="2" type="1">
+<li>Implemented the LANL modification to the Zhao method that calculates
+travel times for mantle events.</li>
+</ol>
+<h2 id="feb-2007">14 Feb 2007</h2>
+<p>Changed InterpolatedProfile and all derived classes so that they no
+longer have to call new to create the data arrays. This involved
+changing from vector to double[] arrays in many places. Resulted in
+factor of 3 improvement in execution speed.</p>
+<p>Fixed bug that prevented slbm from exiting gracefully when invalid
+file specified in <code>Grid::loadVelocityModel()</code>.</p>
+<p>Added the following methods to all interfaces:</p>
+<ul>
+<li><code>saveVelocityModel()</code> - save earth model currently in
+memory to file.</li>
+<li><code>getHeadwaveDistanceKm()</code> - Retrieve horizontal distance
+traveled by the ray below the headwave interface, in km.</li>
+<li><code>getHeadwaveDistance()</code> - Retrieve angular distance
+traveled by the ray below the headwave interface.</li>
+<li><code>getSourceDistance()</code> - returns horizontal offset below
+the source.</li>
+<li><code>getReceiverDistance()</code> - returns horizontal offset below
+the receiver.</li>
+<li><code>getWeightsSource()</code> - Retrieve the node IDs and the
+interpolation coefficients for the source
+<code>CrustalProfile</code>.</li>
+<li><code>getWeightsReceiver()</code> - Retrieve the node IDs and the
+interpolation coefficients for the receiver
+<code>CrustalProfile</code>.</li>
+</ul>
+<p>Fixed many issues with the <em>fortran</em> interface.</p>
+<p>Updated all of the html documentation files.</p>
+<p>Added a mode of operation to <code>SLBM_test_java</code> wherein two
+parameters are specified on the command line. The first is interpreted
+as the name of the file containing the earth model and the second is
+interpreted to be the name of a file containing a bunch of source and
+receiver locations. <code>SLBM_test_java</code> will compute the total
+travel time and spew the results to standard out. The input file should
+contain the following information on each record, separated by
+spaces:</p>
+<ul>
+<li><code>phase</code> - one of the following strings: Pn, Sn, Pg or
+Lg</li>
+<li><code>sourceLat</code> - source latitude in degrees.</li>
+<li><code>sourceLon</code> - source longitude in degrees.</li>
+<li><code>sourceDepth</code> - source depth in km.</li>
+<li><code>receiverLat</code> - receiver latitude in degrees.</li>
+<li><code>receiverLon</code> - receiver longitude in degrees.</li>
+<li><code>receiverDepth</code> - receiver depth (negative elevation) in
+km.</li>
+</ul>
+</body>
+</html>

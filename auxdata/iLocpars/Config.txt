@@ -1,0 +1,207 @@
+# Default configuration parameters for iLoc
+# Version: 4.1
+#
+# Istvan Bondar, 2023
+# ibondar2014@gmail.com
+#
+#
+# Station file (in $ILOCROOT/auxdata/Stations)
+#    Station file is required for ISF input
+#    If no full pathname is given the directory pathname is set to
+#    $ILOCROOT/auxdata/Stations
+#    Warning:
+#        iloc isf  option expects isf_stalist
+#        iloc isf2 option expects IR2_stalist
+#
+StationFile = isc_stalist        # IR station coordinates for isf option
+#StationFile = IR2_stalist       # IR2 station coordinates for isf2 option (NEIC)
+#
+#
+# RSTT (in $ILOCROOT/auxdata/RSTTmodels)
+#    If no full pathname is given the directory pathname is set to
+#    $ILOCROOT/auxdata/RSTTmodels
+#
+RSTTmodel = pdu202009Du.geotess  # RSTT model name
+UseRSTTPnSn = 1                  # use RSTT Pn/Sn predictions?
+UseRSTTPgLg = 1                  # use RSTT Pg/Lg predictions?
+#
+#
+# Database
+#
+#
+UpdateDB = 0                     # write results to database?
+OutAgency = ILOC                 # author for new hypocentres and assocs
+#
+# Database connection parameters
+#     MySQL: parameters are expected in $HOME/.my.cnf
+#     Oracle: leave DBname empty if ORACLE_SID is set
+#     PostgreSQL NIOB: provide DBuser, DBpasswd and DBname
+#
+DBuser = geotool
+DBpasswd = geotool
+DBname = osdb
+#DBuser = sysop
+#DBpasswd = sysop
+#DBname = seiscomp3
+#
+# Database accounts
+#     If InputDB, OutputDB and NextidDB are undefined (default):
+#         Data will be read and written from the account identified by DBuser
+#     If InputDB, OutputDB and NextidDB are specified:
+#         DBuser must have read permission to InputDB and read and write
+#         permissions to OutputDB and NextidDB
+#
+#InputDB = bulletin               # read data from this account
+#OutputDB = myaccount             # write results to this account
+#NextidDB = seiscomp3             # get new unique ids from this account
+#
+# ISC specific database parameters
+#
+repid = 100                      # reporter id for new hypocentres and assocs
+InAgency = ISC                   # author for input assocs
+#
+#
+# Google Earth
+#
+#KMLBulletinFile = bulletin.kml  # Bulletin in KML file
+KMLLatitude = 47.49833           # KML bulletin viewpoint latitude
+KMLLongitude = 19.04045          # KML bulletin viewpoint longitude
+KMLRange = 1000000               # KML bulletin viewpoint elevation
+KMLHeading = 0                   # KML bulletin viewpoint azimuth
+KMLTilt = 0                      # KML bulletin viewpoint tilt
+ZipKML = 1                       # zip KML files and keep kmz only?
+#
+#
+# Travel time tables (in $ILOCROOT/auxdata)
+#
+TTimeTable = ak135               # TT table prefix [ak135|iasp91]
+#
+#
+# Local velocity model
+#    If no full pathname is given the directory pathname is set to
+#    $ILOCROOT/auxdata/localmodels
+#
+#LocalVmodelFile =               # pathname for local velocity model (non-RSTT)
+MaxLocalTTDelta = 3.             # use local TT up to this distance
+#
+#
+# ETOPO parameters (in $ILOCROOT/auxdata/topo)
+#     ETOPO5 (resampled to 5 x 5 minute resolution, ~ 19MB)
+#
+EtopoFile = etopo5_bed_g_i2.bin  # filename for ETOPO file
+EtopoNlon = 4321                 # number of longitude samples in ETOPO
+EtopoNlat = 2161                 # number of latitude samples in ETOPO
+EtopoRes = 0.0833333             # cellsize in ETOPO
+#
+#
+# agencies whose hypocenters not to be used in setting the initial hypocentre
+#     UNK  - unknown agency
+#     NIED - truncates origin time to the minute
+#     HFS, NAO, LAO - single array locations
+#
+NohypoAgencies = UNK,NIED,HFS,HFS1,HFS2,NAO,LAO
+#
+#
+# Neighbourhood Algorithm
+#     A grid search can be performed to obtain a better initial hypocenter
+#     guess. The search is performed around the starting hypocenter.
+#     For a very exhaustive search one can increase NAinitialSample,
+#     NAnextSample and NAcells values. Note that max NAinitialSample is
+#     around 3500 before hitting the memory limits. An exhaustive search will
+#     considerably slow iLoc down, especially when RSTT predictions are
+#     enabled.
+#
+DoGridSearch = 1                 # perform NA?
+NAsearchRadius = 5.              # search radius (deg) around initial epicentre
+NAsearchDepth = 300.             # search radius (km) around initial depth
+NAsearchOT = 30.                 # search radius (s) around initial origin time
+NAlpNorm = 1.                    # p-value for norm to compute misfit [1,2]
+NAiterMax = 5                    # max number of iterations
+NAcells = 25                     # number of cells to be resampled at each iter
+NAinitialSample = 1000           # size of initial sample
+NAnextSample = 100               # size of subsequent samples
+#NAinitialSample = 3500          # size of initial sample (slow but exhaustive)
+#NAnextSample = 200              # size of subsequent samples
+iseed = 5590                     # random number seed
+#
+#
+# Depth
+#     If the number of time defining first-arriving P - depth phase pairs
+#         exceed MinDepthPhases OR
+#     the number of local stations within MaxLocalDistDeg with a time defining
+#         phase exceed MinLocalStations OR
+#     the number of time defining core reflections exceed MinCorePhases OR
+#     the number of time defining first-arriving P and S pairs
+#         within MaxSPDistDeg exceed MinSPpairs
+#     then iLoc attempts for a free depth solution.
+#
+#     If the uncertainty in the free depth exceeds MaxShallowDepthError for
+#         crustal events or MaxDeepDepthError for events in the mantle, then
+#         iLoc will reject the free depth solution and fix the depth.
+#
+MinDepthPhases = 3               # min number of depth phases for depdp
+MindDepthPhaseAgencies = 1       # min number of agencies for depth resolution
+MaxLocalDistDeg = 0.2            # max local distance [deg]
+MinLocalStations = 1             # min number of local defining stations
+MaxSPDistDeg = 2.                # max S-P distance [deg]
+MinSPpairs = 3                   # min number of defining S-P phase pairs
+MinCorePhases = 3                # min number of defining core reflection phases
+DefaultDepth = 0.                # used if seed hypocentre depth is NULL
+MaxShallowDepthError = 30.       # max depth error for crustal free-depth
+MaxDeepDepthError  = 60.         # max depth error for deep free-depth
+#
+#
+# Linearized inversion
+#     Sigmathreshold: residuals that exceed abs(Sigmathreshold*PriorMeasError)
+#         are made non-defining
+#     MinNdefPhases: minimum number of observations required to attempt for
+#         a solution.
+#         If the number of defining arrival times exceed MinNdefPhases
+#         then slowness observations will not be used in the location.
+#
+SigmaThreshold = 6.              # used to exclude big residuals from solution
+DoCorrelatedErrors = 1           # account for correlated errors?
+AllowDamping = 1                 # allow damping of model vector?
+MinIterations = 4                # min number of iterations
+MaxIterations = 50               # max number of iterations
+MinNdefPhases = 4                # min number of defining phases
+ConfidenceLevel = 90.            # confidence level for uncertainties [90|95|98]
+#
+#
+# Magnitudes
+#
+MinNetmagSta = 3                 # min number of stamags for netmag
+MagnitudeRangeLimit = 2.2        # allowable range around network magnitude
+MagMaxTimeResidual = 10.         # max allowable time residual for stamag
+#
+# Body wave magnitudes
+#
+mbQtable = MB                    # magnitude correction table [GR|VC|MB|none]
+mbMinDistDeg = 21.               # min distance for mb
+mbMaxDistDeg = 100.              # max distance for mb
+mbMinPeriod = 0.2                # min period for mb
+mbMaxPeriod = 5.                 # max period for mb
+BBmBMinDistDeg = 5.              # min distance for mB
+BBmBMaxDistDeg = 105.            # max distance for mB
+CalculatemB = 0                  # calculate broadband mB?
+#
+# Surface wave magnitudes
+#
+MSMinDistDeg = 20.               # min distance for MS
+MSMaxDistDeg = 160.              # max distance for MS
+MSMinPeriod = 10.                # min period for MS
+MSMaxPeriod = 60.                # max period for MS
+MSMaxDepth = 60.                 # max depth for MS
+MSPeriodRange = 5.               # MSH period tolerance around MSZ period
+#
+# Local magnitude
+#
+MLMaxDistkm = 1000.              # max distance (km) for ML
+CalculateML = 0                  # calculate ML?
+#
+#
+# Log and error files
+#
+logfile = stdout                 # default - overwritten by yyyymmv if given
+errfile = stderr                 # for errors
+

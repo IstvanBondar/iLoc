@@ -1,0 +1,291 @@
+iLoc 4.2
+==========
+- RSTT3.2.1; bugfix release
+- minor bugfixes in iLoc code.
+- modifications in Makefiles to support latest gcc.
+- modified Makefiles to support Apple silicon compile and link issues.
+- disabled option to extract local velocity model from RSTT.
+- when a kml file is required, only converged solutions are written to it.
+
+iLoc 4.1
+=========
+- updated the default depth grid from the rebuilt ISC bulletin, 1964-2020.
+- support ISC ISF2.1 format
+- introduced new instruction options, isf2.1, isf2.0 and ims
+- for the isf2.1 option, station list is created from the ISC ISF2.1 file.
+- ML and mB are calculated as an option due to unknown amplitude units in the
+  IMS/ISF files.
+- station magnitudes reported at verbose level 1.
+- BEGIN and DATA_TYPE lines in the ISF2.1 output file are written only at the
+  beginning of the file, not for each event.
+- produce ISF2.1 file even if FixHypocenter is set.
+- resolved FixEpicenter bug.
+- if the magnitude phase time residual is larger than MagMaxTimeResidual its
+  amplitude is ignored in the calculation of the station magnitude.
+- modified Makefiles to support Apple M1 and M2 processors.
+- updated the station lists.
+
+
+iLoc 4.0
+=========
+- Incorporated the RSTT3.2 model, TT predictions and path-dependent uncertainties.
+- Harmonized auxdata directory with SeisComp iLoc plugin. The stand-alone
+  iLoc and the SeisComp plugin sciLoc now read the same auxdata directory.
+- Moved the RSTT model to the auxdata/RSTTmodels directory.
+- Added iasp91 travel-time tables.
+- Jeffreys-Bullen travel-time tables are no longer supported.
+- Separated model-specific and phase-specific paramaters into
+  Global1DModelPhaseList.txt and IASPEIPhaseMap.txt files.
+
+
+iLoc 3.3
+=========
+- New default depth grid calculated from the EHB and ISC free-depth events from
+  the rebuilt ISC bulletin (Storchak et al., 2017, 2020) is implemented.
+- Ellipticity corrections: instead of P and S, Pup and Sup is now used for Pg,
+  Pb and Sg, Lg, Sb, respectively.
+- Reading and station magnitude comments in the output isf file are written
+  when verbose is on.
+- Bug fix in iLocReadISF.c: when reading from isf file, if an event had no
+  magnitude block, the previous magnitude block was copied.
+- Bug fix in iLocTravelTimes.c: Incorrect indices were used in getting travel
+  time table values for exact depth values when only residuals were calculated.
+- Bug fix in iLocTimeFuncs.c: When fixing origin time to a value, fractional
+  milliseconds were incorrectly interpreted.
+
+
+iLoc 3.2
+=========
+
+- Added a new instruction, MagnitudesOnly. Invoking the MagnitudesOnly
+  instruction will not locate the event, but will calculate the magnitudes
+  w.r.t. the preferred origin.
+- Bugfixes in the magnitude calculation of ML and mB.
+
+
+iLoc 3.1
+=========
+
+- Incorporated RSTT3.1 TT predictions and path-dependent uncertainties.
+- RSTT do not provide travel time predictions for direct phases when the
+  source depth is below the Moho. As a result, iLoc lost the closest stations
+  for deep events, thus hampering depth determination. To fix the problem,
+  if RSTT does not return a valid travel time, iLoc will use ak135 predictions.
+- Improved the Makefile(s).
+- Renamed the etc directory to auxdata.
+- The RSTT source code and model is now found in $ILOCROOT/rstt directory.
+- Updated Manual.
+- Minor bug fixes.
+
+iLoc 2.1
+=========
+
+- Bugfixes.
+
+iLoc 2.0
+=========
+
+- Adopted BSD open source license.
+- Changed parameter names to CamelBack notation to facilitate easier typing
+  of instructions.
+- Renamed all source files and some auxiliary data files.
+- Renamed the etc directory to auxdata.
+- The default RSTT model is now found in $ILOCROOT/auxdata/RSTTmodel directory.
+- Added usage info when iLoc is invoked without arguments.
+- Before parsing text files, the occasional Windows CRLF convention is
+  changed to the unix/linux/MacOS LF convention.
+- Added support for the NDC-in-a-box IDC PostgreSQL database schema.
+- Added support for the NDC-in-a-box SeisComp3 PostgreSQL database schema.
+- Added support for the IDC Oracle database schema.
+- iLoc includes and uses the Oracle open-source ODPI-C source package to
+  provide the Oracle database interface.
+- Slowness and azimuth measurements can now be used in location.
+- For azimuth-only events the origin time is fixed.
+- Infrasound I and hydroacoustic H and O phases are now used in location. The
+  phase names are fixed, that is, iLoc shall not reidentify I, H or O phases.
+- Introduced phase and distance dependent a priori azimuth and slowness
+  measurement errors in $ILOCROOT/auxdata/iLocpars/PhaseConfig.txt.
+- Removed dependency on environment variable SLBMROOT in iLocMain.c
+- Improved determination of readings by taking into account author changes
+  when it splits phases into readings.
+- The minimum number of station magnitudes required to calculate network
+  magnitudes is now a configuration parameter, MinNetmagSta. It can also be
+  overridden as an instruction.
+- When calculating MS from IAMS_20, units are assumed to be in nanometres.
+- Introduced configuration parameters and instructions to support the
+  generation of Google Earth kml, or optionally, kmz files. The configuration
+  parameters KMLLatitude, KMLLongitude, KMLRange, KMLHeading, KMLTilt define
+  the default view point. The configuration parameter KMLBulletinFile provides
+  the pathname for the Google Earth representation of all events processed in
+  one iLoc run; if a database interface is used, the KMLEventFile instruction
+  generates a Google Earth file for an individual event. If the configuration
+  parameter, ZipKML is set to one, the kml file(s) will be zipped into a kmz
+  file, and the kml file(s) will be deleted. All Google Earth configuration
+  parameters can be overridden as an instruction.
+- Several bugfixes and optimizations.
+- Added utilities to load station lists and IMS1.0/ISF1.0 bulletins into
+  IDC Oracle and IDC NDC-in-a-Box PostgreSQL databases.
+- Added $ILOCROOT/tests directory with sample input ISF files and their
+  corresponding output files created by iLoc.
+- Added $ILOCROOT/database directory with database schema descriptions and
+  sample startup files for MySQL, PostgreSQL and Oracle.
+- Updated Manual.
+
+Code changes in all source files.
+
+iLoc 1.60
+==========
+
+Introduced the computation of local magnitudes, ML and the broadband body wave
+magnitudes, mB. New, mB and ML specific parameters
+mB_mag_min_dist,
+mB_mag_max_dist,
+ML_mag_max_dist
+are given in the $ILOCROOT/etc/iLocpars/config.txt file.
+Phases used to compute ML are listed in the
+$ILOCROOT/etc/iLocpars/ak135_model.txt file.
+
+code changes in
+    iloc.h
+    iloc_main.c
+    iloc_read_textfiles.c
+    iloc_initializations.c
+    iloc_locator.c
+    iloc_print_event.c
+    iloc_magnitudes.c
+    iloc_read_sc3_db.c
+    iloc_read_isc_db.c
+    iloc_read_isf.c
+    iloc_write_sc3_db.c
+    iloc_write_isc_db.c
+    iloc_write_isf.c
+    iloc_timefuncs.c
+
+iLoc 1.50
+==========
+
+Replaced TT calculations from local velocity models with much simpler and
+faster code. Now only the direct phase and headwave(s) are calculated, i.e.
+the phases Pg/Pb/Pn/P and Sg/Sb/Sn/S. Lg is replicated as Sg. The format of
+the local velocity model has also changed. The first non-comment line in
+the local velocity model file is expected to be the number of layer boundaries
+in the model, followed by the description of each layer in the model, i.e.
+the depth of the top of the layer, its P and S velocity and an indicator
+for the Conrad or Moho discontinuities.
+
+#
+# ak135
+#    LAYER   DEPTH   VP    VS
+#
+# number of layers
+4
+     0.000    5.8000    3.4600 x
+    20.000    6.5000    3.8500 CONRAD
+    35.000    8.0400    4.4800 MOHO
+    77.500    8.0400    4.4800 x
+
+Minor bug fixes in other places mostly concerning the SeisComp3 database I/O.
+
+code changes in
+    iloc.h
+    iloc_main.c
+    iloc_localTT.c
+    iloc_read_textfiles.c
+    iloc_travel_times.c
+    iloc_phase_identification.c
+    iloc_read_sc3_db.c
+    iloc_read_isf.c
+    iloc_write_sc3_db.c
+    iloc_write_isf.c
+
+iLoc 1.40
+==========
+
+local velocity model support
+removed CRUST2.0
+added RSTT local velocity
+
+new global variables:
+char localvmodelfile[FILENAMELEN];     /* pathname for local velocity model */
+int use_localTT;                                /* use local TT predictions */
+double max_localTT_delta;               /* use local TT up to this distance */
+double default_depth;              /* used if seed hypocentre depth is NULL */
+double prev_lat, prev_lon;                /* epicentre of previous solution */
+int update_localTT;                              /* static/dynamic local TT */
+int localTT_from_RSTT;                          /* local TT from RSTT model */
+int localphaseTT_num = MAXLOCALTTPHA;
+char localphaseTT[MAXLOCALTTPHA][PHALEN]
+
+changes in iloc.h
+    velmodel structure
+    MAXLOCALTTPHA
+    EPIWALK 5.0      /* redo local TT tables if epicentre moves further */
+    TT_TABLE *generate_local_tt_tables(char *filename, double lat, double lon);
+
+new code:
+    iloc_localTT.c
+
+code changes in
+    iloc_main
+    iloc_locator
+    iloc_read_textfiles
+    iloc_travel_times
+    iloc_phase_identification
+
+new config.txt pars:
+    max_localTT_delta = 3.      # use local TT up to this distance
+    localTT_from_RSTT = 1       # get local TT from RSTT model at epicentre
+    #localvmodelfile =          # pathname for local velocity model (non-RSTT)
+
+iLoc 1.20 2014/08/28 - 2014/09/02
+==================================
+
+Major points:
+- support for SeisComp3 MySQL database schema
+
+iLoc 1.10 2014/08/28 - 2014/09/02
+==================================
+
+Major points:
+- support for new station registry agency.network.sta.location format
+
+iLoc 1.01 2014/07/18 - 2014/08/28
+==================================
+
+Major points:
+- RSTT model file directory defaults to SLBMROOT/models unless full
+  pathname is given
+- station file directory defaults to ILOCROOT/etc/Stations unless full
+  pathname is given
+- removed purge (only used by isc_search)
+- disabled parallelization of travel-time calculations - RSTT is not
+  thread-safe.
+- support ISF2 input files; output is produced as ISF2
+
+iLoc 1.00 2014/07/13 - 2014/07/17
+==================================
+
+Major points:
+- simplified code by removing ISC-operation specific code
+- ILOCROOT instead of QETC
+- QEDIT and QREVISE no longer used
+- enabled Lg to be used in location
+- MS calculation: vertical component is assumed for unspecified channels.
+- sets unknown phases with amplitudes to pmax
+- added use_rstt_PnSn to config parameters
+- RSTT is enabled by default; to disable it set both
+  use_RSTT_PgLg=0 and use_RSTT_PnSn=0
+- created ak135.Lg.tab as a copy of ak135.Sg.tab
+- for reported phases (LZ, LRZ, AMZ), (LE,LRE) and (LN,LRN) the
+  component is set to Z, E or N, respectively.
+
+ak135_model.txt
+---------------
+- added LRZ, LRE, LRN to IASPEI phase list
+- added PmP, PmS, SmS, SmP to IASPEI phase list
+- (LRZ, LZ), (LRE, LE), (LRN, LN) are mapped to (LRZ, LRE, LRN)
+- PMZ is mapped to AMB
+- IVmb_BB is added to list of mb phases
+- IVMs_BB, LRZ, LRE, LRN are added to list of MS phases
+- enabled Lg to be used in location
+

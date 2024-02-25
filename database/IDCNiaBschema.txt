@@ -1,0 +1,624 @@
+osdb=> \z
+                               Access privileges
+ Schema |     Name      | Type  | Access privileges | Column access privileges
+--------+---------------+-------+-------------------+--------------------------
+ public | affiliation   | table |                   |
+ public | amplitude     | table |                   |
+ public | arrival       | table |                   |
+ public | assoc         | table |                   |
+ public | cdquality     | table |                   |
+ public | channame      | table |                   |
+ public | clf           | table |                   |
+ public | dervdisc      | table |                   |
+ public | detection     | table |                   |
+ public | event         | table |                   |
+ public | fpdescription | table |                   |
+ public | frameproduct  | table |                   |
+ public | gregion       | table |                   |
+ public | instrument    | table |                   |
+ public | lastid        | table |                   |
+ public | netmag        | table |                   |
+ public | origerr       | table |                   |
+ public | origin        | table |                   |
+ public | parrival      | table |                   |
+ public | pmcc_features | table |                   |
+ public | pmcc_recipe   | table |                   |
+ public | remark        | table |                   |
+ public | sensor        | table |                   |
+ public | site          | table |                   |
+ public | sitechan      | table |                   |
+ public | stamag        | table |                   |
+ public | wfdisc        | table |                   |
+(27 rows)
+
+osdb=> \d affiliation
+        Table "public.affiliation"
+ Column |         Type         | Modifiers
+--------+----------------------+-----------
+ net    | character varying(8) | not null
+ sta    | character varying(6) | not null
+ lddate | date                 |
+Indexes:
+    "affiliation_pkey" PRIMARY KEY, btree (net, sta)
+    "affstax" UNIQUE, btree (sta, net)
+    "affnetxx" btree (net)
+
+osdb=> \d amplitude
+            Table "public.amplitude"
+   Column   |         Type          | Modifiers
+------------+-----------------------+-----------
+ ampid      | numeric(10,0)         | not null
+ arid       | numeric(10,0)         |
+ parid      | numeric(10,0)         |
+ chan       | character varying(8)  |
+ amp        | real                  |
+ per        | real                  |
+ snr        | real                  |
+ amptime    | double precision      |
+ start_time | double precision      |
+ duration   | real                  |
+ bandw      | real                  |
+ amptype    | character varying(8)  |
+ units      | character varying(15) |
+ clip       | character varying(1)  |
+ inarrival  | character varying(1)  |
+ auth       | character varying(15) |
+ lddate     | date                  |
+Indexes:
+    "pk_amplitude" PRIMARY KEY, btree (ampid)
+    "amplitudex" UNIQUE, btree (ampid)
+    "amparidx" btree (arid)
+    "amplitude_lddatex" btree (lddate)
+    "ampparidx" btree (parid)
+
+osdb=> \d arrival
+           Table "public.arrival"
+ Column  |         Type          | Modifiers
+---------+-----------------------+-----------
+ sta     | character varying(6)  | not null
+ time    | double precision      | not null
+ arid    | numeric(10,0)         | not null
+ jdate   | numeric(8,0)          |
+ stassid | numeric(10,0)         |
+ chanid  | numeric(8,0)          |
+ chan    | character varying(8)  |
+ iphase  | character varying(8)  |
+ stype   | character varying(1)  |
+ deltim  | real                  |
+ azimuth | real                  |
+ delaz   | real                  |
+ slow    | real                  |
+ delslo  | real                  |
+ ema     | real                  |
+ rect    | real                  |
+ amp     | real                  |
+ per     | real                  |
+ logat   | real                  |
+ clip    | character varying(1)  |
+ fm      | character varying(2)  |
+ snr     | real                  |
+ qual    | character varying(1)  |
+ auth    | character varying(15) |
+ commid  | numeric(10,0)         |
+ lddate  | date                  |
+Indexes:
+    "pk_arrival" PRIMARY KEY, btree (arid)
+    "arrival_arid_commid_x" UNIQUE, btree (arid, commid)
+    "arrivalx" UNIQUE, btree (arid)
+    "arrival_lddatex" btree (lddate)
+    "arstassx" btree (stassid)
+    "artimex" btree ("time")
+
+osdb=> \d assoc
+            Table "public.assoc"
+ Column  |         Type          | Modifiers
+---------+-----------------------+-----------
+ arid    | numeric(10,0)         | not null
+ orid    | numeric(10,0)         | not null
+ sta     | character varying(6)  |
+ phase   | character varying(8)  |
+ belief  | real                  |
+ delta   | real                  |
+ seaz    | real                  |
+ esaz    | real                  |
+ timeres | real                  |
+ timedef | character varying(1)  |
+ azres   | real                  |
+ azdef   | character varying(1)  |
+ slores  | real                  |
+ slodef  | character varying(1)  |
+ emares  | real                  |
+ wgt     | real                  |
+ vmodel  | character varying(15) |
+ commid  | numeric(10,0)         |
+ lddate  | date                  |
+Indexes:
+    "pk_assoc" PRIMARY KEY, btree (arid, orid)
+    "assaridx" UNIQUE, btree (arid)
+    "assocx" UNIQUE, btree (orid, arid)
+
+osdb=> \d cdquality
+             Table "public.cdquality"
+     Column     |         Type         | Modifiers
+----------------+----------------------+-----------
+ sta            | character varying(6) | not null
+ chan           | character varying(8) | not null
+ time           | double precision     | not null
+ qualid         | numeric(10,0)        | not null
+ chanid         | numeric(8,0)         | not null
+ endtime        | double precision     | not null
+ nsamp          | numeric(8,0)         | not null
+ firstslot      | numeric(8,0)         | not null
+ qualityflags   | numeric(8,0)         | not null
+ chanstatus     | numeric(8,0)         | not null
+ chanstatusmask | numeric(8,0)         | not null
+ tthresh        | numeric(8,0)         |
+ mintime        | real                 |
+ avgtime        | real                 |
+ maxtime        | real                 |
+ meancounts     | real                 |
+ rmsdiff        | real                 |
+ m2             | double precision     |
+ foff           | numeric(10,0)        | not null
+ wffid          | numeric(10,0)        |
+ ngoodsamp      | numeric(8,0)         | not null
+ lddate         | date                 | not null
+Indexes:
+    "cdquality_pkey" PRIMARY KEY, btree (qualid)
+    "cdqualwfx" btree (wffid)
+Foreign-key constraints:
+    "cdquality_wffid_fkey" FOREIGN KEY (wffid) REFERENCES frameproduct(frid)
+
+osdb=> \d channame
+            Table "public.channame"
+   Column    |         Type         | Modifiers
+-------------+----------------------+-----------
+ station     | character varying(6) | not null
+ stream      | character varying(6) | not null
+ extern_sta  | character varying(6) | not null
+ extern_chan | character varying(8) | not null
+ intern_sta  | character varying(6) | not null
+ intern_chan | character varying(8) | not null
+ capability  | numeric(4,0)         |
+ position    | numeric(4,0)         |
+ revision    | numeric(4,0)         | not null
+ lddate      | date                 |
+Indexes:
+    "channame_pkey" PRIMARY KEY, btree (stream, extern_sta, extern_chan, revision)
+
+osdb=> \d clf
+               Table "public.clf"
+   Column    |         Type          | Modifiers
+-------------+-----------------------+-----------
+ frid        | numeric(10,0)         | not null
+ frameid     | character varying(38) | not null
+ time        | double precision      |
+ timestamp   | double precision      |
+ receivespan | double precision      |
+ foff        | numeric(10,0)         | not null
+ length      | numeric(10,0)         |
+ duration    | numeric(24,0)         |
+ frametype   | character varying(2)  |
+ verifstatus | character varying(4)  |
+ pcode       | character varying(8)  |
+ mask        | character varying(64) |
+ revision    | numeric(4,0)          |
+ lddate      | date                  |
+Indexes:
+    "clf_pkey" PRIMARY KEY, btree (frid, foff)
+
+osdb=> \d dervdisc
+           Table "public.dervdisc"
+  Column  |         Type          | Modifiers
+----------+-----------------------+-----------
+ sta      | character varying(6)  | not null
+ chan     | character varying(8)  | not null
+ time     | double precision      | not null
+ tlen     | real                  |
+ net      | character varying(8)  |
+ dervid   | numeric(10,0)         | not null
+ recid    | numeric(10,0)         |
+ method   | character varying(17) |
+ datatype | character varying(2)  |
+ dervtype | character varying(4)  |
+ jdate    | numeric(8,0)          |
+ dir      | character varying(64) |
+ dfile    | character varying(32) |
+ foff     | numeric(10,0)         |
+ commid   | numeric(10,0)         |
+ lddate   | date                  |
+Indexes:
+    "derv_stax" btree (sta, "time")
+
+osdb=> \d detection
+         Table "public.detection"
+ Column |         Type         | Modifiers
+--------+----------------------+-----------
+ arid   | numeric(10,0)        | not null
+ jdate  | numeric(8,0)         |
+ time   | double precision     |
+ sta    | character varying(6) |
+ chan   | character varying(8) |
+ bmtyp  | character varying(4) |
+ sproid | numeric(10,0)        |
+ cfreq  | real                 |
+ seaz   | real                 |
+ delaz  | real                 |
+ slow   | real                 |
+ delslo | real                 |
+ snr    | real                 |
+ stav   | real                 |
+ fstat  | real                 |
+ deltim | real                 |
+ bandw  | real                 |
+ fkqual | numeric(4,0)         |
+ commid | numeric(10,0)        |
+ lddate | date                 |
+Indexes:
+    "pk_detection" PRIMARY KEY, btree (arid)
+    "detlddatex" btree (lddate)
+    "dettimex" btree ("time")
+
+osdb=> \d fpdescription
+          Table "public.fpdescription"
+   Column    |         Type          | Modifiers
+-------------+-----------------------+-----------
+ typeid      | numeric(10,0)         | not null
+ prodtype    | character varying(12) |
+ name        | character varying(64) |
+ msgdtype    | character varying(16) |
+ msgdformat  | character varying(8)  |
+ header_fpid | numeric(10,0)         |
+ lddate      | date                  |
+Indexes:
+    "fpdescription_pkey" PRIMARY KEY, btree (typeid)
+
+osdb=> \d frameproduct
+         Table "public.frameproduct"
+  Column  |         Type          | Modifiers
+----------+-----------------------+-----------
+ frid     | numeric(10,0)         | not null
+ typeid   | numeric(10,0)         |
+ dir      | character varying(64) |
+ dfile    | character varying(32) |
+ foff     | numeric(10,0)         |
+ dsize    | numeric(10,0)         |
+ time     | double precision      |
+ endtime  | double precision      |
+ sta      | character varying(6)  |
+ chan     | character varying(8)  |
+ author   | character varying(16) |
+ version  | double precision      |
+ revision | numeric(4,0)          |
+ obsolete | numeric(1,0)          |
+ lddate   | date                  |
+Indexes:
+    "frameproduct_pkey" PRIMARY KEY, btree (frid)
+Referenced by:
+    TABLE "cdquality" CONSTRAINT "cdquality_wffid_fkey" FOREIGN KEY (wffid) REFERENCES frameproduct(frid)
+
+osdb=> \d gregion
+           Table "public.gregion"
+ Column |         Type          | Modifiers
+--------+-----------------------+-----------
+ grn    | numeric(8,0)          | not null
+ grname | character varying(40) |
+ lddate | date                  |
+Indexes:
+    "pk_gregion" PRIMARY KEY, btree (grn)
+    "gregionx" UNIQUE, btree (grn)
+    "greggrnamex" btree (grname)
+
+osdb=> \d instrument
+          Table "public.instrument"
+  Column  |         Type          | Modifiers
+----------+-----------------------+-----------
+ inid     | numeric(8,0)          | not null
+ insname  | character varying(50) |
+ instype  | character varying(6)  |
+ band     | character varying(1)  |
+ digital  | character varying(1)  |
+ samprate | double precision      |
+ ncalib   | double precision      |
+ ncalper  | double precision      |
+ dir      | character varying(64) |
+ dfile    | character varying(32) |
+ rsptype  | character varying(6)  |
+ lddate   | date                  |
+Indexes:
+    "instrument_pkey" PRIMARY KEY, btree (inid)
+
+osdb=> \d lastid
+            Table "public.lastid"
+  Column  |         Type          | Modifiers
+----------+-----------------------+-----------
+ keyname  | character varying(15) | not null
+ keyvalue | numeric(10,0)         | not null
+ lddate   | date                  |
+Indexes:
+    "lastid_pkey" PRIMARY KEY, btree (keyname)
+
+osdb=> \d netmag
+              Table "public.netmag"
+   Column    |         Type          | Modifiers
+-------------+-----------------------+-----------
+ magid       | numeric(10,0)         | not null
+ net         | character varying(8)  |
+ orid        | numeric(10,0)         | not null
+ evid        | numeric(10,0)         |
+ magtype     | character varying(6)  |
+ nsta        | numeric(8,0)          |
+ magnitude   | real                  |
+ uncertainty | real                  |
+ auth        | character varying(15) |
+ commid      | numeric(10,0)         |
+ lddate      | date                  |
+Indexes:
+    "pk_netmag" PRIMARY KEY, btree (magid)
+    "netmagx" UNIQUE, btree (magid)
+    "netmag_lddatex" btree (lddate)
+    "nmoridx" btree (orid)
+
+osdb=> \d origerr
+       Table "public.origerr"
+ Column |     Type      | Modifiers
+--------+---------------+-----------
+ orid   | numeric(10,0) | not null
+ sxx    | real          |
+ syy    | real          |
+ szz    | real          |
+ stt    | real          |
+ sxy    | real          |
+ sxz    | real          |
+ syz    | real          |
+ stx    | real          |
+ sty    | real          |
+ stz    | real          |
+ sdobs  | real          |
+ smajax | real          |
+ sminax | real          |
+ strike | real          |
+ sdepth | real          |
+ stime  | real          |
+ conf   | real          |
+ commid | numeric(10,0) |
+ lddate | date          |
+Indexes:
+    "pk_origerr" PRIMARY KEY, btree (orid)
+    "origerrx" UNIQUE, btree (orid)
+
+osdb=> \d origin
+             Table "public.origin"
+  Column   |         Type          | Modifiers
+-----------+-----------------------+-----------
+ lat       | real                  | not null
+ lon       | real                  | not null
+ depth     | real                  | not null
+ time      | double precision      | not null
+ orid      | numeric(10,0)         | not null
+ evid      | numeric(10,0)         |
+ jdate     | numeric(8,0)          |
+ nass      | numeric(4,0)          |
+ ndef      | numeric(4,0)          |
+ ndp       | numeric(4,0)          |
+ grn       | numeric(8,0)          |
+ srn       | numeric(8,0)          |
+ etype     | character varying(7)  |
+ depdp     | real                  |
+ dtype     | character varying(1)  |
+ mb        | real                  |
+ mbid      | numeric(10,0)         |
+ ms        | real                  |
+ msid      | numeric(10,0)         |
+ ml        | real                  |
+ mlid      | numeric(10,0)         |
+ algorithm | character varying(15) |
+ auth      | character varying(15) |
+ commid    | numeric(10,0)         |
+ lddate    | date                  |
+Indexes:
+    "pk_origin" PRIMARY KEY, btree (orid)
+    "originx" UNIQUE, btree (orid)
+    "ortimex" btree ("time")
+
+osdb=> \d parrival
+           Table "public.parrival"
+ Column  |         Type          | Modifiers
+---------+-----------------------+-----------
+ parid   | numeric(10,0)         | not null
+ orid    | numeric(10,0)         |
+ evid    | numeric(10,0)         |
+ sta     | character varying(6)  |
+ time    | double precision      |
+ azimuth | real                  |
+ slow    | real                  |
+ phase   | character varying(8)  |
+ delta   | real                  |
+ vmodel  | character varying(15) |
+ lddate  | date                  |
+Indexes:
+    "pk_parrival" PRIMARY KEY, btree (parid)
+    "parrivalx" UNIQUE, btree (parid)
+    "parevidx" btree (evid)
+    "parrival_lddatex" btree (lddate)
+    "parroridx" btree (orid)
+
+osdb=> \d pmcc_features
+           Table "public.pmcc_features"
+    Column    |         Type          | Modifiers
+--------------+-----------------------+-----------
+ sta          | character varying(6)  | not null
+ arid         | numeric(10,0)         | not null
+ initial_time | double precision      |
+ duration     | real                  |
+ consistency  | real                  |
+ correlation  | real                  |
+ famsize      | numeric(8,0)          |
+ minfreq      | real                  |
+ maxfreq      | real                  |
+ cfreq        | real                  |
+ sigmafreq    | real                  |
+ rmsamp       | real                  |
+ auth         | character varying(15) |
+ commid       | numeric(10,0)         |
+ lddate       | date                  |
+Indexes:
+    "pk_participation" PRIMARY KEY, btree (sta, arid)
+    "pmcc_feat_arix" btree (arid)
+
+osdb=> \d pmcc_recipe
+              Table "public.pmcc_recipe"
+      Column      |         Type          | Modifiers
+------------------+-----------------------+-----------
+ pmccrecid        | numeric(10,0)         | not null
+ deflt            | numeric(8,0)          |
+ fgroup           | numeric(8,0)          |
+ winlen           | real                  |
+ wingap           | real                  |
+ threshcons       | real                  |
+ threshnsens      | numeric(8,0)          |
+ qfactor          | real                  |
+ pmcc3d           | numeric(8,0)          |
+ sound_speed      | real                  |
+ elevation_angle  | real                  |
+ threshfamlen     | real                  |
+ threshfammin     | numeric(8,0)          |
+ threshfammax     | numeric(8,0)          |
+ speed_transition | real                  |
+ time_tol         | real                  |
+ freq_tol         | real                  |
+ sp_tol1          | real                  |
+ sp_tol2          | real                  |
+ az_tol1          | real                  |
+ az_tol2          | real                  |
+ auth             | character varying(17) |
+ lddate           | date                  |
+Indexes:
+    "pmcc_recx" btree (pmccrecid)
+
+osdb=> \d remark
+           Table "public.remark"
+ Column |         Type          | Modifiers
+--------+-----------------------+-----------
+ commid | numeric(10,0)         | not null
+ lineno | numeric(8,0)          | not null
+ remark | character varying(80) |
+ lddate | date                  |
+Indexes:
+    "remarkx" UNIQUE, btree (commid, lineno)
+
+osdb=> \d sensor
+            Table "public.sensor"
+  Column  |         Type         | Modifiers
+----------+----------------------+-----------
+ sta      | character varying(6) | not null
+ chan     | character varying(8) | not null
+ time     | double precision     | not null
+ endtime  | double precision     | not null
+ inid     | numeric(8,0)         | not null
+ chanid   | numeric(8,0)         |
+ jdate    | numeric(8,0)         |
+ calratio | double precision     |
+ calper   | double precision     |
+ tshift   | double precision     |
+ instant  | character varying(1) | not null
+ lddate   | date                 |
+Indexes:
+    "sensstax" btree (sta, chan)
+
+osdb=> \d site
+             Table "public.site"
+ Column  |         Type          | Modifiers
+---------+-----------------------+-----------
+ sta     | character varying(6)  | not null
+ ondate  | numeric(8,0)          | not null
+ offdate | numeric(8,0)          |
+ lat     | double precision      |
+ lon     | double precision      |
+ elev    | double precision      |
+ staname | character varying(50) |
+ statype | character varying(4)  |
+ refsta  | character varying(6)  |
+ dnorth  | double precision      |
+ deast   | double precision      |
+ lddate  | date                  |
+Indexes:
+    "sitestax" btree (sta)
+
+osdb=> \d sitechan
+           Table "public.sitechan"
+ Column  |         Type          | Modifiers
+---------+-----------------------+-----------
+ sta     | character varying(6)  | not null
+ chan    | character varying(8)  | not null
+ ondate  | numeric(8,0)          | not null
+ chanid  | numeric(8,0)          |
+ offdate | numeric(8,0)          |
+ ctype   | character varying(4)  |
+ edepth  | real                  |
+ hang    | real                  |
+ vang    | real                  |
+ descrip | character varying(50) |
+ lddate  | date                  |
+Indexes:
+    "pk_sitechan" PRIMARY KEY, btree (sta, chan, ondate)
+    "sitechanx" UNIQUE, btree (chanid)
+    "stcstax" btree (sta, chan)
+
+osdb=> \d stamag
+              Table "public.stamag"
+   Column    |         Type          | Modifiers
+-------------+-----------------------+-----------
+ magid       | numeric(10,0)         | not null
+ ampid       | numeric(10,0)         | not null
+ sta         | character varying(6)  | not null
+ arid        | numeric(10,0)         |
+ orid        | numeric(10,0)         |
+ evid        | numeric(10,0)         |
+ phase       | character varying(8)  |
+ delta       | real                  |
+ magtype     | character varying(6)  |
+ magnitude   | real                  |
+ uncertainty | real                  |
+ magres      | real                  |
+ magdef      | character varying(1)  |
+ mmodel      | character varying(15) |
+ auth        | character varying(15) |
+ commid      | numeric(10,0)         |
+ lddate      | date                  |
+Indexes:
+    "pk_stamag" PRIMARY KEY, btree (magid, ampid, sta)
+    "sm_arid_commid_x" btree (arid, commid)
+    "smampidx" btree (ampid)
+    "smaridx" btree (arid)
+    "smmagidx" btree (magid, sta)
+    "smoridx" btree (orid)
+    "stamag_lddatex" btree (lddate)
+
+osdb=> \d wfdisc
+            Table "public.wfdisc"
+  Column  |         Type          | Modifiers
+----------+-----------------------+-----------
+ sta      | character varying(6)  | not null
+ chan     | character varying(8)  | not null
+ time     | double precision      | not null
+ wfid     | numeric(10,0)         | not null
+ chanid   | numeric(8,0)          |
+ jdate    | numeric(8,0)          |
+ endtime  | double precision      |
+ nsamp    | numeric(8,0)          |
+ samprate | real                  |
+ calib    | real                  |
+ calper   | real                  |
+ instype  | character varying(6)  |
+ segtype  | character varying(1)  |
+ datatype | character varying(2)  |
+ clip     | character varying(1)  |
+ dir      | character varying(64) |
+ dfile    | character varying(32) |
+ foff     | numeric(10,0)         |
+ commid   | numeric(10,0)         |
+ lddate   | date                  |
+Indexes:
+    "wfdisc_pkey" PRIMARY KEY, btree (wfid)
+
