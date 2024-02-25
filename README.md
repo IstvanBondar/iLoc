@@ -2,7 +2,9 @@ iLoc, a single-event earthquake location algorithm
 ==================================================
 
 <!-- github-style badges/shields -->
+<!--
 <style type="text/css">p img{height:24px;}</style>
+-->
 [![License](https://img.shields.io/badge/License-BSD%203--Clause-3da639?logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyMy4yIj48ZGVmcy8+PHBhdGggZmlsbD0iI2VlZSIgZD0iTTAgMTIuMUMuMSA1LjUgNC43LjggMTAuNC4xYzYuNy0uOSAxMi40IDMuNyAxMy41IDkuNyAxIDUuOC0yLjEgMTEuMS03LjMgMTMuMy0uNC4yLS43LjEtLjktLjRMMTMgMTZjLS4xLS40IDAtLjYuMy0uOCAxLjItLjUgMS45LTEuNCAyLjEtMi43LjMtMS45LTEtMy43LTIuOS00aC0uMmMtMS44LS4yLTMuNSAxLjEtMy44IDIuOS0uMyAxLjYuNSAzLjEgMiAzLjguNS4yLjYuNC40LjlsLTIuNiA2LjhjLS4xLjMtLjQuNS0uOC4zLTIuNy0xLjEtNS0zLjEtNi4zLTUuOEMuMSAxNSAuMSAxMy4xIDAgMTIuMXoiLz48L3N2Zz4=)](https://opensource.org/licenses/BSD-3-Clause)
 ![C++](https://img.shields.io/badge/C++-11+-1069ac?logo=c%2B%2B)
 ![C](https://img.shields.io/badge/C-99+-7991b5?logo=c&logoColor=eee)
