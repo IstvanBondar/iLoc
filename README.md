@@ -206,29 +206,31 @@ suite, you can download to from [sandia.gov/rstt][rstt].
 
 To compile iLoc, use the commands below:
 
-Command             | Description
-:-------------------|:--------------------
-`make`              | Make all libraries, and iLoc executables
-`make all`          | Make all libraries, and iLoc executables
-`make setup`        | Create the ~/bin and ~/lib folders if they do not exist yet
-`make rstt`         | Make the RSST libraries required for iLoc (`geotess`, `slbm`, and `slbmCshell`)
-`make iloc`         | Make the iLoc executables (`iLoc` and optionally `iLocSC`, `iLocNiaB`, `iLocIDC`, `iLocISC`)
+|Command        | Description |
+|-------------- | --------------------------------------------------------------------------------------------|
+|`make`         | Make all libraries, and iLoc executables |
+|`make all`     | Make all libraries, and iLoc executables |
+|`make setup`   | Create the ~/bin and ~/lib folders if they do not exist yet |
+|`make rstt`    | Make the RSST libraries required for iLoc (`geotess`, `slbm`, and `slbmCshell`) |
+|`make iloc`    | Make the iLoc executables (`iLoc` and optionally `iLocSC`, `iLocNiaB`, `iLocIDC`, `iLocISC`) |
 
 For more granular-level control of the make process, you may use the following
 commands using the Makefile in the rstt or in the src folder:
 
 
-Command              | Description
-:--------------------|:--------------------
-`make geotess`       | Make the GeoTess library (required for RSTT)
-`make slbm`          | Make the C++ library (main RSTT code)
-`make slbmc`         | Make the C library
+|Command        | Description |
+|-------------- | ------------------- |
+|`make geotess` | Make the GeoTess library (required for RSTT) |
+|`make slbm`    | Make the C++ library (main RSTT code) |
+|`make slbmc`   | Make the C library |
 
-`make isf`           | Make the `iLoc` excecutable
-`make seiscomp`      | Make the `iLocSC` excecutable with SeisComp MySQL interface
-`make isc`           | Make the `iLocISC` excecutable with ISC PostgreSQL interface
-`make niab`          | Make the `iLocNiaB` excecutable with IDC PostgreSQL interface
-`make idc`           | Make the `iLocIDC` excecutable with IDC Oracle interface
+|Command        | Description |
+|-------------- | ------------------- |
+|`make isf`     | Make the `iLoc` excecutable |
+|`make seiscomp`| Make the `iLocSC` excecutable with SeisComp MySQL interface |
+|`make isc`     | Make the `iLocISC` excecutable with ISC PostgreSQL interface |
+|`make niab`    | Make the `iLocNiaB` excecutable with IDC PostgreSQL interface |
+|`make idc`     | Make the `iLocIDC` excecutable with IDC Oracle interface |
 
 
 Contact Information
