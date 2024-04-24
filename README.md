@@ -2,9 +2,13 @@ iLoc, a single-event earthquake location algorithm
 ==================================================
 
 <!-- github-style badges/shields -->
+<<<<<<< HEAD
 <!--
 <style type="text/css">p img{height:24px;}</style>
 -->
+=======
+<!-- <style type="text/css">p img{height:24px;}</style> -->
+>>>>>>> 088740620997ed6516fe5c600a2ce4c135281341
 [![License](https://img.shields.io/badge/License-BSD%203--Clause-3da639?logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyMy4yIj48ZGVmcy8+PHBhdGggZmlsbD0iI2VlZSIgZD0iTTAgMTIuMUMuMSA1LjUgNC43LjggMTAuNC4xYzYuNy0uOSAxMi40IDMuNyAxMy41IDkuNyAxIDUuOC0yLjEgMTEuMS03LjMgMTMuMy0uNC4yLS43LjEtLjktLjRMMTMgMTZjLS4xLS40IDAtLjYuMy0uOCAxLjItLjUgMS45LTEuNCAyLjEtMi43LjMtMS45LTEtMy43LTIuOS00aC0uMmMtMS44LS4yLTMuNSAxLjEtMy44IDIuOS0uMyAxLjYuNSAzLjEgMiAzLjguNS4yLjYuNC40LjlsLTIuNiA2LjhjLS4xLjMtLjQuNS0uOC4zLTIuNy0xLjEtNS0zLjEtNi4zLTUuOEMuMSAxNSAuMSAxMy4xIDAgMTIuMXoiLz48L3N2Zz4=)](https://opensource.org/licenses/BSD-3-Clause)
 ![C++](https://img.shields.io/badge/C++-11+-1069ac?logo=c%2B%2B)
 ![C](https://img.shields.io/badge/C-99+-7991b5?logo=c&logoColor=eee)
@@ -103,13 +107,9 @@ gcc       | Build C library and tests
 g++       | Build GeoTess and core RSTT libraries and tests
 lapack    | Build lapack and blas libraries
 
-The easiest way to satisfy these dependencies on Linux is, depending
-on your distro and package manager, by running one of these sets of commands
+The easiest way to satisfy these dependencies on Linux is, depending on your
+distribution and package manager, by running one of these sets of commands
 in a termal window:
-
-<style>
-div.sxs div.sourceCode{display:inline-block;max-width:450px;vertical-align: top;}
-</style>
 
 ```bash
 # C++, C
