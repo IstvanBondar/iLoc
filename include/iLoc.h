@@ -103,7 +103,7 @@
  * PostgreSQL client
  */
 #ifdef PGSQL
-#include <libpq-fe.h>
+#include "libpq-fe.h"
 #endif
 /*
  * Oracle client using ODPI-C
