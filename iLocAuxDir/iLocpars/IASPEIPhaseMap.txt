@@ -1,0 +1,613 @@
+# Map reported phase names to IASPEI standard phase list
+# reported phase,  IASPEI phase
+PhaseMap
+    p         P
+    P         P
+    P/PKP     P
+   pP        pP
+    AP       pP
+    Ap       pP
+    ap       pP
+    *PP      pP
+   pwP       pwP
+   pS        pS
+    Pg        Pg
+    PG        Pg
+    pg        Pg
+   pPg       pPg
+   sPg       sPg
+    Pb        Pb
+    PB        Pb
+    P*        Pb
+    pb        Pb
+   pPb       pPb
+   sPb       sPb
+    Pn        Pn
+    PN        Pn
+    pn        Pn
+   pPn       pPn
+   sPn       sPn
+    PCP       PcP
+    PcP       PcP
+    pcp       PcP
+    PcS       PcS
+    PCS       PcS
+    PKiKP     PKiKP
+   pPKiKP    pPKiKP
+   sPKiKP    sPKiKP
+    PKP       PKPdf
+    pkp       PKPdf
+    PKPabc    PKPdf
+    PKPd      PKPdf
+    PKIKP     PKPdf
+    PKPdf     PKPdf
+    PKPDF     PKPdf
+    pkpdf     PKPdf
+    PKHKP     PKPpre     # no TT
+    PKhKP     PKPpre     # no TT
+    PKPpre    PKPpre     # no TT
+    PKPPRE    PKPpre     # no TT
+    PKP2      PKPab
+    pkp2      PKPab
+    PKPab     PKPab
+    PKPAB     PKPab
+    pkpab     PKPab
+    PKP1      PKPbc
+    pkp1      PKPbc
+    PKPbc     PKPbc
+    PKPBC     PKPbc
+    pkpbc     PKPbc
+    APKP     pPKPdf
+    SPKP     sPKPdf
+   pPKP      pPKPdf
+   pPKPdf    pPKPdf
+   pPKPbc    pPKPbc
+   pPKPab    pPKPab
+   sPKPdf    sPKPdf
+   sPKPbc    sPKPbc
+   sPKPab    sPKPab
+    PKPdif    PKPdif
+    PKPdiff   PKPdif
+   pPKPdif   pPKPdif
+   pPKPdiff  pPKPdif
+   sPKPdif   sPKPdif
+   sPKPdiff  sPKPdif
+    PKS       PKSdf
+    PKSab     PKSab
+    PKSbc     PKSbc
+    PKSdf     PKSdf
+    Pdiff     Pdif
+    pdiff     Pdif
+    PDIF      Pdif
+    PDIFF     Pdif
+    Pdif      Pdif
+    pdif      Pdif
+   pPdif     pPdif
+   pPdiff    pPdif
+   sPdif     sPdif
+   sPdiff    sPdif
+    PKKP      PKKPdf
+    PKKPbc    PKKPbc
+    PKKPdf    PKKPdf
+    PKKPab    PKKPab
+    PKPPKP    P'P'df
+    P'P'df    P'P'df
+    PKPPKPdf  P'P'df
+    P'P'ab    P'P'ab
+    PKPPKPab  P'P'ab
+    P'P'bc    P'P'bc
+    PKPPKPbc  P'P'bc
+    PmP       PmP
+    PmS       PmS
+    SmS       SmS
+    SmP       SmP
+    PbP       PbP
+    PbS       PbS
+    SbS       SbS
+    SbP       SbP
+    PnPn      PnPn
+    PNPN      PnPn
+    PnS       PnS
+    PNS       PnS
+    PbPb      PbPb
+    PBPB      PbPb
+    PgPg      PgPg
+    PGPG      PgPg
+    PgS       PgS
+    PGS       PgS
+    PP        PP
+    PPS       PPS        # no TT
+    PPP       PPP        # no TT
+    PS        PS
+    PSS       PSS        # no TT
+    PSP       PSP        # no TT
+    S         S
+    s         S
+    S/(SKS)   S
+    S/SKS     S
+   sP        sP
+    *SP      sP
+    XP       sP
+    Xp       sP
+    xp       sP
+    XS       sS
+    Xs       sS
+    xs       sS
+   sS        sS
+    *SS      sS
+    Sg        Sg
+    SG        Sg
+    sg        Sg
+   sSg       sSg
+    S*        Sb
+    Sb        Sb
+    SB        Sb
+    sb        Sb
+   sSb       sSb
+    Sn        Sn
+    SN        Sn
+    sn        Sn
+   sSn       sSn
+    ScP       ScP
+    SCP       ScP
+    scp       ScP
+    ScS       ScS
+    SCS       ScS
+    scs       ScS
+    SKiKP     SKiKP
+    SKS       SKSdf
+    sks       SKSdf
+    SKSdf     SKSdf
+    SKSac     SKSac
+    SKPdf     SKPdf
+    SKPab     SKPab
+    SKPbc     SKPbc
+   pSKSdf    pSKSdf
+   pSKSac    pSKSac
+   sSKSdf    sSKSdf
+   sSKSac    sSKSac
+    Sdiff     Sdif
+    sdiff     Sdif
+    SDIF      Sdif
+    SDIFF     Sdif
+    Sdif      Sdif
+    sdif      Sdif
+   pSdif     pSdif
+   pSdiff    pSdif
+   sSdif     sSdif
+   sSdiff    sSdif
+    SP        SP
+    SPP       SPP        # no TT
+    SS        SS
+    SSP       SSP        # no TT
+    SPS       SPS        # no TT
+    SSS       SSS        # no TT
+    SKKS      SKKSdf
+    SKKSac    SKKSac
+    SKKSdf    SKKSdf
+    SKKPab    SKKPab
+    SKKPbc    SKKPbc
+    SKKPdf    SKKPdf
+    S'S'ac    S'S'ac
+    SKSSKS    S'S'ac
+    SKSSKSac  S'S'ac
+    S'S'df    S'S'df
+    SKSSKSdf  S'S'df
+    SnSn      SnSn
+    SNSN      SnSn
+    SbSb      SbSb
+    SBSB      SbSb
+    SgSg      SgSg
+    SGSG      SgSg
+    SPg       SPg
+    SPG       SPg
+    SPn       SPn
+    SPN       SPn
+    AMB       AMB        # no TT
+    AMb       AMB        # no TT
+    AmB       AMB        # no TT
+    AMPb      AMB        # no TT
+    AMPB      AMB        # no TT
+    PMZ       AMB        # no TT
+    AMP       AMB        # no TT
+    Amp       AMB        # no TT
+    IAmb      IAmb       # no TT
+    IAMB      IAmb       # no TT
+    IVmB_BB   IVmB_BB    # no TT
+    IVMB_BB   IVmB_BB    # no TT
+    pmax      pmax       # no TT
+    smax      smax       # no TT
+    AMS       AMS        # no TT
+    AMPs      AMS        # no TT
+    AMPS      AMS        # no TT
+    IAMs_20   IAMs_20    # no TT
+    IAMS_20   IAMs_20    # no TT
+    IVMs_BB   IVMs_BB    # no TT
+    IVMS_BB   IVMs_BB    # no TT
+    M         M          # no TT
+    L         L          # no TT
+    Lq        LQ         # no TT
+    LQ        LQ         # no TT
+    LR        LR         # no TT
+    LRN       LRN        # no TT
+    LRE       LRE        # no TT
+    LRZ       LRZ        # no TT
+    LRM       MLR        # no TT
+    LMZ       LR         # no TT
+    Lm        MLR        # no TT
+    ZLR       LRZ        # no TT
+    ELR       LRE        # no TT
+    NLR       LRN        # no TT
+    LN        LRN        # no TT
+    LE        LRE        # no TT
+    LZ        LRZ        # no TT
+    MLR       MLR        # no TT
+    IAML      IAML       # no TT
+    AML       AML        # no TT
+    AMPl      AML        # no TT
+    AMPL      AML        # no TT
+    x         x          # no TT
+    rx        rx         # no TT
+    tx        tx         # no TT
+    Px        Px         # no TT
+    Sx        Sx         # no TT
+    Lg        Lg         # no TT
+    LG        Lg         # no TT
+    Rg        Rg         # no TT
+    RG        Rg         # no TT
+    I         I
+    Is        I          # no TT
+    Ix        Ix         # no TT
+    H         H
+    O         O
+    T         T          # no TT
+    A         A          # no TT
+    P?        P
+    S?        S
+    p?        P
+    s?        S
+    PKP?      PKPdf
+    PKP1?     PKPbc
+    PKP2?     PKPab
+    PKPdf?    PKPdf
+    PKPbc?    PKPbc
+    PKPab?    PKPab
+    PKPabc    PKPab
+    PcP?      PcP
+   pP?       pP
+   sP?       sP
+    Pg?       Pg
+    Pn?       Pn
+    Pb?       Pb
+    Sg?       Sg
+    Sn?       Sn
+    Sb?       Sb
+    PG?       Pg
+    PN?       Pn
+    PB?       Pb
+    SG?       Sg
+    SN?       Sn
+    SB?       Sb
+    pg?       Pg
+    pn?       Pn
+    pb?       Pb
+    sg?       Sg
+    sn?       Sn
+    sb?       Sb
+    (P)       P
+    (S)       S
+    (PKP)     PKPdf
+    (PKP1)    PKPbc
+    (PKP2)    PKPab
+    (PKPdf)   PKPdf
+    (PKPbc)   PKPbc
+    (PKPab)   PKPab
+    (PcP)     PcP
+    (pP)      pP
+    (sP)      sP
+    (Pg)      Pg
+    (Pn)      Pn
+    (Pb)      Pb
+    (Sg)      Sg
+    (Sn)      Sn
+    (Sb)      Sb
+    (PG)      Pg
+    (PN)      Pn
+    (PB)      Pb
+    (SG)      Sg
+    (SN)      Sn
+    (SB)      Sb
+    PI        P
+    PR        PP
+    PR1       PP
+    PR2       PPP
+    Prep      PKP
+    Prep2     PKP
+    SI        S
+    SR        SS
+    SR1       SS
+    SR2       SSS
+    EP        P
+    IP        P
+    ES        S
+
+# List of allowable IASPEI phases
+AllowablePhases
+    Pg
+    Pb
+    Pn
+    P
+    PcP
+    PcS
+    PKiKP
+    PKPdf
+    PKPab
+    PKPbc
+    Pdif
+    PKKPdf
+    PKKPbc
+    PKKPab
+    PP
+    Lg
+    Sg
+    Sb
+    Sn
+    S
+    ScP
+    ScS
+    SKiKP
+    SKSdf
+    SKSac
+    SKPab
+    SKPbc
+    SKKSdf
+    SKKSac
+    SKKPab
+    SKKPbc
+    SS
+   pP
+   pwP
+   sP
+   pPdif
+   sPdif
+   pPKPdf
+   pPKPbc
+   pPKPab
+   sPKPdf
+   sPKPbc
+   sPKPab
+   sS
+   pS
+
+# List of allowable first-arriving P phases
+AllowableFirstP
+     P
+     Pn
+     Pg
+     Pb
+     Pdif
+     PKPdf
+     PKPbc
+     PKPab
+
+# Optional allowable first-arriving P phases
+OptionalFirstP
+     PKiKP
+     PcP
+    pP
+    pwP
+    pPdif
+    pPKPdf
+    pPKPbc
+    pPKPab
+    sP
+    sPKPdf
+    sPKPbc
+    sPKPab
+
+# List of allowable first-arriving S phases
+AllowableFirstS
+     S
+     Sn
+     Lg
+     Sg
+     Sb
+     SKiKP
+     SKPdf
+     SKPbc
+     SKPab
+
+# Optional allowable first-arriving S phases
+OptionalFirstS
+     ScP
+     SKSac
+     SKSdf
+    sS
+    pS
+
+# List of IASPEI phases for which residuals will not be calculated
+PhaseWithoutResidual
+     PKPpre
+     PPP
+     PPS
+     PSP
+     PSS
+     SSS
+     SPP
+     SSP
+     SPS
+     IAmb
+     IVmb_BB
+     AMB
+     AMS
+     IAMs_20
+     IVMs_BB
+     L
+     LR
+     LRZ
+     LRE
+     LRN
+     LQ
+     IAML
+     AML
+     MLR
+     x
+     rx
+     tx
+     Px
+     Sx
+     Rg
+     pmax
+     smax
+     T
+     Ix
+     A
+     M
+     F
+
+# Table of phases with a priori measurement errors for given delta ranges
+#   phase, delta1, delta2, time, azimuth and slowness errors [s, deg, s/deg]
+PhaseWeight
+    P           0       15      0.8     15.0      2.2
+    P          15       28      1.2     15.0      2.2
+    P          28       99      0.8     15.0      2.2
+    Pn          0       15      0.8     15.0      2.2
+    Pn         15       20      1.2     15.0      2.2
+    Pg          0        9      0.8     15.0      2.8
+    Pb          0        9      0.8     15.0      2.8
+    Pdif       99      144      2.8     15.0      4.0
+    PKPab     144      177      1.3     15.0      3.5
+    PKPbc     145      155      1.3     15.0      3.5
+    PKPdf     115      180      1.3     15.0      3.5
+    PKPdif    155      180      2.8     15.0      4.0
+    PKSab     129      141      1.3     15.0      3.5
+    PKSbc     129      149      1.3     15.0      3.5
+    PKSdf     110      180      1.3     15.0      3.5
+    PKiKP       0      155      1.3     15.0      3.0
+    PKKPab    104      127      1.3     15.0      3.5
+    PKKPbc     72      127      1.3     15.0      3.5
+    PKKPdf      0      151      1.3     15.0      3.5
+    PKKSab    140      148      1.3     15.0      3.5
+    PKKSbc     78      148      1.3     15.0      3.5
+    PKKSdf      0      156      1.3     15.0      3.5
+    P'P'ab      4       72      1.3     15.0      3.5
+    P'P'bc     49       72      1.3     15.0      3.5
+    P'P'df      0      130      1.3     15.0      3.5
+    PcP         0       99      1.3     15.0      2.5
+    PcS         0       63      1.3     15.0      2.5
+    PP         25       40      1.8     15.0      2.5
+    PP         40      180      1.3     15.0      2.5
+    PnPn        2       42      1.8     15.0      3.0
+    PbPb        2       16      2.5     15.0      3.0
+    PgPg        0       18      2.5     15.0      3.0
+    PS         84      138      2.5     15.0      3.0
+    PnS        53       92      2.5     15.0      3.0
+    PgS        25       31      2.5     15.0      3.0
+    S           0       15      1.5     15.0      3.0
+    S          15       28      1.8     15.0      3.0
+    S          28      100      1.5     15.0      3.0
+    Sn          0       15      1.5     15.0      3.5
+    Sn         15       20      1.8     15.0      3.5
+    Sg          0        9      1.5     15.0      3.5
+    Lg          0        9      1.5     15.0      3.5
+    Sb          0        8      1.5     15.0      3.5
+    Sdif       98      144      2.8     15.0      4.0
+    SKPab     130      142      1.8     15.0      3.5
+    SKPbc     130      149      1.8     15.0      3.5
+    SKPdf     110      180      1.8     15.0      3.5
+    SKSac      61      144      1.8     15.0      3.5
+    SKSdf     105      180      1.8     15.0      3.5
+    SKiKP       0      149      1.8     15.0      3.0
+    SKKPab    140      147      1.8     15.0      3.5
+    SKKPbc     78      147      1.8     15.0      3.5
+    SKKPdf      0      156      1.8     15.0      3.5
+    SKKSac     61      180      1.8     15.0      3.5
+    SKKSdf      0      161      1.8     15.0      3.5
+    S'S'ac     72      180      1.8     15.0      3.5
+    S'S'df      0      149      1.8     15.0      3.5
+    ScP         0       63      1.8     15.0      3.0
+    ScS         0      100      1.8     15.0      3.0
+    SS         25       40      2.5     15.0      3.0
+    SS         40      180      1.8     15.0      3.0
+    SnSn        1       48      2.5     15.0      3.5
+    SbSb        1       16      2.5     15.0      3.5
+    SgSg        0       18      2.5     15.0      3.5
+    SP         85      138      2.5     15.0      3.5
+    SPn        53       92      2.5     15.0      3.5
+    SPg        23       31      2.5     15.0      3.5
+    pP         15      100      1.3     15.0      2.2
+    pwP        15      100      1.3     15.0      2.2
+    sP         15      100      1.3     15.0      2.2
+    pS         18      102      1.3     15.0      2.2
+    sS         15      102      1.3     15.0      2.2
+    pPg         3        9      2.5     15.0      2.5
+    sPg         1       16      2.5     15.0      2.5
+    sSg         3        9      2.5     15.0      2.5
+    pPb         1        9      1.8     15.0      2.5
+    sPb         1       16      1.8     15.0      2.5
+    sSb         1        9      1.8     15.0      2.5
+    pPn         1       21      1.8     15.0      2.5
+    sPn         1       21      1.8     15.0      2.5
+    sSn         1       24      1.8     15.0      2.5
+    pPdif     100      144      2.8     15.0      4.0
+    sPdif     101      144      2.8     15.0      4.0
+    pSdif     101      144      2.8     15.0      4.0
+    sSdif     102      144      2.8     15.0      4.0
+    pPKiKP      0      155      1.8     15.0      2.5
+    sPKiKP      0      155      1.8     15.0      2.5
+    pPKPab    147      179      1.8     15.0      2.5
+    sPKPab    147      178      1.8     15.0      2.5
+    pPKPbc    147      155      1.8     15.0      2.5
+    sPKPbc    147      155      1.8     15.0      2.5
+    pPKPdf    117      180      1.8     15.0      2.5
+    sPKPdf    117      180      1.8     15.0      2.5
+    pSKSac     64      145      1.8     15.0      2.5
+    sSKSac     64      144      1.8     15.0      2.5
+    pSKSdf    107      180      1.8     15.0      2.5
+    sSKSdf    106      180      1.8     15.0      2.5
+    I           0      180      8.0      1.0      4.0
+    Is          0      180      8.0      1.0      4.0
+    H           0      180      0.8      1.0      3.5
+    O           0      180      0.8      1.0      3.5
+
+# Phases that can contribute to body wave magnitudes
+# (also delta restrictions)
+MBPhase
+    P
+    pP
+    sP
+    AMB
+    IAmb
+    IVmb_BB
+    pmax
+    Pn
+
+# Phases that can contribute to surface wave magnitudes
+# (also delta/period restrictions)
+MSPhase
+    AMS
+    IAMs_20
+    IVMs_BB
+    LR
+    LRZ
+    LRE
+    LRN
+    MLR
+    M
+    L
+
+# Phases that can contribute to local magnitudes
+# (also delta restrictions)
+MLPhase
+    P
+    Pg
+    Pb
+    Pn
+    S
+    Sg
+    Lg
+    Sb
+    Sn
+    AML
+    IAML
+    pmax

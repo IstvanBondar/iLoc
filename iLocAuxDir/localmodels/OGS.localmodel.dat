@@ -1,0 +1,9 @@
+#
+# OGS local velocity model
+#
+# number of layers
+4
+0.000 5.8500 3.2865 x
+22.000 6.8000 3.8202 CONRAD
+39.500 8.0000 4.4943 MOHO
+77.500 8.0000 4.4943 x

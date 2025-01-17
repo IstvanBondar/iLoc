@@ -1,0 +1,110 @@
+#
+# Default configuration parameters for SeisComp plugin sciLoc
+# Version: 4.1
+#
+# Istvan Bondar, 2023
+# ibondar2014@gmail.com
+#
+# Pathname for the iLoc/sciLoc auxdata directory in SeisComp3 directory tree
+#    The auxdata directory contains the directories below:
+#      ak135 - ak135 travel-time tables and ellipticity corrections
+#      iasp91 - iasp91 travel-time tables and ellipticity corrections
+#      Flinn-Engdahl - FE regions and default depth grid files
+#      topo - resampled ETOPO file for bounce corrections
+#      RSTTmodels - RSTT model files
+#      localmodels - local velocity model files
+#      variogram - variogram model for estimating data covariance matrix
+#      iLocpars - general and phase-specific configuration parameter files
+#      Not used by sciLoc:
+#          Stations - station coordinates
+#          magnitude - magnitude attenuation files
+#
+auxdir = /Users/istvanbondar/iLoc4.1/auxdata
+#
+#
+# RSTT model name
+#
+RSTTmodel = /Users/istvanbondar/iLoc4.1/auxdata/RSTTmodels/pdu202009Du.geotess  # RSTT model name
+UseRSTTPnSn = 1                  # use RSTT Pn/Sn predictions [0/1]?
+UseRSTTPgLg = 1                  # use RSTT Pg/Lg predictions [0/1]?
+#
+#
+# Local velocity model if any
+#    If LocalVmodel pathname is set, sciLoc will use it to calculate travel
+#    time predictions up to MaxLocalTTDelta distance for Pg/Pb/Pn and
+#    Sg/Sb/Sn (Lg travel times would the same as Sg).
+#
+LocalVmodel = /Users/istvanbondar/iLoc4.1/auxdata/localmodels/graczer.localmodel.dat  # pathname for local velocity model
+MaxLocalTTDelta = 3.             # use local TT up to this distance [deg]
+#
+#
+# ETOPO parameters (in auxdata/topo)
+#     ETOPO5 (resampled to 5 x 5 minute resolution, ~ 19MB)
+#
+EtopoFile = etopo5_bed_g_i2.bin  # filename for ETOPO file
+EtopoNlon = 4321                 # number of longitude samples in ETOPO
+EtopoNlat = 2161                 # number of latitude samples in ETOPO
+EtopoRes = 0.0833333             # cellsize in ETOPO
+#
+#
+# Neighbourhood Algorithm
+#     A grid search can be performed to obtain a better initial hypocenter
+#     guess. The search is performed around the starting hypocenter.
+#     For a very exhaustive search one can increase NAinitialSample,
+#     NAnextSample and NAcells values. Note that max NAinitialSample is
+#     around 3500 before hitting the memory limits. An exhaustive search will
+#     considerably slow sciLoc down, especially when RSTT predictions are
+#     enabled.
+#
+DoGridSearch = 1                 # perform NA [0/1]
+NAsearchRadius = 5.              # search radius around initial epicentre [deg]
+NAsearchDepth = 300.             # search radius around initial depth [km]
+NAsearchOT = 30.                 # search radius around initial origin time [s]
+NAlpNorm = 1.                    # p-value for norm to compute misfit [1,2]
+NAiterMax = 5                    # max number of iterations
+NAcells = 25                     # number of cells to be resampled at each iter
+NAinitialSample = 1000           # size of initial sample
+NAnextSample = 100               # size of subsequent samples
+#NAinitialSample = 3500          # size of initial sample (slow but exhaustive)
+#NAnextSample = 200              # size of subsequent samples
+#
+#
+# Depth resolution
+#     If the number of time defining first-arriving P - depth phase pairs
+#         exceed MinDepthPhases OR
+#     the number of local stations within MaxLocalDistDeg with a time defining
+#         phase exceed MinLocalStations OR
+#     the number of time defining core reflections exceed MinCorePhases OR
+#     the number of time defining first-arriving P and S pairs
+#         within MaxSPDistDeg exceed MinSPpairs
+#     then iLoc attempts for a free depth solution.
+#
+#     If the uncertainty in the free depth exceeds MaxShallowDepthError for
+#         crustal events or MaxDeepDepthError for events in the mantle, then
+#         sciLoc will reject the free depth solution and fix the depth.
+#
+MinDepthPhases = 3               # min number of depth phases for depdp
+MaxLocalDistDeg = 0.2            # max local distance [deg]
+MinLocalStations = 1             # min number of local defining stations
+MaxSPDistDeg = 2.                # max S-P distance [deg]
+MinSPpairs = 3                   # min number of defining S-P phase pairs
+MinCorePhases = 3                # min number of defining core reflection phases
+MaxShallowDepthError = 30.       # max depth error for crustal free-depth
+MaxDeepDepthError  = 60.         # max depth error for deep free-depth
+#
+#
+# Linearized inversion
+#     Sigmathreshold: residuals that exceed abs(Sigmathreshold*PriorMeasError)
+#         are made non-defining.
+#     MinNdefPhases: minimum number of observations required to attempt for
+#         a solution.
+#         If the number of defining arrival times exceed MinNdefPhases
+#         then slowness observations will not be used in the location.
+#
+DoCorrelatedErrors = 1           # account for correlated errors?
+SigmaThreshold = 6.              # used to exclude big residuals from solution
+AllowDamping = 1                 # allow damping of model vector?
+MinIterations = 4                # min number of iterations
+MaxIterations = 20               # max number of iterations
+MinNdefPhases = 4                # min number of defining phases
+

@@ -1,0 +1,108 @@
+# Model constants for ak135/iasp91 travel time tables
+Moho = 35
+Conrad = 20
+MaxHypocenterDepth = 700
+
+# surface velocities for elevation corrections
+SSurfVel = 3.46        # Sg velocity km/s for elevation corrections
+PSurfVel = 5.8         # Pg velocity km/s for elevation corrections
+
+# List of ak135/iasp91 phases with travel time tables
+#    firstP and firstS are first-arriving P and S travel times (required)
+#    phases listed according to their relative frequency
+PhaseTT
+    firstP
+    firstS
+    P
+    Pn
+    Pg
+    Pb
+    S
+    Sn
+    Sg
+    Sb
+    Lg
+    PKPdf
+    PKPab
+    PKPbc
+    PKSdf
+    PKSab
+    PKSbc
+    SKPdf
+    SKPab
+    SKPbc
+    SKSdf
+    SKSac
+    pP
+    pwP
+    sP
+    pPKPdf
+    PcP
+    PcS
+    ScP
+    ScS
+    Pdif
+    PKiKP
+    Sdif
+    SKiKP
+    PKKPdf
+    PKKPab
+    PKKPbc
+    PKKSdf
+    PKKSab
+    PKKSbc
+    SKKPdf
+    SKKPab
+    SKKPbc
+    SKKSdf
+    SKKSac
+    PP
+    PgPg
+    PbPb
+    PnPn
+    PS
+    PgS
+    PnS
+    SS
+    SgSg
+    SbSb
+    SnSn
+    SP
+    SPg
+    SPn
+    P'P'df
+    P'P'ab
+    P'P'bc
+    S'S'df
+    S'S'ac
+    pS
+    sS
+    pPg
+    sPg
+    pPb
+    sPb
+    sSb
+    pPn
+    sPn
+    sSn
+    pPdif
+    sPdif
+    pSdif
+    sSdif
+    pPKiKP
+    sPKiKP
+    pPKPab
+    sPKPab
+    pPKPbc
+    sPKPbc
+    sPKPdf
+    pSKSac
+    sSKSac
+    pSKSdf
+    sSKSdf
+    pPKPdif
+    sPKPdif
+    I
+    Is
+    H
+    O
