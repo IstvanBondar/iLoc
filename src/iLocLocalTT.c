@@ -411,7 +411,7 @@ static int GenerateLocalTT(double depth, double delta,
  */
         u = DirectPhase(n, v, vsq, thk, iq, dq, dkm, depth, &tdir);
         if (iq < imoh) {
-            if (iq < icon) strcpy(lag, "g");
+            if (iq < icon || icon < 0) strcpy(lag, "g");
             else           strcpy(lag, "b");
         }
         else {
@@ -898,8 +898,8 @@ static int ReadLocalVelocityModel(char *fname, VMODEL *LocalVelocityModelp)
  *  velocity model:
  *      h [km], Vp [km/s], Vs [km/s], discontinuity (x|CONR|MOHO)
  */
-    LocalVelocityModelp->iconr = LocalVelocityModelp->imoho = 0;
-    Moho = Conrad = 0.;
+    LocalVelocityModelp->iconr = LocalVelocityModelp->imoho = -1;
+    Moho = Conrad = -1.;
     for (i = 0; i < n; i++) {
         fscanf(fp, "%lf%lf%lf%s", &z, &x, &y, layname);
         LocalVelocityModelp->h[i] = z;
