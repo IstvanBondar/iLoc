@@ -62,7 +62,7 @@ static void CriticalDistanceTTIntercept(int n, double *v, double *vsq,
  */
 #define MAXLAY 21
 #define NDEP 33
-#define NDIS 20
+#define NDIS 28
 
 
 /*
@@ -89,7 +89,8 @@ TT_TABLE *GenerateLocalTTtables(char *filename, double lat, double lon)
     int npha, n, i, j, k, ind, ndists, ndepths, icon, imoh;
     static double dists[NDIS] = {
           0.0,  0.025, 0.05, 0.1, 0.25, 0.5, 0.75, 1.0, 1.25, 1.5,
-          1.75, 2.0,   2.5,  3.0, 3.5,  4.0, 4.5,  5.0, 5.5,  6.0
+          1.75, 2.0,   2.5,  3.0, 3.5,  4.0, 4.5,  5.0, 5.5,  6.0,
+          6.5,  7.0,   7.5,  8.0,  8.5,  9.0, 9.5, 10.0
     };
     static double depths[NDEP] = {
           0.0,   1.0,   2.5,   5.0,   7.5,  10.0,  12.5,  15.0,  17.5,  20.0,
