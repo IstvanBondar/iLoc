@@ -1,6 +1,7 @@
 /*
- * Copyright (c) 2018, Istvan Bondar,
- * Written by Istvan Bondar, ibondar2014@gmail.com
+ * Copyright (c) 2018-2026, Istvan Bondar,
+ * Written by Istvan Bondar, Seismic Location Services
+ * istvan.bondar@slsiloc.eu
  *
  * BSD Open Source License.
  * All rights reserved.
@@ -92,7 +93,6 @@ int ReadConfigFile(char *auxdir, char *homedir)
     extern double DefaultDepth;     /* used if seed hypocentre depth is NULL */
     extern int UseLocalTT;                       /* use local TT predictions */
     extern double MaxLocalTTDelta;       /* use local TT up to this distance */
-//    extern int LocalTTfromRSTT;                  /* local TT from RSTT model */
     extern int UpdateLocalTT;                     /* static/dynamic local TT */
 /*
  *  ETOPO
@@ -252,7 +252,6 @@ int ReadConfigFile(char *auxdir, char *homedir)
     strcpy(RSTTmodel, "");
     UseRSTTPgLg = 1;
     UseRSTTPnSn = 1;
-//    LocalTTfromRSTT = 0;
     MaxLocalTTDelta = 3.;
     strcpy(LocalVmodelFile, "");
     strcpy(DBuser, "sysop");
@@ -349,7 +348,6 @@ int ReadConfigFile(char *auxdir, char *homedir)
             else
                 sprintf(LocalVmodelFile, "%s/localmodels/%s", auxdir, value);
         }
-//        else if (streq(par, "LocalTTfromRSTT"))  LocalTTfromRSTT = atoi(value);
         else if (streq(par, "MaxLocalTTDelta"))  MaxLocalTTDelta = atof(value);
 /*
  *      ETOPO
@@ -446,15 +444,7 @@ int ReadConfigFile(char *auxdir, char *homedir)
     UseRSTT = 0;
     if (UseRSTTPnSn || UseRSTTPgLg)
         UseRSTT = 1;
-/*
- *  use local TT?
- */
-//    if (LocalTTfromRSTT) {
-//        UseLocalTT = 1;
-//        UpdateLocalTT = 1;
-//    }
     if (strlen(LocalVmodelFile) > 0) {
-//        LocalTTfromRSTT = 0;
         UpdateLocalTT = 0;
         UseLocalTT = 1;
     }
@@ -571,7 +561,6 @@ int ReadInstructionFile(char *instruction, EVREC *ep, int isf, char *auxdir,
     extern int UseRSTTPnSn;                   /* use RSTT Pn/Sn predictions? */
     extern int UseRSTTPgLg;                   /* use RSTT Pg/Lg predictions? */
     extern int UseRSTT;                             /* use RSTT predictions? */
-//    extern int LocalTTfromRSTT;                  /* local TT from RSTT model */
     extern char LocalVmodelFile[FILENAMELEN];   /* pathname for local vmodel */
     extern double DefaultDepth;     /* used if seed hypocentre depth is NULL */
     extern int UseLocalTT;                       /* use local TT predictions */
@@ -1027,7 +1016,6 @@ int ReadInstructionFile(char *instruction, EVREC *ep, int isf, char *auxdir,
             else
                 sprintf(LocalVmodelFile, "%s/localmodels/%s", auxdir, val[i]);
         }
-//        else if (streq(opt[i], "LocalTTfromRSTT")) LocalTTfromRSTT = atoi(val[i]);
         else if (streq(opt[i], "MaxLocalTTDelta"))
             MaxLocalTTDelta = atof(val[i]);
 /*
@@ -1099,12 +1087,7 @@ int ReadInstructionFile(char *instruction, EVREC *ep, int isf, char *auxdir,
 /*
  *  use local TT?
  */
-//  if (LocalTTfromRSTT) {
-//      UseLocalTT = 1;
-//      UpdateLocalTT = 1;
-//  }
     if (strlen(LocalVmodelFile) > 0) {
-//        LocalTTfromRSTT = 0;
         UpdateLocalTT = 0;
         UseLocalTT = 1;
     }

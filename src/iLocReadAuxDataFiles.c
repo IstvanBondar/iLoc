@@ -1,6 +1,7 @@
 /*
- * Copyright (c) 2018, Istvan Bondar,
- * Written by Istvan Bondar, ibondar2014@gmail.com
+ * Copyright (c) 2018-2026, Istvan Bondar,
+ * Written by Istvan Bondar, Seismic Location Services
+ * istvan.bondar@slsiloc.eu
  *
  * BSD Open Source License.
  * All rights reserved.
@@ -49,16 +50,16 @@ static int ReadIASPEIPhaseMap(char *filename);
  *     ReadAuxDataFiles
  *  Synopsis:
  *     read data files from auxiliary data directory
- *        $ILOCROOT/auxdata/iLocpars/ReadGlobal1DModelPhaseList.txt
- *        $ILOCROOT/auxdata/iLocpars/IASPEIPhaseMap.txt
- *        $ILOCROOT/auxdata/<TTimeTable>/[*].tab
- *        $ILOCROOT/auxdata/<TTimeTable>/ELCOR.dat
- *        $ILOCROOT/auxdata/topo/etopo5_bed_g_i2.bin
- *        $ILOCROOT/auxdata/FlinnEngdahl/FE.dat
- *        $ILOCROOT/auxdata/FlinnEngdahl/DefaultDepth0.5.grid
- *        $ILOCROOT/auxdata/FlinnEngdahl/GRNDefaultDepth.<TTimeTable>.dat
- *        $ILOCROOT/auxdata/variogram/variogram.model
- *        $ILOCROOT/auxdata/magnitude/<mbQtable>.dat
+ *        $ILOCROOT/iLocAuxDir/iLocpars/ReadGlobal1DModelPhaseList.txt
+ *        $ILOCROOT/iLocAuxDir/iLocpars/IASPEIPhaseMap.txt
+ *        $ILOCROOT/iLocAuxDir/<TTimeTable>/[*].tab
+ *        $ILOCROOT/iLocAuxDir/<TTimeTable>/ELCOR.dat
+ *        $ILOCROOT/iLocAuxDir/topo/etopo5_bed_g_i2.bin
+ *        $ILOCROOT/iLocAuxDir/FlinnEngdahl/FE.dat
+ *        $ILOCROOT/iLocAuxDir/FlinnEngdahl/DefaultDepth0.5.grid
+ *        $ILOCROOT/iLocAuxDir/FlinnEngdahl/GRNDefaultDepth.<TTimeTable>.dat
+ *        $ILOCROOT/iLocAuxDir/variogram/variogram.model
+ *        $ILOCROOT/iLocAuxDir/magnitude/<mbQtable>.dat
  *  Input Arguments:
  *     auxdir  - pathname for the auxiliary data files directory
  *  Output Arguments:

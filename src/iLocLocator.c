@@ -1,6 +1,7 @@
 /*
- * Copyright (c) 2018, Istvan Bondar,
- * Written by Istvan Bondar, ibondar2014@gmail.com
+ * Copyright (c) 2018-2026, Istvan Bondar,
+ * Written by Istvan Bondar, Seismic Location Services
+ * istvan.bondar@slsiloc.eu
  *
  * BSD Open Source License.
  * All rights reserved.
@@ -911,8 +912,6 @@ again:
             if (option == 4) {
                 s->depth = GetDefaultDepth(s, ngrid, gres, DepthGrid, fe,
                                            GrnDepth, &isdefdep);
-//                s->numUnknowns = 1;
-//                s->depfix = 1;
                 e->FixedDepth = 1;
                 goto again;
             }
@@ -1039,6 +1038,7 @@ again:
 /*
  *      Calculate location quality metrics
  */
+        hq.nspdef150 = GetNdefSP150(s, rdindx, p, verbose);
         if (!LocationQuality(s->numPhase, p, &hq)) {
             s->azimgap = hq.FullNetwork.gap;
             s->sgap = hq.FullNetwork.sgap;
@@ -1129,11 +1129,15 @@ again:
         }
         else
             fprintf(logfp, "    free-depth solution\n");
-        fprintf(logfp, "    GT5cand=%d (nsta=%d ndef=%d sgap=%5.1f ",
-                hq.GT5candidate, hq.LocalNetwork.ndefsta,
-                hq.LocalNetwork.ndef, hq.LocalNetwork.sgap);
-        fprintf(logfp, "dU=%5.3f numStaWithin10km=%d)\n",
-                hq.LocalNetwork.du, hq.numStaWithin10km);
+        fprintf(logfp, "     dU GT5cand=%d ( dU=%5.3f sgap=%5.1f numStaWithin10km=%d)\n",
+                hq.GT5candidatedU, hq.LocalNetwork.du, hq.LocalNetwork.sgap,
+                hq.numStaWithin10km);
+        fprintf(logfp, "    CPQ GT5cand=%d (CPQ=%5.3f sgap=%5.1f ",
+                hq.GT5candidateCPQ, hq.LocalNetwork.cpq, hq.LocalNetwork.sgap);
+        fprintf(logfp, "numStaWithin10km=%d numdefSPwithin150km=%d nsta=%d)\n",
+                hq.numStaWithin10km, hq.nspdef150, hq.LocalNetwork.ndefsta);
+        if (hq.GT5candidatedU || hq.GT5candidateCPQ)
+            fprintf(logfp, "  This event can be a GT5 candidate!\n");
         for (i = 0; i < MAXMAG; i++) {
             if (s->mag[i].numDefiningMagnitude < MinNetmagSta) continue;
             fprintf(logfp, "    %s=%.2f +/- %.2f nsta=%d\n",

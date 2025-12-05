@@ -1,6 +1,7 @@
 /*
- * Copyright (c) 2018, Istvan Bondar,
- * Written by Istvan Bondar, ibondar2014@gmail.com
+ * Copyright (c) 2018-2026, Istvan Bondar,
+ * Written by Istvan Bondar, Seismic Location Services
+ * istvan.bondar@slsiloc.eu
  *
  * BSD Open Source License.
  * All rights reserved.
@@ -526,7 +527,7 @@ static int GetIDCMagnitude(EVREC *ep, HYPREC h[], char *magbloc)
  */
 static int GetIDCPhases(EVREC *ep, PHAREC p[])
 {
-    char sql[2048], psql[2048], PrevAuth[AGLEN], PrevSta[STALEN];
+    char sql[2048], psql[2048], PrevSta[STALEN];
     int i, m, j, rdid;
     int numPhase = 0, numamps = 0, arid = 0, ampid = 0;
     double amp = 0., per = 0.;
@@ -709,14 +710,9 @@ static int GetIDCPhases(EVREC *ep, PHAREC p[])
  *  Split phases into readings
  */
     PrevSta[0] = '\0';
-    strcpy(PrevAuth, InAgency);
     rdid = 1;
     for (i = 0; i < ep->numPhase; i++) {
         if (strcmp(p[i].sta, PrevSta)) {
-            p[i].rdid = rdid++;
-            p[i].init = 1;
-        }
-        else if (strcmp(p[i].auth, PrevAuth)) {
             p[i].rdid = rdid++;
             p[i].init = 1;
         }
@@ -724,7 +720,6 @@ static int GetIDCPhases(EVREC *ep, PHAREC p[])
             p[i].rdid = p[i-1].rdid;
         }
         strcpy(PrevSta, p[i].sta);
-        strcpy(PrevAuth, p[i].auth);
     }
     ep->numReading = rdid - 1;
 /*

@@ -51,15 +51,22 @@ iLoc plugin in SeisComp since 2020.
 - Supports IMS1.0/ISF1.0 and ISF2.0, ISF2.1 bulletin formats.
 - Supports IDC oracle, NDC-in-a-Box PostgreSQL, ISC PostgreSQL and SeisComp MySQL database schemas.
 - Optional Google Earth kmz output files.
-- Performs Bondár and McLaughlin, (2009b) ground truth candidate event selection test for relocated events.
+- Performs both the Bondár and McLaughlin (2009b) and the Gallacher et al. (2025) ground truth candidate event selection test for relocated events.
 - Highly parameterizable (config files, command line arguments).
 
 ### Citations
 
-- Bondár, I. and K. McLaughlin (2009a). Seismic location bias and uncertainty in the presence of correlated and non-Gaussian travel-time errors, Bull. Seism. Soc. Am., 99, 172-193, https://doi.org/10.1785/0120080922.
+- Bondár, I. and K. McLaughlin (2009). Seismic location bias and uncertainty in the presence of correlated and non-Gaussian travel-time errors, Bull. Seism. Soc. Am., 99, 172-193, https://doi.org/10.1785/0120080922.
 - Bondár, I., and D. Storchak (2011). Improved location procedures at the International Seismological Centre, Geophys. J. Int., 186, 1220-1244, https://doi.org/10.1111/j.1365-246X.2011.05107.x.
+- Bondár, I. (2015). iLoc: New developments on the ISC locator, 26th IUGG General Assembly, Prague, Czech Rep., June 22-July 2, 2015.
+- Bondár, I., E.R. Engdahl, A. Villasenor, J.Harris and D. Storchak (2015). ISC-GEM: Global instrumental earthquake catalogue (1900-2009), II. Location and seismicity patterns, Phys. Earth. Planet. Int., https://doi.org/10.1016/j.pepi.2014.06.002, 239, 2-13.
+- Bondár, I. P. Mónus, Cs. Czanik, M. Kiszely, Z. Gráczer, Z. Wéber (2018). Relocation of Seismicity in the Pannonian Basin Using a Global 3D Velocity Model, Seismol. Res. Lett., 89, 2284-2293, https://doi.org/10.1785/0220180143.
+- Steed, R.J., A. Fuenzalida, R. Bossu, I. Bondár, A. Heinloo, A. Dupont, J. Saul and A. Strollo (2019). Crowdsourcing triggers rapid, reliable earthquake locations, Science Advances, 5, eaau9824, https://doi.org/10.1126/sciadv.aau9824.
+- Weber B., I. Bondár, D. Rößler, J. Becker (2019). SeisComp3 iLoc Integration Applied to Array Processing, CTBT: Science and Technology Conference, Book of Abstracts, T3.5.P54, p.187, Vienna, 24-28 June, 2019.
 - Bondár I., R. Steed, J. Roch, R. Bossu, A. Heinloo, J. Saul and A. Strollo (2020). Accurate locations of felt earthquakes using crowdsource detections, Front. Earth Sci., 8, 272, https://doi.org/10.3389/feart.2020.00272.
 - Bondár I., T. Šindelářová, D. Ghica, U. Mitterbauer, A. Liashchuk, J. Baše, J. Chum, C. Czanik, C. Ionescu, C. Neagoe, M. Pásztor, A. Le Pichon (2022). Central and Eastern European Infrasound Network: Contribution to Infrasound Monitoring, Geophys. J. Int., 230, 565-579, https://doi.org/10.1093/gji/ggac066.
+- Bondár, I., T. Godoladze, E. Cowgill, G. Yetirmishli, S.C. Myers, I. Gunia, A. Buzaladze, B. Czecze, T. Onur, R. Gök, A. Chiang (2023). Relocation of the Seismicity of the Caucasus Region, Bull. Seism. Soc. Am., 114, 873-881, https://doi.org/10.1785/0120230155.
+
 
 
 Compiling iLoc from source
@@ -70,7 +77,7 @@ Compiling iLoc from source
 The environment variable `$ILOCROOT` is required by the *Makefiles* during
 the compilation process. Set it to your iLoc directory in your `.bashrc` file:
 
-export ILOCROOT=$HOME/iLoc4.2
+export ILOCROOT=$HOME/iLoc
 
 
 ### Dependencies

@@ -1,16 +1,23 @@
 Changelog
 ===========================
 
-v3.2.1 (06 Sep 2023)
+v3.2.1 (12 Sep 2025)
 ------------------------------
 
 This is mainly a bug fix release. Several buffer overflows have been fixed, as
 well as a bug that resulted in a segfault when attempting to save an old-type
-model file in a new-type format.
+model file in a new-type format. The random pdu uncertainty flag ∑as also
+erroneously set to True in the pdu202009Du.geotess. This has been corrected, and
+it is now set to False by default.
 
-A lot of backend work has also been done towards the goal of making a
-parallelizable `getTravelTime()` method. This includes getters for a variety of
-class members, and a large amount of new copy constructors.
+Significant backend work has been done towards the goal of making RSTT
+thread-safe with a parallelizable `getTravelTime()` method. This includes
+getters for a variety of class members, and a large amount of new copy
+constructors. This work is ongoing.
+
+Makefiles have been additionally been overhauled, and this version should
+compile correctly on Intel and ARM Macs, RHEL 8 and 9, Ubuntu 24.04 LTS, and WSL
+equivalents with both Clang and GNU compilers.
 
 
 v3.2.0 (10 Feb 2021)

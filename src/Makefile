@@ -31,7 +31,7 @@
 # iloc Makefile
 #
 #
-ILOC_VERSION := 4.2
+ILOC_VERSION := 4.3
 SHELL:=/bin/bash
 ILOC:=${ILOCROOT}
 ORAH:=${ORACLE_HOME}
@@ -66,7 +66,7 @@ OS := $(shell uname -s | tr [:upper:] [:lower:])
 # detect bit size
 #
 UNAME_M:=$(shell uname -m)
-ifeq ($(UNAME_M),$(filter $(UNAME_M),x86_64 arm64))
+ifeq ($(UNAME_M),$(filter $(UNAME_M),x86_64 arm64 aarch64))
 	export ARCH := 64
 else
 	export ARCH := 32

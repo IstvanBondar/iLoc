@@ -1,6 +1,7 @@
 /*
- * Copyright (c) 2018, Istvan Bondar,
- * Written by Istvan Bondar, ibondar2014@gmail.com
+ * Copyright (c) 2018-2026, Istvan Bondar,
+ * Written by Istvan Bondar, Seismic Location Services
+ * istvan.bondar@slsiloc.eu
  *
  * BSD Open Source License.
  * All rights reserved.
@@ -172,8 +173,8 @@ int Uncertainties(SOLREC *sp, PHAREC p[])
     eigen1 = fabs((b + d) / 2.);
     eigen2 = fabs((b - d) / 2.);
     strike = 0.5 * atan2(2. * sxy , (syy - sxx));
-    if (strike < 0.)    strike += TWOPI;
-    if (strike > TWOPI) strike -= TWOPI;
+    if (strike < 0.)    strike += (2. * PI);
+    if (strike > (2. * PI)) strike -= (2. * PI);
     if (strike > PI)    strike -= PI;
     sp->strike = RAD_TO_DEG * strike;
 /*

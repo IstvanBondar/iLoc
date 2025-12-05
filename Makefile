@@ -35,13 +35,13 @@
 ################################################################################
 # initializations
 ################################################################################
-ILOC_VERSION := 4.2
+ILOC_VERSION := 4.3
 #
 # get environment variables
 #
-ILOC:= ${ILOCROOT}
+ILOC := ${ILOCROOT}
 TARGETLIB := ${HOME}/lib
-MAKE:=make
+MAKE := make
 #export DEBUG = -g
 export DEBUG = -O2
 #

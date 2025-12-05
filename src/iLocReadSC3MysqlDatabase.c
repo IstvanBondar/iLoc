@@ -1,6 +1,7 @@
 /*
- * Copyright (c) 2018, Istvan Bondar,
- * Written by Istvan Bondar, ibondar2014@gmail.com
+ * Copyright (c) 2018-2026, Istvan Bondar,
+ * Written by Istvan Bondar, Seismic Location Services
+ * istvan.bondar@slsiloc.eu
  *
  * BSD Open Source License.
  * All rights reserved.
@@ -728,7 +729,7 @@ static int GetSC3Phases(EVREC *ep, PHAREC p[])
 {
     MYSQL_RES *res_set = (MYSQL_RES *)NULL;
     MYSQL_ROW row;
-    char sql[4096], psql[4096], PrevAuth[AGLEN], PrevSta[STALEN];
+    char sql[4096], psql[4096], PrevSta[STALEN];
     int i, m, phid, rdid;
     int numPhase = 0, msec = 0;
 /*
@@ -892,14 +893,9 @@ static int GetSC3Phases(EVREC *ep, PHAREC p[])
  *  Split phases into readings
  */
     PrevSta[0] = '\0';
-    strcpy(PrevAuth, InAgency);
     rdid = 1;
     for (i = 0; i < ep->numPhase; i++) {
         if (strcmp(p[i].sta, PrevSta)) {
-            p[i].rdid = rdid++;
-            p[i].init = 1;
-        }
-        else if (strcmp(p[i].auth, PrevAuth)) {
             p[i].rdid = rdid++;
             p[i].init = 1;
         }
@@ -907,7 +903,6 @@ static int GetSC3Phases(EVREC *ep, PHAREC p[])
             p[i].rdid = p[i-1].rdid;
         }
         strcpy(PrevSta, p[i].sta);
-        strcpy(PrevAuth, p[i].auth);
     }
     ep->numReading = rdid - 1;
 /*

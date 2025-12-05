@@ -697,9 +697,6 @@ display: none;
 }
 }
 </style>
-  <!--[if lt IE 9]>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
-  <![endif]-->
 </head>
 <body>
 <header id="title-block-header">
@@ -709,8 +706,8 @@ display: none;
 <ul>
 <li><a href="#changelog" id="toc-changelog">Changelog</a>
 <ul>
-<li><a href="#v3.2.1-06-sep-2023" id="toc-v3.2.1-06-sep-2023">v3.2.1 (06
-Sep 2023)</a></li>
+<li><a href="#v3.2.1-12-sep-2025" id="toc-v3.2.1-12-sep-2025">v3.2.1 (12
+Sep 2025)</a></li>
 <li><a href="#v3.2.0-10-feb-2021" id="toc-v3.2.0-10-feb-2021">v3.2.0 (10
 Feb 2021)</a></li>
 <li><a href="#v3.1.0-06-may-2020" id="toc-v3.1.0-06-may-2020">v3.1.0 (06
@@ -782,14 +779,20 @@ Feb 2008)</a></li>
 </ul>
 </nav>
 <h1 id="changelog">Changelog</h1>
-<h2 id="v3.2.1-06-sep-2023">v3.2.1 (06 Sep 2023)</h2>
+<h2 id="v3.2.1-12-sep-2025">v3.2.1 (12 Sep 2025)</h2>
 <p>This is mainly a bug fix release. Several buffer overflows have been
 fixed, as well as a bug that resulted in a segfault when attempting to
-save an old-type model file in a new-type format.</p>
-<p>A lot of backend work has also been done towards the goal of making a
-parallelizable <code>getTravelTime()</code> method. This includes
-getters for a variety of class members, and a large amount of new copy
-constructors.</p>
+save an old-type model file in a new-type format. The random pdu
+uncertainty flag ∑as also erroneously set to True in the
+pdu202009Du.geotess. This has been corrected, and it is now set to False
+by default.</p>
+<p>Significant backend work has been done towards the goal of making
+RSTT thread-safe with a parallelizable <code>getTravelTime()</code>
+method. This includes getters for a variety of class members, and a
+large amount of new copy constructors. This work is ongoing.</p>
+<p>Makefiles have been additionally been overhauled, and this version
+should compile correctly on Intel and ARM Macs, RHEL 8 and 9, Ubuntu
+24.04 LTS, and WSL equivalents with both Clang and GNU compilers.</p>
 <h2 id="v3.2.0-10-feb-2021">v3.2.0 (10 Feb 2021)</h2>
 <p>The major new feature in this update is a Python interface!
 <strong>Note that there is a minimum requirement of Python

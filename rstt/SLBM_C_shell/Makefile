@@ -22,7 +22,7 @@ ifndef CALLED_FROM_MAIN
 
 	# detect bit size
 	UNAME_M := $(shell uname -m)
-	ifeq ($(UNAME_M),$(filter $(UNAME_M),x86_64 arm64))
+	ifeq ($(UNAME_M),$(filter $(UNAME_M),x86_64 arm64 aarch64))
 		ARCH := 64
 	else
 		ARCH := 32
@@ -52,25 +52,26 @@ OUTDIR := ${HOME}/lib
 INC := -Iinclude -I../GeoTessCPP/include -I../SLBM/include
 
 # libraries
-LIBS := -lm -lstdc++ -L$(OUTDIR) -lgeotesscpp -lslbm
+#LIBS := -lm -lstdc++ -L$(OUTDIR) -lgeotesscpp -lslbm
+LIBS := -L$(OUTDIR) -lgeotesscpp -lslbm
 
 # compiling parameters
-ifeq ($(UNAME_M),arm64)
+ifeq ($(UNAME_M),$(filter $(UNAME_M),arm64 aarch64))
 	CXXFLAGS := -mcpu=native
 else
-	CXXFLAGS := -march=native
+	CXXFLAGS := -march=native -m$(ARCH)
 endif
-CXXFLAGS += -D$(OS) -m$(ARCH) -O1 -fPIC -std=c++11
+CXXFLAGS += -D$(OS) -O1 -fPIC -std=c++11
 
 # specific LD_FLAGS on Mac
 ifeq ($(OS),darwin)
 
-	# if Xcode version is >= 15, we need to add -Wl,-ld_classic to the linker
-	# see: https://developer.apple.com/documentation/xcode-release-notes/xcode-15-release-notes#Linking
-	XCODE_VERSION := $(shell ld -version_details | grep 'LLVM' | grep -oE '[0-9\.]+' | cut -d '.' -f 1)
-	ifeq ($(shell expr $(XCODE_VERSION) \>= 15), 1)
-		OTHER_LDFLAGS += -Wl,-ld_classic
-	endif
+#	# if Xcode version is >= 15, we need to add -Wl,-ld_classic to the linker
+#	# see: https://developer.apple.com/documentation/xcode-release-notes/xcode-15-release-notes#Linking
+#	XCODE_VERSION := $(shell ld -version_details | grep 'LLVM' | grep -oE '[0-9\.]+' | cut -d '.' -f 1)
+#	ifeq ($(shell expr $(XCODE_VERSION) \>= 15), 1)
+#		OTHER_LDFLAGS += -Wl,-ld_classic
+#	endif
 
 	# if using clang instead of gnu compiler, set additional LD_FLAGS
 	CLANG := $(shell $(CXX) -v 2>&1 | grep -qi clang; echo $$?)
@@ -157,7 +158,7 @@ finalize:
 
 clean:
 	@printf "$(blue)(Clean *.o) $(sgr0)"
-	$(RM) src/*.o  src/*.d
+	$(RM) src/*.o
 
 cleanall: clean
 	@printf "$(blue)(Clean docs) $(sgr0)"

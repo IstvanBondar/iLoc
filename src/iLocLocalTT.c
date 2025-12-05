@@ -1,6 +1,7 @@
 /*
- * Copyright (c) 2018, Istvan Bondar,
- * Written by Istvan Bondar, ibondar2014@gmail.com
+ * Copyright (c) 2018-2026, Istvan Bondar,
+ * Written by Istvan Bondar, Seismic Location Services
+ * istvan.bondar@slsiloc.eu
  *
  * BSD Open Source License.
  * All rights reserved.
@@ -35,7 +36,6 @@ extern FILE *errfp;
 extern int errorcode;
 extern double Moho;                                            /* Moho depth */
 extern double Conrad;                                        /* Conrad depth */
-// extern int LocalTTfromRSTT;            /* get local velocity model from RSTT */
 extern int numLocalPhaseTT;                        /* number of local phases */
 extern char LocalPhaseTT[MAXLOCALTTPHA][PHALEN];         /* local phase list */
 
@@ -45,8 +45,6 @@ extern char LocalPhaseTT[MAXLOCALTTPHA][PHALEN];         /* local phase list */
 static int ReadLocalVelocityModel(char *fname, VMODEL *LocalVelocityModelp);
 static void FreeLocalVelocityModel(VMODEL *LocalVelocityModelp);
 static TT_TABLE *AllocateLocalTTtable(int ndepths, int ndists);
-static int GetVelocityProfileFromRSTT(double lat, double lon,
-        VMODEL *LocalVelocityModelp);
 static int GenerateLocalTT(double depth, double delta,
         VMODEL *LocalVelocityModelp, char **phcd, double *ttc,
         double *dtdd, double *dtdh);
@@ -99,22 +97,12 @@ TT_TABLE *GenerateLocalTTtables(char *filename, double lat, double lon)
         600.0, 650.0, 700.0
     };
     for (i = 0; i < MAXLOCALTTPHA; i++) phcd[i] = phcd_buf + i * PHALEN;
-//    if (LocalTTfromRSTT) {
 /*
- *      get local velocity model from RSTT velocity profile at lat,lon
+ *  read local velocity model
  */
-//        if (GetVelocityProfileFromRSTT(lat, lon, &LocalVelocityModel))
-//            return (TT_TABLE *)NULL;
-//        fprintf(logfp, "Local velocity model from RSTT at (%7.2f , %6.2f)\n",lat, lon);
-//    }
-//    else {
-/*
- *      read local velocity model
- */
-        if (ReadLocalVelocityModel(filename, &LocalVelocityModel))
-            return (TT_TABLE *)NULL;
-        fprintf(logfp, "Local velocity model from %s\n", filename);
-//    }
+    if (ReadLocalVelocityModel(filename, &LocalVelocityModel))
+        return (TT_TABLE *)NULL;
+    fprintf(logfp, "Local velocity model from %s\n", filename);
     n = LocalVelocityModel.n;
     icon = LocalVelocityModel.iconr;
     imoh = LocalVelocityModel.imoho;
@@ -715,133 +703,6 @@ static void CriticalDistanceTTIntercept(int n, double *v, double *vsq,
             did[m] = did1 + 2. * did2;
         }
     }
-}
-
-/*
- *  Title:
- *     GetVelocityProfileFromRSTT
- *  Desc:
- *     Get RSTT velocity model profile from RSTT model
- *     RSTT velocity profile:
- *        0 - water depth, Vp, Vs
- *        1 - sediment depth, Vp, Vs
- *        2 - sediment depth, Vp, Vs
- *        3 - sediment depth, Vp, Vs
- *        4 - upper crust depth, Vp, Vs
- *        5 - middle crust depth, Vp, Vs
- *        6 - middle crust depth, Vp, Vs
- *        7 - lower crust depth, Vp, Vs
- *        8 - Moho depth, Vp, Vs,
- *        Vp gradient, Vs gradient
- *  Input Arguments:
- *     lat - latitude
- *     lon - longitude
- *  Output Arguments:
- *     LocalVelocityModelp - pointer to VMODEL structure
- *  Return:
- *     0/1 on success/error
- */
-static int GetVelocityProfileFromRSTT(double lat, double lon,
-                                      VMODEL *LocalVelocityModelp)
-{
-    double vp[9], vs[9], h[9], t[10], dw, vpg = 0., vsg = 0., d, c[10];
-    double rlat, rlon;
-    int i, j, k, n, nodeids[10];
-/*
- *  get interpolated node
- */
-    rlat = DEG_TO_RAD * lat;
-    rlon = DEG_TO_RAD * lon;
-    if (slbm_shell_getInterpolatedPoint(&rlat, &rlon, nodeids, c, &n,
-                                        h, vp, vs, &vpg, &vsg)) {
-        fprintf(logfp, "error in getting model from RSTT!\n");
-        fprintf(errfp, "error in getting model from RSTT!\n");
-        errorcode = 0;
-        return 1;
-    }
-    fprintf(logfp, "RSTT velocity profile at %.3f, %.3f from %d nodes\n",
-            lat, lon, n);
-    fprintf(logfp, "     i coeff node\n");
-    for (i = 0; i < n; i++)
-        fprintf(logfp, "    %2d %.3f %d\n", i, c[i], nodeids[i]);
-    fprintf(logfp, "        i   DEPTH  VP    VS\n");
-    for (i = 1; i < 9; i++)
-        t[i-1] = h[i] - h[i-1];
-    t[i-1] = 400. - h[i-1];
-    for (i = 0; i < 9; i++)
-        fprintf(logfp, "%9d %7.3f %5.3f %5.3f\n", i, h[i], vp[i], vs[i]);
-    fprintf(logfp, "    Pgrad=%f Sgrad=%f\n", vpg, vsg);
-
-/*
- *  get rid of water layer
- */
-    dw = t[0];
-    for (i = 0; i < 8; i++) {
-        vp[i] = vp[i+1];
-        vs[i] = vs[i+1];
-        t[i] = t[i+1] + dw;
-    }
-/*
- *  get rid of zero-thickness layers
- */
-    j = 8;
-    for (i = 0; i < j; i++) {
-        if (t[i] > 0.0001) continue;
-        for (k = i; k < j - 1; k++) {
-            vp[k] = vp[k+1];
-            vs[k] = vs[k+1];
-            t[k] = t[k+1];
-        }
-        j--;
-    }
-/*
- *  memory allocations
- */
-    n = 2 * j;
-    LocalVelocityModelp->n = n;
-    LocalVelocityModelp->h = (double *)calloc(n, sizeof(double));
-    LocalVelocityModelp->vp = (double *)calloc(n, sizeof(double));
-    if ((LocalVelocityModelp->vs = (double *)calloc(n, sizeof(double))) == NULL) {
-        fprintf(logfp, "GetVelocityProfileFromRSTT: cannot allocate memory!\n");
-        fprintf(errfp, "GetVelocityProfileFromRSTT: cannot allocate memory!\n");
-        errorcode = 1;
-        Free(LocalVelocityModelp->h);
-        Free(LocalVelocityModelp->vp);
-        return 1;
-    }
-/*
- *  velocity model:
- *      h [km], Vp [km/s], Vs [km/s]
- */
-    k = LocalVelocityModelp->iconr = LocalVelocityModelp->imoho = 0;
-    d = 0.;
-    for (i = 1; i < j; i++) {
-        LocalVelocityModelp->h[k] = d;
-        LocalVelocityModelp->vp[k] = vp[i-1];
-        LocalVelocityModelp->vs[k] = vs[i-1];
-        d += t[i-1];
-        if (i == 1) d += dw;
-        k++;
-        LocalVelocityModelp->h[k] = d;
-        LocalVelocityModelp->vp[k] = vp[i-1];
-        LocalVelocityModelp->vs[k] = vs[i-1];
-        k++;
-        if (i == j - 2) {
-            LocalVelocityModelp->iconr = k;
-            Conrad = d;
-        }
-    }
-    LocalVelocityModelp->h[k] = d;
-    LocalVelocityModelp->vp[k] = vp[i-1];
-    LocalVelocityModelp->vs[k] = vs[i-1];
-    LocalVelocityModelp->imoho = k;
-    Moho = d;
-    d += t[i-1];
-    k++;
-    LocalVelocityModelp->h[k] = d;
-    LocalVelocityModelp->vp[k] = vp[i] + vpg * t[i-1];
-    LocalVelocityModelp->vs[k] = vs[i] + vsg * t[i-1];
-    return 0;
 }
 
 /*

@@ -496,7 +496,7 @@ static void WriteKMLSolution(FILE *kml, SOLREC *sp, char *Eventid)
 static void WriteKMLErrorEllipse(FILE *kml, char *Styleid, char *auth,
         double evlat, double evlon, double smajax, double sminax, double strike)
 {
-    double step = TWOPI / (MAXKMLPOLYPOINTS - 1);
+    double step = (2. * PI) / (MAXKMLPOLYPOINTS - 1);
     double azim = DEG_TO_RAD * strike;
     double saz, caz, t, u, v, x, y, azi, delta, lat, lon;
     int i;

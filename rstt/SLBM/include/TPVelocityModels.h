@@ -1299,7 +1299,7 @@ class TAUP_EXP VelocityIntegrate : public TPVelocityLayer
     //! \brief Used to create the distance and tau integrand functions vmDist,
     //! and vmTau, and their associated integration objects vmDistNI and
     //! vmTauNI.
-    void                   createNumericObjects(V& v);
+    virtual void                   createNumericObjects(V& v);
 
     //! \brief The default integration tolerance
     static const double    vmIntegTol;

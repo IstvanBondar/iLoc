@@ -41,7 +41,7 @@ export OS := $(shell uname -s | tr '[:upper:]' '[:lower:]')
 
 # detect bit size
 export UNAME_M := $(shell uname -m)
-ifeq ($(UNAME_M),$(filter $(UNAME_M),x86_64 arm64))
+ifeq ($(UNAME_M),$(filter $(UNAME_M),x86_64 arm64 aarch64))
 	export ARCH := 64
 else
 	export ARCH := 32
@@ -58,6 +58,10 @@ else
 	export LIBEXT_JAVA := so
 endif
 
+# get the extension for compiled python libraries, lib directory, and python library version
+ifneq (, $(shell which $(PY3)))  # if python is installed
+	export LIBEXT_PY := $(shell $(PY3) -c 'import sysconfig; print(sysconfig.get_config_var("EXT_SUFFIX"))')
+endif
 
 # set a flag indicating to child Makefiles that they've been called from the main Makefile
 export CALLED_FROM_MAIN := true
@@ -75,8 +79,8 @@ all: initialize geotess slbm slbmc geotess_docs slbm_docs slbmc_docs clean
 
 # language-specific
 cpp:     cc
-cc:      initialize slbm         slbm_test clean
-c:       initialize slbmc       slbmc_test clean
+cc:      initialize slbm  clean
+c:       initialize slbmc clean
 docs:    initialize geotess_docs slbm_docs slbmc_docs
 cpp_docs:           cc_docs
 cc_docs:          slbm_docs

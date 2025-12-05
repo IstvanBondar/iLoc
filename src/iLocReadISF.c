@@ -1,6 +1,7 @@
 /*
- * Copyright (c) 2018, Istvan Bondar,
- * Written by Istvan Bondar, ibondar2014@gmail.com
+ * Copyright (c) 2018-2026, Istvan Bondar,
+ * Written by Istvan Bondar, Seismic Location Services
+ * istvan.bondar@slsiloc.eu
  *
  * BSD Open Source License.
  * All rights reserved.
@@ -421,7 +422,7 @@ int ReadISF(FILE *infile, int isf, EVREC *ep, HYPREC *hp[], PHAREC *pp[],
     size_t nbytes = 0;
     int yyyy, mm, dd, hh, mi, ss, msec;
     int evid = 0, rdid = 0;
-    char PrevSta[STALEN], PrevAuth[AGLEN];
+    char PrevSta[STALEN];
     int found = 0;
     int i, j, k, m, nstas = 0;
 /*
@@ -777,7 +778,7 @@ int ReadISF(FILE *infile, int isf, EVREC *ep, HYPREC *hp[], PHAREC *pp[],
  *  Split phases into readings and use station array to assign lat, lon.
  */
     PrevSta[0] = '\0';
-    strcpy(PrevAuth, InAgency);
+//    strcpy(PrevAuth, InAgency);
     rdid = 1;
     for (nstas = 0, i = 0; i < ep->numPhase; i++) {
         if (strcmp(p[i].sta, PrevSta)) {
@@ -785,16 +786,16 @@ int ReadISF(FILE *infile, int isf, EVREC *ep, HYPREC *hp[], PHAREC *pp[],
             p[i].init = 1;
             nstas++;
         }
-        else if (strcmp(p[i].auth, PrevAuth)) {
-            p[i].rdid = rdid++;
-            p[i].init = 1;
-            nstas++;
-        }
+//       else if (strcmp(p[i].auth, PrevAuth)) {
+//           p[i].rdid = rdid++;
+//           p[i].init = 1;
+//           nstas++;
+//       }
         else {
             p[i].rdid = p[i-1].rdid;
         }
         strcpy(PrevSta, p[i].sta);
-        strcpy(PrevAuth, p[i].auth);
+//        strcpy(PrevAuth, p[i].auth);
     }
     ep->numReading = rdid - 1;
 /*
@@ -814,6 +815,13 @@ int ReadISF(FILE *infile, int isf, EVREC *ep, HYPREC *hp[], PHAREC *pp[],
     if (!ep->FixedDepth)     ep->FixedDepth = h[0].depfix;
     if (!ep->FixedEpicenter) ep->FixedEpicenter = h[0].epifix;
     if (!ep->FixedOT)        ep->FixedOT = h[0].timfix;
+
+/*
+ *  Sort phase structures again so that they ordered by
+ *  delta, prista, rdid, time.
+ */
+    SortPhasesFromDatabase(ep->numPhase, p);
+
     if (verbose) {
         fprintf(logfp, "ReadISF done.\n");
         PrintPhases(ep->numPhase, p);

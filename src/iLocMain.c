@@ -1,6 +1,7 @@
 /*
- * Copyright (c) 2018, Istvan Bondar,
- * Written by Istvan Bondar, ibondar2014@gmail.com
+ * Copyright (c) 2018-2026, Istvan Bondar,
+ * Written by Istvan Bondar, Seismic Location Services
+ * istvan.bondar@slsiloc.eu
  *
  * BSD Open Source License.
  * All rights reserved.
@@ -28,12 +29,8 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 /*
- * iloc 4.2
+ * iloc 4.3
  *
- * Istvan Bondar
- * Research Centre for Astronomy and Earth Sciences,
- * Hungarian Academy of Sciences
- * ibondar2014@gmail.com
  *
  * Single-event location with RSTT travel-time predictions
  *     based on ISC location algorithm (Bondar and Storchak, 2011)
@@ -87,30 +84,30 @@
  *
  * Input files in the auxiliary data directory
  *     Configuration parameters
- *         $ILOCROOT/auxdata/iLocpars/Config.txt
- *         $ILOCROOT/auxdata/iLocpars/IASPEIPhaseMap.txt
- *         $ILOCROOT/auxdata/iLocpars/Global1DModelPhaseList.txt
+ *         $ILOCROOT/iLocAuxDir/iLocpars/Config.txt
+ *         $ILOCROOT/iLocAuxDir/iLocpars/IASPEIPhaseMap.txt
+ *         $ILOCROOT/iLocAuxDir/iLocpars/Global1DModelPhaseList.txt
 *     Global 1D travel-time tables and ellipticity corrections
- *         $ILOCROOT/auxdata/<TTimeTable>/[*].tab
- *         $ILOCROOT/auxdata/<TTimeTable>/ELCOR.dat
+ *         $ILOCROOT/iLocAuxDir/<TTimeTable>/[*].tab
+ *         $ILOCROOT/iLocAuxDir/<TTimeTable>/ELCOR.dat
  *     RSTT velocity model
- *         $ILOCROOT/auxdata/RSTTmodels/pdu202009Du.geotess
+ *         $ILOCROOT/iLocAuxDir/RSTTmodels/pdu202009Du.geotess
  *     Topography file for bounce point corrections
- *         $ILOCROOT/auxdata/topo/etopo5_bed_g_i2.bin
+ *         $ILOCROOT/iLocAuxDir/topo/etopo5_bed_g_i2.bin
  *         ETOPO1 resampled to 5'x5' resolution
  *     Flinn-Engdahl regionalization (1995)
- *         $ILOCROOT/auxdata/FlinnEngdahl/FE.dat
+ *         $ILOCROOT/iLocAuxDir/FlinnEngdahl/FE.dat
  *     Default depth grid
- *         $ILOCROOT/auxdata/FlinnEngdahl/DefaultDepth0.5.grid
+ *         $ILOCROOT/iLocAuxDir/FlinnEngdahl/DefaultDepth0.5.grid
  *     Default depth for Flinn-Engdahl regions
- *         $ILOCROOT/auxdata/FlinnEngdahl/GRNDefaultDepth.<TTimeTable>.dat
+ *         $ILOCROOT/iLocAuxDir/FlinnEngdahl/GRNDefaultDepth.<TTimeTable>.dat
  *         For locations where no default depth grid point exists.
  *     Generic variogram model for data covariance matrix
- *         $ILOCROOT/auxdata/variogram/variogram.model
+ *         $ILOCROOT/iLocAuxDir/variogram/variogram.model
  *     Magnitude attenuation Q(d,h) curves for mb calculation
- *         $ILOCROOT/auxdata/magnitude/GRmbQ.dat (Gutenberg-Richter, 1956) or
- *         $ILOCROOT/auxdata/magnitude/VCmbQ.dat (Veith-Clawson, 1972) or
- *         $ILOCROOT/auxdata/magnitude/MBmbQ.dat (Murphy-Barker, 2003)
+ *         $ILOCROOT/iLocAuxDir/magnitude/GRmbQ.dat (Gutenberg-Richter, 1956) or
+ *         $ILOCROOT/iLocAuxDir/magnitude/VCmbQ.dat (Veith-Clawson, 1972) or
+ *         $ILOCROOT/iLocAuxDir/magnitude/MBmbQ.dat (Murphy-Barker, 2003)
  *
  * Configuration parameters
  *     Output files
@@ -202,7 +199,6 @@
  *         UseRSTTPgLg = 1  - use RSTT Pg/Lg predictions?
  *     Local velocity model
  *         MaxLocalTTDelta = 3. - use local TT up to this distance
- *         LocalTTfromRSTT = 0  - get local TT from RSTT model at epicentre
  *         LocalVmodelFile =    - pathname for local velocity model (non-RSTT)
  *
  * Instructions
@@ -255,7 +251,6 @@
  *         UseRSTTPnSn        - use RSTT Pn/Sn predictions?
  *         UseRSTTPgLg        - use RSTT Pg/Lg predictions?
  *         MaxLocalTTDelta    - use local TT up to this distance
- *         LocalTTfromRSTT    - get local TT from RSTT model at epicentre
  *         LocalVmodelFile    - pathname for local velocity model (non-RSTT)
  *         CalculateML        - calculate ML?
  *         CalculatemB        - calculate broadband mB?
@@ -446,7 +441,6 @@ char RSTTmodel[FILENAMELEN];                                   /* RSTT model */
 int UseRSTTPnSn;                               /* use RSTT Pn/Sn predictions */
 int UseRSTTPgLg;                               /* use RSTT Pg/Lg predictions */
 int UseRSTT;                                         /* use RSTT predictions */
-// int LocalTTfromRSTT;                             /* local TT from RSTT model */
 /*
  *
  * file and database pointers
@@ -673,7 +667,7 @@ int main(int argc, char *argv[])
  *
  */
     if ((buffer = getenv("ILOCROOT"))) {
-        sprintf(auxdir, "%s/auxdata", buffer);
+        sprintf(auxdir, "%s/iLocAuxDir", buffer);
 
     }
     else {
@@ -873,7 +867,6 @@ int main(int argc, char *argv[])
 /*
  *  generate static local TT tables from local velocity model if given
  */
-//    if (UseLocalTT && !LocalTTfromRSTT) {
     if (UseLocalTT) {
         fprintf(logfp, "    read local velocity model: %s\n", LocalVmodelFile);
         if ((LocalTTtables = GenerateLocalTTtables(LocalVmodelFile,
@@ -894,7 +887,6 @@ int main(int argc, char *argv[])
         if (UseRSTTPnSn) fprintf(logfp, " Pn/Sn");
         if (UseRSTTPgLg) fprintf(logfp, " Pg/Lg");
         fprintf(logfp, " will be used.\n");
-//        if (LocalTTfromRSTT) fprintf(logfp, "Local travel time tables are generated from RSTT\n");
         slbm_shell_create();
         if (slbm_shell_loadVelocityModelBinary(RSTTmodel)) {
             fprintf(errfp, "ABORT: Cannot open RSTT model %s\n", RSTTmodel);
@@ -1563,6 +1555,5 @@ static void PrintHelp()
     printf("    UseRSTTPnSn        - use RSTT Pn/Sn predictions? [0/1]\n");
     printf("    UseRSTTPgLg        - use RSTT Pg/Lg predictions? [0/1]\n");
     printf("    MaxLocalTTDelta    - use local TT up to this distance\n");
-//    printf("    LocalTTfromRSTT    - get local TT from RSTT model at epicentre\n");
     printf("    LocalVmodelFile    - pathname for local velocity model (non-RSTT)\n");
 }

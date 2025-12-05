@@ -1,6 +1,7 @@
 /*
- * Copyright (c) 2018, Istvan Bondar,
- * Written by Istvan Bondar, ibondar2014@gmail.com
+ * Copyright (c) 2018-2026, Istvan Bondar,
+ * Written by Istvan Bondar, Seismic Location Services
+ * istvan.bondar@slsiloc.eu
  *
  * BSD Open Source License.
  * All rights reserved.
@@ -289,7 +290,7 @@ int NASearch(int nsta, SOLREC *sp, PHAREC p[], TT_TABLE *TTtables,
     READING *rdindx = (READING *)NULL;                          /* readings */
     double *misfit = (double *)NULL;
     double mfitmin = 0., mfitmean = 0., mfitminc = 0.;
-    double du = 1., gap = 360., sgap = 360., dummy = 0.;
+    double du = 1., gap = 360., sgap = 360., dummy = 0., cpq = 0.;
     double *esaz = (double *)NULL;
     double **na_models = (double **)NULL;
     double xcur[NA_MAXND], model_opt[NA_MAXND];
@@ -393,7 +394,7 @@ int NASearch(int nsta, SOLREC *sp, PHAREC p[], TT_TABLE *TTtables,
 /*
  *  disable correlated errors for reasonably balanced networks
  */
-    du = GetdUGapSgap(ksta, esaz, &gap, &sgap);
+    du = GetdUGapSgap(ksta, esaz, &gap, &sgap, &cpq);
     Free(esaz);
     DoCorrelatedErrors_cf = DoCorrelatedErrors;
     if (np > 30 && du < 0.7)

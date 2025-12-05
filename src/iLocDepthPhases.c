@@ -1,6 +1,7 @@
 /*
- * Copyright (c) 2018, Istvan Bondar,
- * Written by Istvan Bondar, ibondar2014@gmail.com
+ * Copyright (c) 2018-2026, Istvan Bondar,
+ * Written by Istvan Bondar, Seismic Location Services
+ * istvan.bondar@slsiloc.eu
  *
  * BSD Open Source License.
  * All rights reserved.
@@ -91,8 +92,9 @@ int DepthResolution(SOLREC *sp, READING *rdindx, PHAREC p[], int isverbose)
     extern int MinCorePhases;   /* min number of core reflections ([PS]c[PS] */
     extern int MindDepthPhaseAgencies;/* min agencies reporting depth phases */
     int ageindex[MAXBUF];
-    int i, k, m, np, nsdef = 0, ncoredef = 0, nlocal = 0;
+    int i, k, m, np, nspdef = 0, ncoredef = 0, nlocal = 0;
     int hasDepthResolution = 0, nagent = 0;
+    double delta = 150. * RAD_TO_DEG / EARTH_RADIUS;
     for (i = 0; i < numAgencies; i++) ageindex[i] = 0;
 /*
  *  loop over readings
@@ -126,7 +128,7 @@ int DepthResolution(SOLREC *sp, READING *rdindx, PHAREC p[], int isverbose)
  */
             if (p[m].firstP && p[k].firstS && p[m].delta <= MaxSPDistDeg &&
                 (p[m].duplicate * p[k].duplicate) == 0)
-                nsdef++;
+                nspdef++;
         }
     }
 /*
@@ -157,7 +159,7 @@ int DepthResolution(SOLREC *sp, READING *rdindx, PHAREC p[], int isverbose)
  *      (has_depdpres || nlocal >= MinLocalStations || nsdef >= MinSPpairs ||
  *       (ncoredef >= MinCorePhases && nagent >= MindDepthPhaseAgencies)
  */
-    if (nlocal >= MinLocalStations || nsdef >= MinSPpairs ||
+    if (nlocal >= MinLocalStations || nspdef >= MinSPpairs ||
         (ncoredef >= MinCorePhases && nagent >= MindDepthPhaseAgencies))
         hasDepthResolution = 1;
     if (isverbose) {
@@ -165,7 +167,7 @@ int DepthResolution(SOLREC *sp, READING *rdindx, PHAREC p[], int isverbose)
         fprintf(logfp, "        %d stations within %.2f degrees\n",
                 nlocal, MaxLocalDistDeg);
         fprintf(logfp, "        %d defining S-P pairs within %.2f degrees\n",
-                nsdef, MaxSPDistDeg);
+                nspdef, MaxSPDistDeg);
         fprintf(logfp, "        %d agencies reported %d defining PcP/ScS phases\n",
                 nagent, ncoredef);
     }

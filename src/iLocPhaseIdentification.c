@@ -1,6 +1,7 @@
 /*
- * Copyright (c) 2018, Istvan Bondar,
- * Written by Istvan Bondar, ibondar2014@gmail.com
+ * Copyright (c) 2018-2026, Istvan Bondar,
+ * Written by Istvan Bondar, Seismic Location Services
+ * istvan.bondar@slsiloc.eu
  *
  * BSD Open Source License.
  * All rights reserved.
@@ -154,7 +155,6 @@ int IdentifyPhases(SOLREC *sp, READING *rdindx, PHAREC p[], EC_COEF *ec,
  *      set unknown phases with amplitudes to AMB or AMS depending on period
  */
         if (streq(p[i].ReportedPhase, "") && p[i].numamps) {
-//            if (p[i].a[0].per > mbMinPeriod && p[i].a[0].per < mbMaxPeriod)
                 strcpy(p[i].phase, "AMB");
             if (p[i].a[0].per > MSMinPeriod && p[i].a[0].per < MSMaxPeriod)
                 strcpy(p[i].phase, "AMS");
@@ -527,7 +527,7 @@ static void PhaseIdentification(SOLREC *sp, READING *rdindx, PHAREC p[],
  *              phases ordered by time within a reading
  */
             if (m) {
-                if (fabs(p[k].time - p[k-1].time) < 0.05) {
+                if (fabs(p[k].time - p[k-1].time) < SAMETIME_TOL) {
 /*
  *                  if previous phaseid is null, rename it
  */
@@ -754,6 +754,16 @@ static void PhaseIdentification(SOLREC *sp, READING *rdindx, PHAREC p[],
  *          otherwise set to best fitting phase
  */
             else {
+/*
+ *              if the best fitting phase was Lg, rename it to Sg
+ */
+                if (streq(candidate_phase, "Lg"))
+                    strcpy(candidate_phase, "Sg");
+/*
+ *              however, if it was reported as Lg, keep it as Lg
+ */
+                if (streq(mappedphase, "Lg") && streq(candidate_phase, "Sg"))
+                    strcpy(candidate_phase, "Lg");
                 if (verbose > 3) {
                     fprintf(logfp, "            %9d %9d %-6s %-8s -> ",
                             p[k].rdid, p[k].phid, p[k].sta, mappedphase);

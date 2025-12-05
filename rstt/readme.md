@@ -1,5 +1,5 @@
 RSTT v3.2.1 User Manual
-===========================
+=======================
 
 <!-- github-style badges/shields -->
 <style type="text/css">p img{height:24px;}</style>
@@ -12,23 +12,21 @@ RSTT v3.2.1 User Manual
 
 Tested on:
 
-[![MacOS](https://img.shields.io/badge/MacOS-10.13%20%7C%2010.14%20%7C%2010.15-999999?logo=apple&logoColor=eee)](https://www.apple.com/)
-[![WSL](https://img.shields.io/badge/WSL-Ubuntu%2018.04-e95420?logo=windows)](https://docs.microsoft.com/windows/wsl/about)
-[![Ubuntu](https://img.shields.io/badge/Ubuntu-16.04%20%7C%2018.04%20LTS-e95420?logo=ubuntu&logoColor=eee)](https://www.ubuntu.com/)
-[![Fedora](https://img.shields.io/badge/Fedora-31-294172?logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgMjY3IDI2NyI+PGRlZnMvPjxwYXRoIGZpbGw9IiM3ZjdmN2YiIGQ9Ik0yNjYuNjI2IDEzMy41MDZjMC03My41MjUtNTkuNjA0LTEzMy4xMy0xMzMuMTI4LTEzMy4xM0M2MC4wMDcuMzc2LjQyNiA1OS45My4zNzQgMTMzLjQxMnYxMDMuMDIxYy4wNCAxNi42ODUgMTMuNTcxIDMwLjE5MSAzMC4yNjYgMzAuMTkxaDEwMi45MTJjNzMuNS0uMDI5IDEzMy4wNzQtNTkuNjEzIDEzMy4wNzQtMTMzLjExOCIvPjxwYXRoIGlkPSJhIiBmaWxsPSJub25lIiBzdHJva2U9IiNiMmIyYjIiIHN0cm9rZS13aWR0aD0iMjkuMjEiIGQ9Ik03Ny4xMjYgMTQyLjA5OGg0Ny44NDV2NDcuODQ0YzAgMjYuNDEtMjEuNDM0IDQ3Ljg0NS00Ny44NDUgNDcuODQ1LTI2LjQxIDAtNDcuODQ0LTIxLjQzNC00Ny44NDQtNDcuODQ1IDAtMjYuNDEgMjEuNDM0LTQ3Ljg0NCA0Ny44NDQtNDcuODQ0eiIvPjx1c2UgdHJhbnNmb3JtPSJyb3RhdGUoMTgwIDEyNC44NTYgMTQyLjE0NCkiIHhsaW5rOmhyZWY9IiNhIi8+PHBhdGggaWQ9ImIiIGZpbGw9IiNmZmYiIGQ9Ik0xMzkuNjA3IDEyNy41M3Y2Mi4zNDVjMCAzNC41MDQtMjcuOTc1IDYyLjQ4LTYyLjQ4IDYyLjQ4LTUuMjM1IDAtOC45NTctLjU5LTEzLjgwMy0xLjg1Ny03LjA2Ni0xLjg1LTEyLjg0LTcuNjQzLTEyLjg0Mi0xNC4zODEgMC04LjE0NiA1LjkxMi0xNC4wNyAxNC43NS0xNC4wNyA0LjIwNiAwIDUuNzMzLjgwNyAxMS44OTUuODA3IDE4LjE5MSAwIDMyLjk0Ny0xNC43MzUgMzIuOTgtMzIuOTI2VjE2MS4yN2E0LjY1NCA0LjY1NCAwIDAwLTQuNjYtNC42NDhsLTIxLjY2NS0uMDA1Yy04LjA3MiAwLTE0LjU5NC02LjQzOC0xNC41OTQtMTQuNTMyLS4wMDQtOC4xNDUgNi41OS0xNC41NTcgMTQuNzQ5LTE0LjU1NyIvPjx1c2UgdHJhbnNmb3JtPSJyb3RhdGUoMTgwIDEyNC44NTYgMTQyLjE0NCkiIHhsaW5rOmhyZWY9IiNiIi8+PC9zdmc+)](https://getfedora.org/)
-[![CentOS](https://img.shields.io/badge/CentOS-7%20%7C%208-262577?logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA5MSA5MC41Ij48cGF0aCBmaWxsPSIjYjRiZWMxIiBzdHJva2U9IiNmZmYiIHN0cm9rZS13aWR0aD0iMi4wMDIiIGQ9Ik00NS44MSA0MS4yMWwtMTkuOC0xOS45IDE5LjgtMTkuOSAxOS44IDE5Ljl6Ii8+PHBhdGggZmlsbD0iIzM5NGQ1NCIgc3Ryb2tlPSIjZmZmIiBzdHJva2Utd2lkdGg9IjIuMDAyIiBkPSJNNjkuODEgNjUuMjFsLTE5LjgtMTkuOSAxOS44LTE5LjkgMTkuOCAxOS45eiIvPjxwYXRoIGZpbGw9IiNmY2U5NGYiIGQ9Ik0xNC43MSAxNC4xMWgyN3YyNi45aC0yN3oiLz48cGF0aCBmaWxsPSIjYjRiZWMxIiBkPSJNNDkuNzEgNDkuMjFoMjYuOHYyN2gtMjYuOHoiLz48cGF0aCBmaWxsPSIjNGY2YTc0IiBzdHJva2U9IiNmZmYiIHN0cm9rZS13aWR0aD0iMi4wMDIiIGQ9Ik00MS42MSA0NS4zMWwtMjAuMSAxOS44LTIwLjEtMTkuOCAyMC4xLTE5Ljh6Ii8+PHBhdGggZmlsbD0iIzRmNmE3NCIgZD0iTTQ5LjgxIDE0LjMxaDI2Ljl2MjYuOWgtMjYuOXoiLz48ZyBzdHJva2U9IiNmZmYiIHN0cm9rZS13aWR0aD0iMi4wMDIiPjxwYXRoIGZpbGw9IiM4YTlhYTAiIGQ9Ik02NS42MSA2OS4zMWwtMjAuMSAxOS44LTIwLjEtMTkuOCAyMC4xLTE5Ljh6TTEzLjcxIDEzLjIxaDI4djI3LjloLTI4eiIvPjxwYXRoIGZpbGw9Im5vbmUiIGQ9Ik00OS43MSA0OS4yMWgyNy44djI4aC0yNy44ek00OS44MSAxMy4zMWgyNy45djI3LjloLTI3Ljl6Ii8+PHBhdGggZmlsbD0iIzM5NGQ1NCIgZD0iTTEzLjcxIDQ5LjIxaDI4djI4aC0yOHoiLz48cGF0aCBmaWxsPSJub25lIiBkPSJNNDEuNjEgNDUuMzFsLTIwLjEgMTkuOC0yMC4xLTE5LjggMjAuMS0xOS44ek00NS44MSA0MS4yMWwtMTkuOC0xOS45IDE5LjgtMTkuOSAxOS44IDE5Ljl6TTY1LjYxIDY5LjMxbC0yMC4xIDE5LjgtMjAuMS0xOS44IDIwLjEtMTkuOHpNNjkuODEgNjUuMjFsLTE5LjgtMTkuOSAxOS44LTE5LjkgMTkuOCAxOS45eiIvPjwvZz48L3N2Zz4=)](https://www.centos.org/)
+[![MacOS](https://img.shields.io/badge/MacOS-x86%20/%20ARM-999999?logo=apple&logoColor=eee)](https://www.apple.com/)
+[![WSL](https://img.shields.io/badge/WSL-Ubuntu%2024.04%20LTS-e95420?logo=linux&logoColor=fff)](https://docs.microsoft.com/windows/wsl/about)
+[![RHEL](https://img.shields.io/badge/RHEL%208%20%7C%209-ee0000?logo=redhat&logoColor=fff)](https://www.redhat.com/)
 
 
 Compiling RSTT from source
-------------------------------
+--------------------------
 
-In RSTT v3.2.1, no paths should need to be specified in any environment
-variables to compile and run. During the compilation process, the *Makefiles*
-will point to the correct library paths within the default directory structure.
-If you are having difficulty with strange errors related to paths during
-compilation, try and temporarily remove any remnants of past RSTT versions in
-environment variables such as `$PATH`, `$LD_LIBRARY_PATH`, `$DYLD_LIBRARY_PATH`,
-and `$SLBM_ROOT` or `$SLBM_HOME`.
+In the latest versions of RSTT, no paths should need to be specified in any
+environment variables to compile and run. During the compilation process, the
+*Makefiles* will point to the correct library paths within the default directory
+structure. If you are having difficulty with strange errors related to paths
+during compilation, try and temporarily remove any remnants of past RSTT
+versions in environment variables such as `$PATH`, `$LD_LIBRARY_PATH`,
+`$DYLD_LIBRARY_PATH`, and `$SLBM_ROOT` or `$SLBM_HOME`.
 
 When writing your own codes that utilize the RSTT libraries, you may find it
 useful to set one of the following environmental variables to the root directory
@@ -40,59 +38,49 @@ of RSTT:
 4. `$SLBM_HOME`
 
 In both the Java and Python interfaces, RSTT will first attempt to load the
-appropriate libraries through the system paths. If that fails, they will fall
-back to searching the path provided in the above variables, in order.
+appropriate libraries through default system paths. If that fails, they will
+fall back to searching the path provided in the above variables, in order.
 
 
 ### Dependencies
 
+<style>
+div.sxs div.sourceCode{display:inline-block;max-width:450px;vertical-align: top;}
+</style>
 
 #### MacOS
 
-Below is a list of packages and software required to build RSTT from source. The
-version numbers listed are not necessarily required to compile without error;
-they are simply those that were used and tested in development.
+Below is a list of packages and software required to build all interfaces and
+documentation of RSTT from source. The version numbers listed are those that
+were used and tested in development. RSTT should compile and run on much older
+versions of these components.
 
-Software  | Version        | Purpose
-:---------|:---------------|:------------------------------
-make      | 3.81           | Running compile scripts
-gcc       | 4.2.1 (XCode)  | Build C library and tests
-g++       | 4.2.1 (XCode)  | Build GeoTess and core RSTT libraries and tests
-gfortran  | 9.3.0          | Build Fortran library and tests
-java      | openjdk 13.0.2 | Build Java JNI library and tests
-javac     | openjdk 13.0.2 | Build Java JNI library and tests
-jar       | openjdk 13.0.2 | Build Java JNI library and tests 
-javadoc   | openjdk 13.0.2 | Build documentation for Java code
-doxygen   | 1.8.17         | Build documentation for C++, C, and Fortran code
-python    | 3.8.3          | Run Python library and tests
-pip       | 20.1.1         | Build Python module
-sphinx    | 3.3.1          | Build documentation for Python code
+Software  | Version                  | Purpose
+:---------|:-------------------------|:------------------------------
+make      | 3.81                     | Running compile scripts
+gcc       | 17.0.0 (Clang)           | Build C library and tests
+g++       | 17.0.0 (Clang)           | Build GeoTess and core RSTT libraries and tests
+gfortran  | 14.2.0 (GNU)             | Build Fortran library and tests
+java      | openjdk 24.0.1 (Temurin) | Build Java JNI library and tests
+javac     | openjdk 24.0.1 (Temurin) | Build Java JNI library and tests
+jar       | openjdk 24.0.1 (Temurin) | Build Java JNI library and tests 
+javadoc   | openjdk 24.0.1 (Temurin) | Build documentation for Java code
+doxygen   | 1.13.2                   | Build documentation for C++, C, and Fortran code
+python    | 3.13.3                   | Run Python library and tests
+pip       | 25.1.1                   | Build Python module
+sphinx    | 8.2.3                    | Build documentation for Python code
 
-The easiest way to satisfy these dependencies on a Mac is to install the
-[Homebrew][brew] package manager. Following that, you can install the necessary
-dependencies by running these commands in a terminal window:
-
-```bash
-$ brew update
-$ brew install gcc gfortran openjdk doxygen python3 pybind11 sphinx-doc
-$ python3 -m pip install sphinx-autodoc-typehints
-```
-
-NOTE: You can also install [pybind11][pybind11], [Sphinx][sphinx], and related
-modules directly through `pip`.
+The easiest way to satisfy these dependencies on MacOS is to use
+[Mamba][mamba]/[conda-forge][conda-forge] for Python and the [Homebrew][brew]
+package manager for all other languages. Following that, you can install the
+necessary dependencies by running these commands in a terminal window from the
+main RSTT directory:
 
 ```bash
-$ python3 -m pip install pybind11 sphinx sphinx-autodoc-typehints
+$ xcode-select --install
+$ brew install temurin gfortran doxygen
+$ conda env create -n rstt -f SLBM_Py_shell/environment.yml
 ```
-
-If you are having trouble with installing things with `pip` due to disk/folder
-permissions, try adding `--user` to the `pip` flags in order to install modules
-to a local directory.
-
-```bash
-$ python3 -m pip install --user pybind11 sphinx sphinx-autodoc-typehints
-```
-
 
 #### Linux
 
@@ -102,47 +90,50 @@ they are simply those that were used and tested in development.
 
 Software  | Version           | Purpose
 :---------|:------------------|:------------------------------
-make      | 4.2.1             | Running compile scripts
-gcc       | 9.3.1             | Build C library and tests
-g++       | 9.3.1             | Build GeoTess and core RSTT libraries and tests
-gfortran  | 9.3.1             | Build Fortran library and tests
-java      | openjdk 1.8.0_242 | Build Java JNI library and tests
-javac     | openjdk 1.8.0_242 | Build Java JNI library and tests
-jar       | openjdk 1.8.0_242 | Build Java JNI library and tests 
-javadoc   | openjdk 1.8.0_242 | Build documentation for Java code
-doxygen   | 1.8.15            | Build documentation for C++, C, and Fortran code
-python    | 3.6.8             | Run Python library and tests
-pip       | 8.1.1             | Build Python module
-sphinx    | 3.3.1             | Build documentation for Python code
+make      | 4.3               | Running compile scripts
+gcc       | 13.0.0            | Build C library and tests
+g++       | 13.0.0            | Build GeoTess and core RSTT libraries and tests
+gfortran  | 13.0.0            | Build Fortran library and tests
+java      | openjdk 21.0.5    | Build Java JNI library and tests
+javac     | openjdk 21.0.5    | Build Java JNI library and tests
+jar       | openjdk 21.0.5    | Build Java JNI library and tests 
+javadoc   | openjdk 21.0.5    | Build documentation for Java code
+doxygen   | 1.9.8             | Build documentation for C++, C, and Fortran code
+python    | 3.10.16           | Run Python library and tests
+pip       | 24.2              | Build Python module
+sphinx    | 7.2.6             | Build documentation for Python code
 
-The easiest way to satisfy these dependencies on Linux is, depending
-on your distro and package manager, by running one of these sets of commands
-in a termal window:
-
-<style>
-div.sxs div.sourceCode{display:inline-block;max-width:450px;vertical-align: top;}
-</style>
+The easiest way to satisfy these dependencies on Linux, depending on your
+distro and package manager, is by running the appropriate commands below in a
+terminal window:
 
 ```bash
 # C++, C
-$ sudo apt install build-essentials
+$ sudo apt install build-essential
 
 # Fortran
 $ sudo apt install gfortran
 
 # Java
-$ sudo apt install default-jdk
+$ sudo apt install default-jdk default-jre
 
-# Python
-$ sudo apt install python3-pip python3-devel python3-pybind11
+# Python (standard)
+$ sudo apt install python3-pip python3-pip-whl python3-dev python3-pybind11 pybind11-dev
+
+# Python (conda-forge)
+$ conda env create -n rstt -f SLBM_Py_shell/environment.yml
 
 # documentation
-$ sudo apt install doxygen python3-sphinx python3-sphinx-autodoc-typehints
+$ sudo apt install doxygen pandoc python3-sphinx python3-sphinx-autodoc-typehints python3-sphinx-rtd-theme
 ```
 
 ```bash
-# C++, C
-$ sudo dnf install kernel-devel gcc gcc-c++
+# enable additional package repo
+$ sudo dnf config-manager --set-enabled crb         # RHEL 9
+$ sudo dnf config-manager --set-enabled powertools  # RHEL 8
+
+# C, C++
+$ sudo dnf group install 'Development Tools'
 
 # Fortran
 $ sudo dnf install gcc-gfortran
@@ -150,62 +141,27 @@ $ sudo dnf install gcc-gfortran
 # Java
 $ sudo dnf install java-devel
 
-# Python
-$ sudo dnf install python3-devel
-$ python3 -m pip install pybind11
+# Python (stanard)
+$ sudo dnf install python3-devel python3-wheel python3-pybind11 pybind11-devel
+
+# Python (conda-forge)
+$ conda env create -n rstt -f SLBM_Py_shell/environment.yml
 
 # documentation
-$ sudo dnf config-manager --set-enabled powertools
-$ sudo dnf install doxygen python3-sphinx
-$ python3 -m pip install sphinx-autodoc-typehints
+$ sudo dnf install doxygen pandoc python3-sphinx
+$ sudo python3 -m pip install sphinx-autodoc-typehints sphinx-rtd-theme
 ```
-
-```bash
-# C++, C
-$ sudo yum install kernel-devel gcc gcc-c++
-
-# Fortran
-$ sudo yum install gcc-gfortran
-
-# Java
-$ sudo yum install java-devel
-
-# Python
-$ sudo yum install python3-devel
-$ python3 -m pip install pybind11
-
-# documentation
-$ sudo yum config-manager --set-enabled PowerTools
-$ sudo yum install doxygen python3-sphinx
-$ python3 -m pip install sphinx-autodoc-typehints
-```
-
-NOTE: On any distro, you can install [pybind11][pybind11], [Sphinx][sphinx], and
-related modules directly through `pip`.
-
-```bash
-$ python3 -m pip install pybind11 sphinx sphinx-autodoc-typehints
-```
-
-If you are having trouble with installing things with `pip` due to disk/folder
-permissions, try adding `--user` to the `pip` flags in order to install modules
-to a local directory.
-
-```bash
-$ python3 -m pip install --user pybind11 sphinx sphinx-autodoc-typehints
-```
-
 
 ### Build instructions
 
 RSTT is developed in C++, but it also has interfaces in C, Fortran, Java, and
-Python. RSTT is distributed in various precompiled forms on [sandia.gov/rstt][rstt],
-but if you prefer, or need, to compile it from source, yourself, the `Makefiles`
-have been designed so that you need only compile the minimum amount of code
-necessary to use RSTT with your language of choice. Do note, however, that
-because RSTT is developed in C++, the core C++ libraries will have to be
-compiled regardless of whether or not you intend to use only the C, Fortran,
-Java, or Python interfaces.
+Python. RSTT is distributed in various precompiled forms on
+[sandia.gov/rstt][rstt], but if you prefer—or need—to compile it from source,
+the `Makefiles` have been designed so that you need only compile the minimum
+amount of code necessary to use RSTT with your language of choice. Do note,
+however, that because RSTT is developed in C++, the core C++ libraries will have
+to be compiled regardless of whether or not you intend to use only the C,
+Fortran, Java, or Python interfaces.
 
 To generally compile RSTT in any of its languages, use the commands, below:
 
@@ -250,7 +206,7 @@ Command              | Description
 
 
 Usage examples
-------------------
+--------------
 
 In the `usage_examples` directory, there is one example program for each of the
 languages supported by RSTT.
@@ -285,7 +241,7 @@ segments.
 
 
 Path troubleshooting
------------------------
+--------------------
 
 Care was taken to make linking to the RSTT libraries as painless as possible.
 For any of the languages, you can run `usage_examples/make.sh`, and it will
@@ -295,8 +251,8 @@ these are the commands used to link and compile the Fortran usage example on
 MacOS,
 ```bash
 # NOTE: $RSTT_ROOT = /path/to/rstt
-$ gfortran -mcpu=native -Ddarwin -m64 -O1 -fno-underscoring -cpp -ffree-line-length-none -I$RSTT_ROOT/GeoTessCPP/include -I$RSTT_ROOT/SLBM/include -I$RSTT_ROOT/SLBM_Fort_shell/include -o fortran_example.o -c fortran_example.f90
-$ gfortran -mcpu=native -Ddarwin -m64 -O1 -fno-underscoring -cpp -ffree-line-length-none -Wl,-rpath,$RSTT_ROOT/lib -o fortran_example fortran_example.o -lm -lstdc++ -L$RSTT_ROOT/lib -lgeotesscpp -lslbm -lslbmFshell
+$ gfortran -mcpu=native -Ddarwin -O1 -fno-underscoring -cpp -ffree-line-length-none -I$RSTT_ROOT/GeoTessCPP/include -I$RSTT_ROOT/SLBM/include -I$RSTT_ROOT/SLBM_Fort_shell/include -o fortran_example.o -c fortran_example.f90
+$ gfortran -mcpu=native -Ddarwin -O1 -fno-underscoring -cpp -ffree-line-length-none -Wl,-rpath,$RSTT_ROOT/lib -o fortran_example fortran_example.o -lm -lstdc++ -L$RSTT_ROOT/lib -lgeotesscpp -lslbm -lslbmFshell
 ```
 
 For Java programs, you have to ensure that `libslbmjni` is in your
@@ -344,7 +300,7 @@ folder inside of `/path/to/rstt/lib`.
 
 
 Contact Information
------------------------
+-------------------
 
 For questions/issues/comments about the software, please contact:
 
@@ -358,12 +314,14 @@ contact:
 * [Mike Begnaud][lanl] (Los Alamos National Laboratory)
 
 
-[//]:       # (list references below)
-[brew]:     https://brew.sh/
-[pybind11]: https://github.com/pybind/pybind11
-[sphinx]:   https://www.sphinx-doc.org/
-[rstt]:     https://www.sandia.gov/rstt
-[docs]:     http://www.sandia.gov/rstt/software/documentation/
-[snl]:      mailto:byoung@sandia.gov
-[llnl]:     mailto:smyers@llnl.gov
-[lanl]:     mailto:mbegnaud@lanl.gov
+[//]:        # (list references below)
+[mamba]:       https://mamba.readthedocs.io/
+[conda-forge]: https://conda-forge.org/
+[brew]:        https://brew.sh/
+[pybind11]:    https://github.com/pybind/pybind11
+[sphinx]:      https://www.sphinx-doc.org/
+[rstt]:        https://www.sandia.gov/rstt
+[docs]:        http://www.sandia.gov/rstt/software/documentation/
+[snl]:         mailto:byoung@sandia.gov
+[llnl]:        mailto:myers30@lllnl.gov
+[lanl]:        mailto:mbegnaud@lanl.gov

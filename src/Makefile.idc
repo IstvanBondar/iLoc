@@ -95,7 +95,6 @@ OBJS = $(SRCS:.c=.o)
 #
 CC = gcc
 ILOCINC = -I$(ILOC)/include -I$(ILOC)/rstt/SLBM/include -I$(ILOC)/rstt/SLBM_C_shell/include
-#ILOCLIBS = $(LAPACK) -L$(HOME)/lib -lslbm -lslbmCshell -lgeotesscpp -L${ORACLE_HOME}/lib -lclntsh -ldl -lm
 ILOCLIBS = $(LAPACK) -L$(TARGETLIB) -lslbm -lslbmCshell -lgeotesscpp -L$(TARGETLIB) -lclntsh -ldl -lm
 CFLAGS = $(DEBUG) $(MACOS) -m$(ARCH) -DIDCDB=1 -DORASQL=1 $(ILOCINC)
 

@@ -1,6 +1,7 @@
 /*
- * Copyright (c) 2018, Istvan Bondar,
- * Written by Istvan Bondar, ibondar2014@gmail.com
+ * Copyright (c) 2018-2026, Istvan Bondar,
+ * Written by Istvan Bondar, Seismic Location Services
+ * istvan.bondar@slsiloc.eu
  *
  * BSD Open Source License.
  * All rights reserved.
@@ -778,7 +779,7 @@ static double GetStationmB(int start, int n, PHAREC p[], int mtypeid,
  */
             if (streq(p[i].phase, "AMB") || strchr(p[i].rep, '@'))
                 amp /= 1000.;
-            apert = amp / TWOPI;
+            apert = amp / (2. * PI);
 /*
  *          keep track of maximum amplitude
  */

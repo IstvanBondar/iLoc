@@ -1,6 +1,7 @@
 /*
- * Copyright (c) 2018, Istvan Bondar,
- * Written by Istvan Bondar, ibondar2014@gmail.com
+ * Copyright (c) 2018-2026, Istvan Bondar,
+ * Written by Istvan Bondar, Seismic Location Services
+ * istvan.bondar@slsiloc.eu
  *
  * BSD Open Source License.
  * All rights reserved.
@@ -127,10 +128,10 @@
  * tolerance values
  */
 #define NULLVAL 9999999                                       /* null value */
-#define SAMETIME_TOL 0.1              /* time tolerance for duplicate picks */
 #define DEPSILON 1.e-8               /* for testing floating point equality */
 #define CONV_TOL 1.e-8                             /* convergence tolerance */
 #define ZERO_TOL 1.e-10                                   /* zero tolerance */
+#define SAMETIME_TOL 0.15             /* time tolerance for duplicate picks */
 /*
  * limits (array sizes)
  */
@@ -163,7 +164,6 @@
  */
 #define PI    M_PI                                           /* value of pi */
 #define PI2   M_PI_2                                       /* value of pi/2 */
-#define TWOPI 2 * PI                                        /* value of 2pi */
 #define EARTH_RADIUS 6371.                                /* Earth's radius */
 #define RAD_TO_DEG (180./PI)                   /* radian - degree transform */
 #define DEG_TO_RAD (PI/180.)                   /* degree - radian transform */
@@ -354,6 +354,7 @@ typedef struct network_qual {
     double gap;                              /* primary azimuthal gap [deg] */
     double sgap;                           /* secondary azimuthal gap [deg] */
     double du;                                    /* network quality metric */
+    double cpq;                                  /* cyclic polygon quotient */
     int ndefsta;                             /* number of defining stations */
     int ndef;                                  /* number of defining phases */
     double mindist;                                       /* min dist [deg] */
@@ -367,10 +368,10 @@ typedef struct network_qual {
 typedef struct hypo_qual {
     int hypid;                                             /* hypocenter id */
     int numStaWithin10km;       /* number of defining stations within 10 km */
-    int GT5candidate;                    /* 1 if GT5 candidate, 0 otherwise */
+    int nspdef150;            /* number of defining S-P pairs within 150 km */
+    int GT5candidatedU;      /* 1 if GT5 candidate, 0 otherwise Bondar 2009 */
+    int GT5candidateCPQ;  /* 1 if GT5 candidate, 0 otherwise Gallacher 2025 */
     NETQUAL LocalNetwork;               /* local (0-150 km) network quality */
-    NETQUAL NearRegionalNetwork;/* near-regional (3-10 deg) network quality */
-    NETQUAL TeleseismicNetwork; /* teleseismic (28-180 deg) network quality */
     NETQUAL FullNetwork;               /* whole (0-180 deg) network quality */
     double score;                          /* event score for ranking hypos */
 } HYPQUAL;
@@ -780,7 +781,8 @@ TT_TABLE *GenerateLocalTTtables(char *filename, double lat, double lon);
  * iLocLocationQuality.c
  */
 int LocationQuality(int numPhase, PHAREC p[], HYPQUAL *hq);
-double GetdUGapSgap(int nsta, double *esaz, double *gap, double *sgap);
+double GetdUGapSgap(int nsta, double *esaz, double *gap, double *sgap, double *cpq);
+int GetNdefSP150(SOLREC *sp, READING *rdindx, PHAREC p[], int isverbose);
 /*
  * iLocLocator.c
  */
