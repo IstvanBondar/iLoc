@@ -1,3 +1,17 @@
+iLoc-4.3
+==========
+- included RSTT3.2.1, a bugfix release
+- modifications in Makefiles to support the latest gcc.
+- modified Makefiles to support Apple silicon compile and link issues.
+- included calculating the Cyclic Polygon Quotient (CPQ) and the ISC GT5 test
+  Gallacher et al., 2025, Seismica, 4, https://doi.org/10.26443/seismica.v4i1.1536.
+- a phase is identified as Lg only if it was reported as Lg
+  (suggested by Nick Ackerley, NRCan, Canada).
+- if data were read from and ISF file, defining S-P pairs were incorrectly
+  counted if more than one agency reported phases from the station.
+- renamed auxdir to iLocAuxDir to be in sync with the SeisComp iLoc plugin.
+  Both iLoc and the SeisComp iLoc plugin read the same iLocAuxDir.
+
 iLoc 4.2
 ==========
 - RSTT3.2.1; bugfix release
