@@ -131,7 +131,7 @@
 #define DEPSILON 1.e-8               /* for testing floating point equality */
 #define CONV_TOL 1.e-8                             /* convergence tolerance */
 #define ZERO_TOL 1.e-10                                   /* zero tolerance */
-#define SAMETIME_TOL 0.15             /* time tolerance for duplicate picks */
+#define SAMETIME_TOL 0.25             /* time tolerance for duplicate picks */
 /*
  * limits (array sizes)
  */

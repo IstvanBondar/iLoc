@@ -215,6 +215,8 @@ PhaseMap
     IAMB      IAmb       # no TT
     IVmB_BB   IVmB_BB    # no TT
     IVMB_BB   IVmB_BB    # no TT
+    IVmb_Lg   IVmb_Lg    # no TT
+    Vmb_Lg    IVmb_Lg    # no TT
     pmax      pmax       # no TT
     smax      smax       # no TT
     AMS       AMS        # no TT
@@ -438,6 +440,7 @@ PhaseWithoutResidual
      SPS
      IAmb
      IVmb_BB
+     IVmb_Lg
      AMB
      AMS
      IAMs_20
